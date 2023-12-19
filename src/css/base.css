@@ -1,0 +1,167 @@
+:root {
+   --fon-grey: #E8E8E2;
+   --color-green: #6D8434;
+   --color-white-grey: #FAFAFA;
+   --color-white: #fff;
+   --background-popap: rgba(1, 1, 1, 0.40);
+   --color-text-dark: rgba(1, 1, 1, 0.80);
+   --color-text-white: rgba(232, 232, 226, 0.70);
+   --animation: 0.3s ease;
+   /* Плавний скролл сторінки */
+   scroll-behavior: smooth;
+}
+
+@font-face {
+   font-family: 'NeueMontreal';
+   src: local('☺'), url('../fonts/NeueMontreal-regular.woff') format('woff'),
+      url('../fonts/NeueMontreal-regular.ttf') format('truetype');
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'NeueMontreal';
+   src: local('☺'), url('../fonts/NeueMontreal-medium.woff') format('woff'),
+      url('../fonts/NeueMontreal-medium.ttf') format('truetype');
+   font-weight: 500;
+   font-style: normal;
+   font-display: swap;
+}
+
+body {
+   font-family: 'NeueMontreal';
+   background-color: var(--fon-grey);
+   color: #010101;
+   font-weight: 400;
+   font-size: 0.875rem;
+   line-height: 1.29;
+}
+
+@media only screen and (min-width: 768px) {
+   body {
+      font-size: 1.125rem;
+      line-height: 1.33;
+   }
+}
+
+/* розгортання блоків щоб футер постійно був в низу єкрана */
+.wrapper {
+   overflow: clip;
+   min-height: 100vh;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.wrapper > main {
+   flex-grow: 1;
+   padding-top: 128px;
+}
+
+@media only screen and (min-width: 768px) {
+   .wrapper > main {
+      padding-top: 188px;
+   }
+}
+
+@media only screen and (min-width: 1440px) {
+   .wrapper > main {
+      padding-top: 149px;
+   }
+}
+
+/* ====================================================== */
+.container {
+   max-width: 375px;
+   min-width: 320px;
+   padding: 0 20px 0 20px;
+   margin: 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+   .container {
+      max-width: 768px;
+      padding-right: 32px;
+      padding-left: 32px;
+   }
+}
+
+@media only screen and (min-width: 1440px) {
+   .container {
+      max-width: 1440px;
+      padding-right: 100px;
+      padding-left: 100px;
+   }
+}
+
+
+/* Стилі круглих іконок на сторінці */
+.icon-styles {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #586F1F;
+   width: 34px;
+   height: 34px;
+   border-radius: 50%;
+   transition: background-color var(--animation);
+}
+
+@media (hover: hover) {
+
+   .icon-styles:focus,
+   .icon-styles:hover {
+      background-color: var(--color-green);
+   }
+}
+
+.icon-styles:active {
+   background-color: var(--color-green);
+}
+
+/* структура */
+/*< ващі теги (a) або (button)  class=" Ваш класс і додатково + icon-styles" > 
+      <svg width="14" height="14" > 
+      <use href="./img/sprite.svg#icon-basket" > </use > 
+      </svg > 
+      </ >*/
+/*  тегі будь які головне що б була обгортка у тега svg */
+/* ===================================================== */
+
+/* Стилі кнопок загальні на сторінці */
+.btn-styles {
+   display: inline-flex;
+   padding: 12px 24px;
+   justify-content: center;
+   align-items: center;
+   border-radius: 30px;
+   background-color: #586F1F;
+   gap: 10px;
+   color: #E8E8E2;
+   font-size: 0.875rem;
+   font-weight: 500;
+   line-height: 1.29;
+   transition: background-color var(--animation);
+}
+
+@media only screen and (min-width: 768px) {
+   .btn-styles {
+      padding: 10px 28px;
+      font-size: 1rem;
+      line-height: 1.25;
+   }
+}
+
+@media (hover: hover) {
+
+   .btn-styles:focus,
+   .btn-styles:hover {
+      background-color: var(--color-green);
+   }
+}
+
+.btn-styles:active {
+   background-color: var(--color-green);
+}

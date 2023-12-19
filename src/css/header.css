@@ -1,21 +1,87 @@
 .header {
-  padding: 20px 0;
+   position: fixed;
+   width: 100%;
+   top: 0;
+   left: 0;
+   z-index: 50;
+   transition: transform 0.3s ease;
+   background-color: transparent;
 }
 
-.nav-list {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 40px;
+/* анінімація схову і появи шапки сайту */
+.header.hide {
+   transition: transform 0.3s ease;
+   transform: translateY(-150%);
 }
 
-.nav-link {
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1.5;
+/* ===================================== */
+.header-section {
+   padding-top: 24px;
+   padding-bottom: 24px;
 }
 
-.nav-link:hover,
-.nav-link:focus {
-  color: #747bff;
+.header-body {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
+
+.header-logo {
+   display: flex;
+   align-items: center;
+   transition: all var(--animation);
+}
+
+.header-logo-svg-span {
+   width: 28px;
+   height: 28px;
+}
+
+.header-logo-svg-text {
+   transition: fill var(--animation);
+}
+
+@media (hover: hover) {
+
+   .header-logo:focus .header-logo-svg-text,
+   .header-logo:hover .header-logo-svg-text {
+      fill: var(--fon-grey);
+   }
+
+   .header-logo:focus .header-logo-svg-span,
+   .header-logo:hover .header-logo-svg-span {
+      background-color: var(--fon-grey);
+      stroke: var(--color-green);
+   }
+}
+
+.header-logo:active .header-logo-svg-span {
+   background-color: var(--fon-grey);
+   stroke: var(--color-green);
+}
+
+.header-logo:active .header-logo-svg-text {
+   fill: var(--fon-grey);
+}
+
+.header-logo-svg {}
+
+.header-logo-svg-text {}
+
+.header-menu {}
+
+.header-list {
+   display: flex;
+   align-items: center;
+}
+
+.header-list li {}
+
+.header-link {}
+
+.header-link-basket {
+   width: 38px;
+   height: 38px;
+}
+
+.header-link-basket-svg {}
