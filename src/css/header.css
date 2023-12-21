@@ -16,20 +16,33 @@
 
 /* ===================================== */
 .header-section {
-   padding-top: 24px;
-   padding-bottom: 24px;
+   padding-top: 18px;
+   padding-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+   .header-section {
+      padding-top: 24px;
+   }
 }
 
 .header-body {
    display: flex;
    justify-content: space-between;
    align-items: center;
+   gap: 5px;
 }
 
 .header-logo {
    display: flex;
    align-items: center;
-   transition: all var(--animation);
+   gap: 4px;
+}
+
+@media only screen and (min-width: 768px) {
+   .header-logo {
+      gap: 8px;
+   }
 }
 
 .header-logo-svg-span {
@@ -37,51 +50,80 @@
    height: 28px;
 }
 
-.header-logo-svg-text {
-   transition: fill var(--animation);
-}
-
-@media (hover: hover) {
-
-   .header-logo:focus .header-logo-svg-text,
-   .header-logo:hover .header-logo-svg-text {
-      fill: var(--fon-grey);
+@media only screen and (min-width: 768px) {
+   .header-logo-svg-span {
+      width: 32px;
+      height: 32px;
    }
 
-   .header-logo:focus .header-logo-svg-span,
-   .header-logo:hover .header-logo-svg-span {
-      background-color: var(--fon-grey);
-      stroke: var(--color-green);
+   .header-logo-svg-text {
+      width: 157px;
+      height: 24px;
    }
 }
 
-.header-logo:active .header-logo-svg-span {
-   background-color: var(--fon-grey);
-   stroke: var(--color-green);
+@media only screen and (min-width: 1440px) {
+   .header-logo-svg-text {
+      width: 155px;
+      height: 21px;
+   }
 }
-
-.header-logo:active .header-logo-svg-text {
-   fill: var(--fon-grey);
-}
-
-.header-logo-svg {}
-
-.header-logo-svg-text {}
-
-.header-menu {}
 
 .header-list {
    display: flex;
    align-items: center;
+   gap: 6px;
 }
 
-.header-list li {}
+@media only screen and (min-width: 768px) {
+   .header-list {
+      gap: 14px;
+   }
 
-.header-link {}
+   .header-list li:last-child {
+      margin-left: 2px;
+   }
+}
+
+@media only screen and (min-width: 1440px) {
+   .header-list {
+      gap: 14px;
+   }
+
+   .header-list li:first-child {
+      margin-right: 10px;
+   }
+
+   .header-list li:last-child {
+      margin-left: 0px;
+   }
+}
+
+.header-link {
+   padding: 10px 20px;
+}
+
+@media only screen and (min-width: 768px) {
+   .header-link {
+      padding: 12px 28px;
+   }
+}
 
 .header-link-basket {
    width: 38px;
    height: 38px;
 }
 
-.header-link-basket-svg {}
+.header-basket-card {
+   display: none;
+}
+
+@media only screen and (min-width: 768px) {
+   .header-basket-card {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.33;
+      text-transform: uppercase;
+   }
+}
