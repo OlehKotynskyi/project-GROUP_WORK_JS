@@ -48,12 +48,7 @@
 .header-logo-svg-span {
    width: 28px;
    height: 28px;
-
-}
-
-.header-logo-svg {
-   fill: currentColor;
-   color: var(--fon-grey);
+   fill: var(--fon-grey);
 }
 
 @media only screen and (min-width: 768px) {
@@ -66,16 +61,6 @@
       width: 157px;
       height: 24px;
    }
-
-   .header-logo:focus .header-logo-svg,
-   .header-logo:hover .header-logo-svg {
-      color: var(--color-green);
-   }
-
-}
-
-.header-logo:active {
-   background-color: var(--color-green);
 }
 
 @media only screen and (min-width: 1440px) {
