@@ -17,6 +17,7 @@
 /* ===================================== */
 .header-section {
    padding-top: 18px;
+<<<<<<< Updated upstream
    padding-bottom: 10px;
 }
 
@@ -24,6 +25,9 @@
    .header-section {
       padding-top: 24px;
    }
+=======
+   padding-bottom: 18px;
+>>>>>>> Stashed changes
 }
 
 .header-body {
@@ -36,6 +40,7 @@
 .header-logo {
    display: flex;
    align-items: center;
+<<<<<<< Updated upstream
    gap: 4px;
 }
 
@@ -43,13 +48,26 @@
    .header-logo {
       gap: 8px;
    }
+=======
+   transition: all var(--animation);
+   gap: 8px;
+   padding: 8px 10px 8px 2px;
+   border-radius: 9px;
+>>>>>>> Stashed changes
 }
 
 .header-logo-svg-span {
    width: 28px;
    height: 28px;
+
 }
 
+.header-logo-svg {
+   fill: currentColor;
+   color: var(--fon-grey);
+}
+
+<<<<<<< Updated upstream
 @media only screen and (min-width: 768px) {
    .header-logo-svg-span {
       width: 32px;
@@ -59,9 +77,41 @@
    .header-logo-svg-text {
       width: 157px;
       height: 24px;
-   }
+=======
+.header-logo-svg-text {
+   transition: fill var(--animation);
 }
 
+@media (hover: hover) {
+
+   .header-logo:focus,
+   .header-logo:hover {
+      background-color: var(--color-green);
+   }
+
+   .header-logo:focus .header-logo-svg-text,
+   .header-logo:hover .header-logo-svg-text {
+      fill: var(--fon-grey);
+   }
+
+   .header-logo:focus .header-logo-svg-span,
+   .header-logo:hover .header-logo-svg-span {
+      background-color: var(--fon-grey);
+>>>>>>> Stashed changes
+   }
+
+   .header-logo:focus .header-logo-svg,
+   .header-logo:hover .header-logo-svg {
+      color: var(--color-green);
+   }
+
+}
+
+.header-logo:active {
+   background-color: var(--color-green);
+}
+
+<<<<<<< Updated upstream
 @media only screen and (min-width: 1440px) {
    .header-logo-svg-text {
       width: 155px;
@@ -69,10 +119,39 @@
    }
 }
 
+=======
+.header-logo:active .header-logo-svg-span {
+   background-color: var(--fon-grey);
+}
+
+.header-logo:active .header-logo-svg-text {
+   fill: var(--fon-grey);
+}
+
+.header-logo:active .header-logo-svg {
+   color: var(--color-green);
+}
+
+.header-logo-svg {}
+
+.header-logo-svg-text {}
+
+.header-menu {}
+
+>>>>>>> Stashed changes
 .header-list {
    display: flex;
    align-items: center;
    gap: 6px;
+<<<<<<< Updated upstream
+=======
+}
+
+@media only screen and (min-width: 768px) {
+   .header-list {
+      gap: 16px;
+   }
+>>>>>>> Stashed changes
 }
 
 @media only screen and (min-width: 768px) {
@@ -80,6 +159,7 @@
       gap: 14px;
    }
 
+<<<<<<< Updated upstream
    .header-list li:last-child {
       margin-left: 2px;
    }
@@ -108,22 +188,38 @@
       padding: 12px 28px;
    }
 }
+=======
+.header-link {
+   padding: 10px 20px;
+}
+>>>>>>> Stashed changes
 
 .header-link-basket {
    width: 38px;
    height: 38px;
 }
 
+<<<<<<< Updated upstream
 .header-basket-card {
+=======
+.header-link-basket-svg {}
+
+.header-basket {
+>>>>>>> Stashed changes
    display: none;
 }
 
 @media only screen and (min-width: 768px) {
+<<<<<<< Updated upstream
    .header-basket-card {
       display: inline-block;
       font-size: 18px;
       font-weight: 500;
       line-height: 1.33;
       text-transform: uppercase;
+=======
+   .header-basket {
+      display: inline-block;
+>>>>>>> Stashed changes
    }
 }
