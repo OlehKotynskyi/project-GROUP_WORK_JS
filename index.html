@@ -9,7 +9,8 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css" />
    
   <script type="module" crossorigin src="/project-GROUP_WORK_JS/commonHelpers.js"></script>
-  <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/index-edb99c09.css">
+  <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/vendor-a61d8330.js">
+  <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/index-eb5a9c74.css">
 </head>
 
 <body>
@@ -19,25 +20,29 @@
       <div class="header-body container">
          <a href="#" class="header-logo">
             <span class="header-logo-svg-span icon-styles">
-               <svg class="header-logo-svg" width="16" height="16">
-                  <use href="../img/sprite.svg#icon-logo"></use>
+               <svg width="16" height="16">
+                  <use href="/project-GROUP_WORK_JS/assets/sprite-3fe8f026.svg#icon-logo"></use>
                </svg>
             </span>
-            <svg class="header-logo-svg-text" width="116" height="16">
-               <use href="../img/sprite.svg#icon-food-boutique"></use>
+            <svg class="header-logo-svg-text" width="118" height="20">
+               <use href="/project-GROUP_WORK_JS/assets/sprite-3fe8f026.svg#icon-food-boutique"></use>
             </svg>
          </a>
          <nav class="header-menu">
-            <ul class="header-list ">
+            <ul class="header-list">
                <li>
-                  <a href="../index.html" class="header-link">Home</a>
+                  <a href="../index.html" class="header-link btn-styles">Home</a>
                </li>
                <li>
                   <a href="" class="header-link-basket icon-styles">
                      <svg width="14" height="14">
-                        <use href="../img/sprite.svg#icon-basket"></use>
+                        <use href="/project-GROUP_WORK_JS/assets/sprite-3fe8f026.svg#icon-basket"></use>
                      </svg>
                   </a>
+               </li>
+
+               <li class="header-basket-card">
+                  Cart &lpar;<span class="header-basket-counter">0</span>&rpar;
                </li>
             </ul>
          </nav>
@@ -60,15 +65,17 @@
          <section class="products-section-container">
    <ul class="products-container container"></ul>
 </section>
+
          <section class="popular-section-container">
    <ul class="popular-container container"></ul>
 </section>
-         <section class="discount-section">
-   <div class="discount-container container">
 
-   </div>
+         <section class="discount-section">
+   <ul class="discount-container container">
+
+   </ul>
 </section>
-<!---->
+
       </main>
 
       <footer class="footer">
