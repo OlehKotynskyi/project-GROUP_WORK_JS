@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+  </head>
+  <body>
+    <!--шапка сайту-->
+    <header class="header">
+      <section class="header-section">
+        <div class="header-body container">
+          <a href="#" class="header-logo">
+            <span class="header-logo-svg-span icon-styles">
+              <svg width="16" height="16">
+                <use href="./img/sprite.svg#icon-logo"></use>
+              </svg>
+            </span>
+            <svg class="header-logo-svg-text" width="118" height="20">
+              <use href="./img/sprite.svg#icon-food-boutique"></use>
+            </svg>
+          </a>
+          <nav class="header-menu">
+            <ul class="header-list">
+              <li>
+                <a href="../index.html" class="header-link btn-styles">Home</a>
+              </li>
+              <li>
+                <a href="./cart.html" class="header-link-basket icon-styles">
+                  <svg width="14" height="14">
+                    <use href="./img/sprite.svg#icon-basket"></use>
+                  </svg>
+                </a>
+              </li>
+
+              <li class="header-basket-card">
+                Cart &lpar;<span class="header-basket-counter">0</span>&rpar;
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </header>
+    <!--main-->
+    <section class="cart-section">
+      <div class="cart-body">
+        <ul class="cart-list">
+          <li>
+            <a href="./cart.html" class="header-link-basket icon-styles">
+              <svg width="14" height="14">
+                <use href="./img/sprite.svg#icon-basket"></use>
+              </svg>
+            </a>
+            <span class="cart">CART</span>
+          </li>
+          <li class="delete">
+            <button class="btn-delete" aria-label="delete all"></button>
+          </li>
+          <li class="basket-card"></li>
+          <li class="order-cart">
+            <span class="order">Your order</span>
+          </li>
+          <li class="total">
+            <span class="total-tx">total</span>
+            <input
+              class="input"
+              type="email"
+              name="mail"
+              placeholder="E-mail:Enter your email"
+            />
+            <button class="btn-checkout" aria-label="checkout"></button>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!--footer-->
+    <footer class="footer">
+      <section class="footer-section">
+        <div class="footer-container container"></div>
+      </section>
+    </footer>
+    <script type="module" src=".js/cart.js"></script>
+  </body>
+</html>
