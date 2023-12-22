@@ -1,5 +1,37 @@
 <section class="filters-section-container">
    <div class="filters-container container">
-
+     <h2 class="filters">Filters:</h2>
+ 
+     <form class="search-form">
+       <div class="search-section">
+         <label for="search-box" class="visually-hidden">Search for anything:
+         <input type="text" id="search-box" name="search-box" placeholder="Search for anything">
+         <button type="submit" class="search-button">
+           <svg class="search-icon" width="14.58" height="14.58"><use xlink:href="img/sprite.svg#icon-search"></use></svg>
+         </button></label>
+       </div>
+     </form>
+ 
+     <div class="filter-section">
+       <label for="categories" class="visually-hidden">Categories:</label>
+       <select id="categories" name="categories">
+         <!-- Категорії заповнюються динамічно  -->
+         <option value="">Categories</option> <!-- Додаємо опцію для вибору -->
+       </select>
+     </div>
+ 
+     <div class="filter-section">
+       <label for="sort" class="visually-hidden">Sort by:</label>
+       <select id="sort" name="sort">
+         <option value="atoz">A to Z</option>
+         <option value="ztoa">Z to A</option>
+         <option value="cheap">Cheap</option>
+         <option value="expensive">Expensive</option>
+         <option value="popular">Popular</option>
+         <option value="notpopular">Not popular</option>
+         <option value="showall">Show all</option>
+       </select>
+     </div>
    </div>
-</section>
+ </section>
+ 
