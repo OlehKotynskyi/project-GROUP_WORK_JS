@@ -1,26 +1,29 @@
+// filters.js
 import SlimSelect from 'slim-select';
-import { fetchProductsAll, fetchProducts } from './fetch.js';
+import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 
-
-  new SlimSelect({
+new SlimSelect({
     select: '#categories',
    
     data: [
         {'placeholder': true, 'text': 'categories'},
-      {text: 'Beverages'},
-      {text: 'Breads_&_Bakery'},
-      {text: 'Dairy'},
-      {text: 'Deli'},
-      {text: 'Eggs'},
-      {text: 'Fresh_Produce'},
-      {text: 'Frozen_Foods'},
-      {text: 'Meat_&_Seafood'},
-      {text: 'Pantry_Items'},
-      {text: 'Prepared_Foods'},
-      {text: 'Snacks'},
+    
+
+        {text: 'Beverages'},
+        {text: 'Breads_&_Bakery'},
+        {text: 'Dairy'},
+        {text: 'Deli'},
+        {text: 'Eggs'},
+        {text: 'Fresh_Produce'},
+        {text: 'Frozen_Foods'},
+        {text: 'Meat_&_Seafood'},
+        {text: 'Pantry_Items'},
+        {text: 'Prepared_Foods'},
+        {text: 'Snacks'},
     ],
-})
+});
+
 let categorySlimSelect;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -45,6 +48,7 @@ function initializeSlimSelectWithCategories() {
                 data: categoryOptions
             });
 
+            // Тепер встановлюємо збережені фільтри тільки після ініціалізації SlimSelect
             setSavedFilters();
         })
         .catch(error => console.error('Error fetching categories:', error));
@@ -61,6 +65,9 @@ function setSavedFilters() {
         }
     }
 }
+
+
+
 
 function initializeFilters() {
     if (!localStorage.getItem('filters')) {
@@ -81,17 +88,21 @@ function updateFilters(key, value) {
 
 function setupEventListeners() {
     const searchForm = document.querySelector('.search-form');
-    searchForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        updateFilters('keyword', document.getElementById('search-box').value);
-        fetchFilteredProducts();
-    });
+    if (searchForm) {
+        searchForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            updateFilters('keyword', document.getElementById('search-box').value);
+            fetchFilteredProducts();
+        });
+    }
 
     const categoriesSelect = document.getElementById('categories');
-    categoriesSelect.addEventListener('change', function () {
-        updateFilters('category', this.value);
-        fetchFilteredProducts();
-    });
+    if (categoriesSelect) {
+        categoriesSelect.addEventListener('change', function () {
+            updateFilters('category', this.value);
+            fetchFilteredProducts();
+        });
+    }
 }
 
 function fetchFilteredProducts() {
@@ -100,7 +111,10 @@ function fetchFilteredProducts() {
         .then(data => {
             updateProductsList(data);
         })
-        .catch(error => console.error('Error fetching products:', error));
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            updateProductsList([]); // Виклик з порожнім масивом у випадку помилки
+        });
 }
 
 function fetchInitialProducts() {
