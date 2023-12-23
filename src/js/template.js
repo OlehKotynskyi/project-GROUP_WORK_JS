@@ -17,7 +17,7 @@ export function createMarkupProductsAll(arr) {
                 <span>&#36;${price}</span>
                <button class="add-btn icon-styles">
                   <svg width="18" height="18">
-                     <use href="./img/sprite.svg#icon-basket"></use>
+                     <use href="../img/sprite.svg#icon-basket"></use>
                   </svg>
                </button>
             </div>
