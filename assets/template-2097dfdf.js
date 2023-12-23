@@ -13,7 +13,7 @@
                 <span>&#36;${e}</span>
                <button class="add-btn icon-styles">
                   <svg width="18" height="18">
-                     <use href="./img/sprite.svg#icon-basket"></use>
+                     <use href="../img/sprite.svg#icon-basket"></use>
                   </svg>
                </button>
             </div>
@@ -52,4 +52,4 @@
             <span class="products-quantity"></span>
             <button class="more-btn">+</button>
         </li>`).join("")}export{c as a,p as b,u as c,l as d};
-//# sourceMappingURL=template-3bd7251c.js.map
+//# sourceMappingURL=template-2097dfdf.js.map
