@@ -38,7 +38,7 @@ export function createMarkupProductsDiscount(arr) {
       return `<li class="discount-list-item" id="${_id}" >
             <div class="discount-card">
             <svg class="icon-styles discount-icon" width="14" height="14" > 
-      <use href="../img/sprite.svg#discount"> </use > 
+      <use href="../img/sprite.svg#icon-discount"> </use > 
       </svg > 
             <img class="discount-img" src="${img}"></div>
             <div class="discount-info">

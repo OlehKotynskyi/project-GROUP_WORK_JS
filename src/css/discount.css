@@ -1,8 +1,8 @@
-.discount-section-container {
+.discount-section {
   border-radius: 15px;
-
-  max-width: 336px;
-  height: 232px;
+  max-width: 375px;
+  height: auto;
+  margin-bottom: 80px;
 }
 
 .discount-title {
@@ -13,28 +13,30 @@
   font-weight: 500;
   line-height: 1.17px;
   margin-bottom: 20px;
+  padding: 16px;
 }
 
 .discount-container {
   display: block;
-  flex-wrap: wrap;
-  row-gap: 20px;
-  padding: 20px;
+
   padding-bottom: 80px;
   justify-content: center;
   border-radius: 15px;
-
   background-color: #fafafa;
+  margin: 20px;
+  max-width: 336px;
 }
 .discount-card {
+  position: relative;
   background-color: var(--fon-grey);
   background-size: cover;
   background-position: center;
 }
 
 .discount-icon {
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: -15px;
+  right: -15px;
 }
 
 .discount-list-item {
@@ -48,7 +50,7 @@
   border-radius: 10px;
   max-width: 114px;
   height: 114px;
-
+  padding-top: 16px;
   margin: 0 auto;
 }
 
@@ -57,5 +59,5 @@
   justify-content: space-between;
   align-items: center;
   gap: 5px;
-  padding: 23px 16px 21px;
+  padding: 23px 0;
 }
