@@ -1,5 +1,9 @@
 function addCounter() {
   const counter = document.querySelector('.header-basket-counter');
   const productsCounter = JSON.parse(localStorage.getItem(KEY));
-  counter.textContent = `${productsCounter.length}`;
+  if (productsCounter.length == null) {
+    counter.textContent = `0`;
+  } else {
+    counter.textContent = `${productsCounter.length}`;
+  }
 }
