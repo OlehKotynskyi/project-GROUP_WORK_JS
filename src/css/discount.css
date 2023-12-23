@@ -1,4 +1,4 @@
-.discount-section {
+/*.discount-section {
   border-radius: 15px;
   max-width: 375px;
   height: auto;
@@ -60,4 +60,79 @@
   align-items: center;
   gap: 5px;
   padding: 23px 0;
+}*/
+
+
+.discount-section {}
+
+.discount-title {
+   font-size: 24px;
+   font-weight: 500;
+   line-height: 1.16;
+}
+
+.discount-title:not(:last-child) {
+   margin-bottom: 20px;
+}
+
+.discount-container {}
+
+.discount-list-item {
+   position: relative;
+   max-width: 335px;
+   padding: 15px 16px;
+   border-radius: 15px;
+   background: var(--color-white-grey);
+}
+
+.discount-list-item:not(:last-child) {
+   margin-bottom: 20px;
+}
+
+.discount-card {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 10px;
+   background: #E8E8E2;
+   min-height: 150px;
+}
+
+.discount-card:not(:last-child) {
+   margin-bottom: 16px;
+}
+
+
+
+.discount-icon {
+   position: absolute;
+   top: 3px;
+   right: 10px;
+   width: 60px;
+   height: 60px;
+}
+
+.discount-img {
+   max-width: 114px;
+}
+
+.discount-basket-icon {}
+
+.discount-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 18px;
+   font-weight: 500;
+   line-height: 1.11;
+}
+
+.discount-link-basket {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.discount-prise:not(:last-child) {
+   margin-right: 8px;
 }

@@ -1,8 +1,8 @@
 export function createMarkupProductsAll(arr) {
-  return arr
-    .map(
-      ({ price, name, img, _id, category, size, popularity }) =>
-        `<li class="list-item" id="${_id}" >
+   return arr
+      .map(
+         ({ price, name, img, _id, category, size, popularity }) =>
+            `<li class="list-item" id="${_id}" >
             <img width=100 src="${img}">
             <h3>${name}</h3>
             <p>Category:  <span>${category}</span></p>
@@ -11,14 +11,14 @@ export function createMarkupProductsAll(arr) {
             <p>$ <span>${price}</span></p>
             <button class="add-btn">+</button>
         </li>`
-    )
-    .join('');
+      )
+      .join('');
 }
 
 export function createMarkupPopularProducts(arr) {
-  return arr
-    .map(({ price, name, img, _id, category, size, popularity }) => {
-      return `<li class="list-item" id="${_id}" >
+   return arr
+      .map(({ price, name, img, _id, category, size, popularity }) => {
+         return `<li class="list-item" id="${_id}" >
             <img width=100 src="${img}">
             <h3>${name}</h3>
             <p>Category:  <span>${category}</span></p>
@@ -27,39 +27,41 @@ export function createMarkupPopularProducts(arr) {
             <p>$ <span>${price}</span></p>
             <button class="add-btn">+</button>
         </li>`;
-    })
-    .join('');
+      })
+      .join('');
 }
 
 export function createMarkupProductsDiscount(arr) {
-  arr.splice(2);
-  return arr
-    .map(({ price, name, img, _id }) => {
-      return `<li class="discount-list-item" id="${_id}" >
+   arr.splice(2);
+   return arr
+      .map(({ price, name, img, _id }) => {
+         return `<li class="discount-list-item" id="${_id}" >
             <div class="discount-card">
             <svg class="icon-styles discount-icon" width="14" height="14" > 
-      <use href="../img/sprite.svg#icon-discount"> </use > 
+      <use href="./img/sprite.svg#icon-discount"> </use > 
       </svg > 
             <img class="discount-img" src="${img}"></div>
             <div class="discount-info">
-            <h3>${name}</h3>
-            <p>$ <span>${price}</span></p>
-            <a href="../cart-page.html" class="header-link-basket icon-styles">
-                     <svg width="14" height="14" > 
-      <use href="../img/sprite.svg#icon-basket"> </use > 
+            <p>${name}</p>
+            <a href="./cart-page.html" class="discount-link-basket">
+            &dollar;<span class="discount-prise">${price}</span>
+            <span class="discount-basket-icon icon-styles">
+                     <svg  width="14" height="14" > 
+      <use href="./img/sprite.svg#icon-basket"> </use > 
       </svg > 
+      </span>
              </a>     
             </div>      
         </li>`;
-    })
-    .join('');
+      })
+      .join('');
 }
 
 export function createMarkupCart(arr) {
-  return arr
-    .map(
-      ({ price, name, img, _id, category, size }) =>
-        `<li class="list-item" id="${_id}" >
+   return arr
+      .map(
+         ({ price, name, img, _id, category, size }) =>
+            `<li class="list-item" id="${_id}" >
             <img width=100 src="${img}">
             <button class="remove-btn">X</button>
             <h3>${name}</h3>
@@ -70,6 +72,6 @@ export function createMarkupCart(arr) {
             <span class="products-quantity"></span>
             <button class="more-btn">+</button>
         </li>`
-    )
-    .join('');
+      )
+      .join('');
 }
