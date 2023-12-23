@@ -5,6 +5,8 @@
 
 .cart-container {
   margin: 74px 0;
+  max-height: 480px;
+  overflow: scroll;
 }
 
 .cart-title {
@@ -43,12 +45,43 @@
   justify-content: center;
 }
 
+.cart-list-item-wrapper {
+}
+
+/* тимчасове рішення поки немає іконок*/
 .remove-btn {
+  position: absolute;
+  top: 22px;
+  right: 7px;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.cart-amount-wrapper {
+  position: absolute;
+  bottom: 24px;
+  right: 7px;
+  font-size: 16px;
+  line-height: 1.125;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: solid 1px rgba(1, 1, 1, 0.1);
+  border-radius: 100px;
 }
 
 .less-btn {
+  padding: 4px 6px 4px 14px;
 }
 
-.more-btn svg {
-  fill: black;
+.more-btn {
+  padding: 4px 14px 4px 6px;
+}
+
+/* тимчасове рішення поки немає іконок*/
+.less-btn,
+.more-btn {
+  line-height: 1;
 }

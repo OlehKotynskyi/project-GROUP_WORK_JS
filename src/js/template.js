@@ -64,22 +64,16 @@ export function createMarkupCart(arr) {
               <img width=64 src="${img}">
             </div>
             <div class="cart-list-item-wrapper">
-              <button class="remove-btn">X</button>
+              <button class="remove-btn">+</button>
               <h3>${name}</h3>
               <p>Category:  <span>${category}</span></p>
               <p>Size:  <span>${size}</span></p>
               <p>$ <span>${price}</span></p>
-              <button class="less-btn">
-                <svg width="18" height="18">
-                  <use href="../img/sprite.svg#icon-minus"></use>
-                </svg>
-              </button>
-              <span class="products-quantity"></span>
-              <button class="more-btn">
-                <svg width="18" height="18">
-                  <use href="../img/sprite.svg#icon-plus"></use>
-                </svg>
-              </button>
+              <div class="cart-amount-wrapper">
+                <button class="less-btn">-</button>
+                <span class="products-quantity"></span>
+                <button class="more-btn">+</button>
+              </div>
             </div>
         </li>`
     )
