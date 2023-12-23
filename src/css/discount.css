@@ -13,7 +13,7 @@
   font-weight: 500;
   line-height: 1.17px;
   margin-bottom: 20px;
-  padding: 16px;
+  padding: 0 16px;
 }
 
 .discount-container {
@@ -26,6 +26,12 @@
   margin: 20px;
   max-width: 336px;
 }
+.discount-list-item {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .discount-card {
   position: relative;
   background-color: var(--fon-grey);
@@ -39,18 +45,11 @@
   right: -15px;
 }
 
-.discount-list-item {
-  height: 100%;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
 .discount-img {
   display: block;
   border-radius: 10px;
   max-width: 114px;
   height: 114px;
-  padding-top: 16px;
   margin: 0 auto;
 }
 
