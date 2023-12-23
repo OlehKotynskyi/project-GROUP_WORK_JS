@@ -60,15 +60,27 @@ export function createMarkupCart(arr) {
     .map(
       ({ price, name, img, _id, category, size }) =>
         `<li class="list-item" id="${_id}" >
-            <img width=100 src="${img}">
-            <button class="remove-btn">X</button>
-            <h3>${name}</h3>
-            <p>Category:  <span>${category}</span></p>
-            <p>Size:  <span>${size}</span></p>
-            <p>$ <span>${price}</span></p>
-            <button class="less-btn">-</button>
-            <span class="products-quantity"></span>
-            <button class="more-btn">+</button>
+            <div class="list-item-img-wrapper">
+              <img width=64 src="${img}">
+            </div>
+            <div class="list-item-wrapper">
+              <button class="remove-btn">X</button>
+              <h3>${name}</h3>
+              <p>Category:  <span>${category}</span></p>
+              <p>Size:  <span>${size}</span></p>
+              <p>$ <span>${price}</span></p>
+              <button class="less-btn">
+                <svg width="18" height="18">
+                  <use href="../img/sprite.svg#icon-minus"></use>
+                </svg>
+              </button>
+              <span class="products-quantity"></span>
+              <button class="more-btn">
+                <svg width="18" height="18">
+                  <use href="../img/sprite.svg#icon-plus"></use>
+                </svg>
+              </button>
+            </div>
         </li>`
     )
     .join('');
