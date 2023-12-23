@@ -4,34 +4,46 @@
  
      <form class="search-form">
        <div class="search-section">
-         <label for="search-box" class="visually-hidden">Search for anything:
+         <label for="search-box" class="visually-hidden">Search for anything:</label>
          <input type="text" id="search-box" name="search-box" placeholder="Search for anything">
          <button type="submit" class="search-button">
            <svg class="search-icon" width="14.58" height="14.58"><use xlink:href="img/sprite.svg#icon-search"></use></svg>
-         </button></label>
+         </button>
        </div>
      </form>
  
      <div class="filter-section">
        <label for="categories" class="visually-hidden">Categories:</label>
-       <select id="categories" name="categories">
-         <!-- Категорії заповнюються динамічно  -->
-         <option value="">Categories</option> <!-- Додаємо опцію для вибору -->
-       </select>
-     </div>
- 
-     <div class="filter-section">
-       <label for="sort" class="visually-hidden">Sort by:</label>
-       <select id="sort" name="sort">
-         <option value="atoz">A to Z</option>
-         <option value="ztoa">Z to A</option>
-         <option value="cheap">Cheap</option>
-         <option value="expensive">Expensive</option>
-         <option value="popular">Popular</option>
-         <option value="notpopular">Not popular</option>
-         <option value="showall">Show all</option>
-       </select>
+       <select id="categories" name="categories"></select>
+        
+        <option value="Beverages">Beverages</option>
+        <option value="Breads_&_Bakery">Breads_&_Bakery</option>
+        <option value="Dairy">Dairy</option>
+        <option value="Deli">Deli</option>
+        <option value="Eggs">Eggs</option>
+        <option value="Fresh_Produce">Fresh_Produce</option>
+        <option value="Frozen_Foods">Frozen_Foods</option> 
+        <option value="Meat_&_Seafood">Meat_&_Seafood</option>
+        <option value="Pantry_Items">Pantry_Items</option>
+        <option value="Prepared_Foods">Prepared_Foods</option>
+        <option value="Snacks">Snacks</option><!--[
+          "Beverages",
+          "Breads_&_Bakery",
+          "Dairy",
+          "Deli",
+          "Eggs",
+          "Fresh_Produce",
+          "Frozen_Foods",
+          "Meat_&_Seafood",
+          "Pantry_Items",
+          "Prepared_Foods",
+          "Snacks"
+      ] Додаємо опцію для вибору -->
+       
      </div>
    </div>
  </section>
- 
+ <div id="search-results-container">
+  <!-- Сюди будуть вставлені результати пошуку або повідомлення про відсутність результатів -->
+</div>
+<script type="module" src="./js/filters.js"></script>
