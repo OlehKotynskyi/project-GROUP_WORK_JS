@@ -36,14 +36,9 @@
 .header-logo {
    display: flex;
    align-items: center;
-   gap: 4px;
+   gap: 8px;
 }
 
-@media only screen and (min-width: 768px) {
-   .header-logo {
-      gap: 8px;
-   }
-}
 
 .header-logo-svg-span {
    width: 28px;
@@ -78,39 +73,34 @@
 
 @media only screen and (min-width: 768px) {
    .header-list {
-      gap: 14px;
-   }
-
-   .header-list li:last-child {
-      margin-left: 2px;
+      gap: 16px;
    }
 }
 
 @media only screen and (min-width: 1440px) {
    .header-list {
-      gap: 14px;
-   }
-
-   .header-list li:first-child {
-      margin-right: 10px;
-   }
-
-   .header-list li:last-child {
-      margin-left: 0px;
+      gap: 24px;
    }
 }
 
 .header-link {
    padding: 10px 20px;
+   color: #E8E8E2;
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 1.28;
+
 }
 
 @media only screen and (min-width: 768px) {
    .header-link {
       padding: 12px 28px;
+      font-size: 18px;
+      line-height: 1.33;
    }
 }
 
-.header-link-basket {
+.header-link-basket-svg {
    width: 38px;
    height: 38px;
 }
@@ -126,5 +116,17 @@
       font-weight: 500;
       line-height: 1.33;
       text-transform: uppercase;
+   }
+
+   .header-link-basket {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+   }
+
+   .header-link-basket-svg svg {
+      width: 18px;
+      height: 18px;
    }
 }
