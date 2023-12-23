@@ -35,12 +35,21 @@ export function createMarkupProductsDiscount(arr) {
   arr.splice(2);
   return arr
     .map(({ price, name, img, _id }) => {
-      return `<li class="list-item" id="${_id}" >
-            <button class="discount-btn">discount</button>
-            <img width=100 src="${img}">
+      return `<li class="discount-list-item" id="${_id}" >
+            <div class="discount-card">
+            <svg class="icon-styles discount-icon" width="14" height="14" > 
+      <use href="../img/sprite.svg#discount"> </use > 
+      </svg > 
+            <img class="discount-img" src="${img}"></div>
+            <div class="discount-info">
             <h3>${name}</h3>
             <p>$ <span>${price}</span></p>
-            <button class="add-btn">+</button>
+            <a href="../cart-page.html" class="header-link-basket icon-styles">
+                     <svg width="14" height="14" > 
+      <use href="../img/sprite.svg#icon-basket"> </use > 
+      </svg > 
+             </a>     
+            </div>      
         </li>`;
     })
     .join('');
