@@ -6,6 +6,7 @@
    z-index: 50;
    transition: transform 0.3s ease;
    background-color: transparent;
+   transition: all 0.3s ease;
 }
 
 /* анінімація схову і появи шапки сайту */
@@ -14,16 +15,26 @@
    transform: translateY(-150%);
 }
 
+
+
 /* ===================================== */
 .header-section {
    padding-top: 18px;
    padding-bottom: 10px;
+
 }
 
 @media only screen and (min-width: 768px) {
    .header-section {
       padding-top: 24px;
    }
+}
+
+/* Стили для изменения отступов при прокрутке */
+.header-section.scrolled {
+   background-color: rgba(232, 232, 226, 0.699);
+   padding-top: 10px;
+   padding-bottom: 10px;
 }
 
 .header-body {
