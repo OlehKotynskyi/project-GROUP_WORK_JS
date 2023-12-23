@@ -59,11 +59,11 @@ export function createMarkupCart(arr) {
   return arr
     .map(
       ({ price, name, img, _id, category, size }) =>
-        `<li class="list-item" id="${_id}" >
-            <div class="list-item-img-wrapper">
+        `<li class="cart-list-item" id="${_id}" >
+            <div class="cart-list-item-img-wrapper">
               <img width=64 src="${img}">
             </div>
-            <div class="list-item-wrapper">
+            <div class="cart-list-item-wrapper">
               <button class="remove-btn">X</button>
               <h3>${name}</h3>
               <p>Category:  <span>${category}</span></p>
