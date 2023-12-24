@@ -97,3 +97,33 @@ export function createMarkupCart(arr) {
       )
       .join('');
 }
+
+export function createMarkupModal(arr) {
+   return arr
+      .map(
+         ({ price, name, img, _id, category, size, popularity, desc }) =>
+            `
+                  <li class="list-item" id="${_id}">
+            <div class="list-item-img">
+               <img width=100 src="${img}">
+            </div>
+            <p class="products-titel">${name}</p>
+            <div class="list-item-info">
+               <p>Category: <span>${category}</span></p>
+               <p>Size: <span>${size}</span></p>
+               <p>Popularity: <span>${popularity}</span></p>
+               <p>${desc}</p>
+            </div>
+            <div class="list-item-body-price">
+                <span>&#36;${price}</span>
+               <button class="add-btn icon-styles">Add to
+                  <svg width="18" height="18">
+                     <use xlink:href="${icons}#icon-basket"></use>
+                  </svg>
+               </button>
+            </div>
+         </li>
+         `
+      )
+      .join('');
+}
