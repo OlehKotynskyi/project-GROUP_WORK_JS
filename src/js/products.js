@@ -46,7 +46,9 @@ renderDiscount();
 containerAll.addEventListener('click', addBtnClick);
 
 async function addBtnClick(event) {
-  if (event.target.nodeName !== 'BUTTON') {
+      console.log(event.target.nodeName)
+
+  if (event.target.nodeName !== 'BUTTON' && event.target.nodeName !== 'svg' && event.target.nodeName !== 'use') {
     return;
   }
   const selectedItem = event.target.closest('.list-item');
