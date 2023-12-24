@@ -1,125 +1,96 @@
 // filters.js
-import SlimSelect from 'slim-select';
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 
-new SlimSelect({
-    select: '#categories',
-   
-    data: [
-        {'placeholder': true, 'text': 'categories'},
-    
-
-        {text: 'Beverages'},
-        {text: 'Breads_&_Bakery'},
-        {text: 'Dairy'},
-        {text: 'Deli'},
-        {text: 'Eggs'},
-        {text: 'Fresh_Produce'},
-        {text: 'Frozen_Foods'},
-        {text: 'Meat_&_Seafood'},
-        {text: 'Pantry_Items'},
-        {text: 'Prepared_Foods'},
-        {text: 'Snacks'},
-    ],
-});
-
-let categorySlimSelect;
 
 document.addEventListener('DOMContentLoaded', function () {
     initializeFilters();
-    initializeSlimSelectWithCategories();
+    fetchCategories();
     setupEventListeners();
     fetchInitialProducts();
 });
 
-function initializeSlimSelectWithCategories() {
-    fetch('https://food-boutique.b.goit.study/api/products/categories')
-        .then(response => response.json())
-        .then(categories => {
-            const categoryOptions = categories.map(category => ({
-                text: category.replace(/_/g, ' '),
-                value: category
-            }));
-            categoryOptions.unshift({ text: 'Show all', value: '' });
-
-            categorySlimSelect = new SlimSelect({
-                select: '#categories',
-                data: categoryOptions
-            });
-
-            // Тепер встановлюємо збережені фільтри тільки після ініціалізації SlimSelect
-            setSavedFilters();
-        })
-        .catch(error => console.error('Error fetching categories:', error));
-}
-
-function setSavedFilters() {
-    const savedFilters = JSON.parse(localStorage.getItem('filters'));
-    if (savedFilters) {
-        if (savedFilters.category && categorySlimSelect) {
-            categorySlimSelect.set(savedFilters.category);
-        }
-        if (savedFilters.keyword) {
-            document.getElementById('search-box').value = savedFilters.keyword;
-        }
+async function fetchCategories() {
+    try {
+        const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+        const categories = await response.json();
+        populateCategorySelect(categories);
+    } catch (error) {
+        console.error('Error fetching categories:', error);
     }
 }
 
+function populateCategorySelect(categories) {
+    const select = document.getElementById('categories');
+    // Додаємо опцію "Show all"
+    select.appendChild(new Option("Show all", ""));
 
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category.replace(/_/g, ' ');
+        select.appendChild(option);
+    });
 
-
-function initializeFilters() {
-    if (!localStorage.getItem('filters')) {
-        localStorage.setItem('filters', JSON.stringify({ keyword: null, category: null, page: 1, limit: 6 }));
+    const savedFilters = getSavedFilters();
+    if (savedFilters.category) {
+        select.value = savedFilters.category;
     }
-}
-
-function updateFilters(key, value) {
-    const filters = JSON.parse(localStorage.getItem('filters'));
-    filters[key] = value;
-
-    if (key === 'keyword' || key === 'category') {
-        filters['page'] = 1;
-    }
-
-    localStorage.setItem('filters', JSON.stringify(filters));
 }
 
 function setupEventListeners() {
     const searchForm = document.querySelector('.search-form');
-    if (searchForm) {
-        searchForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            updateFilters('keyword', document.getElementById('search-box').value);
-            fetchFilteredProducts();
-        });
-    }
-
     const categoriesSelect = document.getElementById('categories');
-    if (categoriesSelect) {
-        categoriesSelect.addEventListener('change', function () {
-            updateFilters('category', this.value);
-            fetchFilteredProducts();
-        });
+
+    searchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const keyword = document.getElementById('search-box').value;
+        updateFilters('keyword', keyword);
+        fetchFilteredProducts();
+    });
+
+    categoriesSelect.addEventListener('change', function () {
+        updateFilters('category', this.value);
+        fetchFilteredProducts();
+    });
+}
+
+// Додаткова функція для скидання сторінки на 1
+function resetPage() {
+    updateFilters('page', 1);
+}
+
+async function fetchFilteredProducts() {
+    const filters = getSavedFilters();
+    try {
+        const products = await fetchProductsAll(filters.category, filters.keyword, filters.page, filters.limit);
+        updateProductsList(products);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        updateProductsList([]);
     }
 }
 
-function fetchFilteredProducts() {
-    const filters = JSON.parse(localStorage.getItem('filters'));
-    fetchProductsAll(filters.category, filters.keyword, filters.page, filters.limit)
-        .then(data => {
-            updateProductsList(data);
-        })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            updateProductsList([]); // Виклик з порожнім масивом у випадку помилки
-        });
+function initializeFilters() {
+    if (!localStorage.getItem('filters')) {
+        resetFilters();
+    }
+}
+
+function updateFilters(key, value) {
+    const filters = getSavedFilters();
+    filters[key] = value;
+    localStorage.setItem('filters', JSON.stringify(filters));
+}
+
+function resetFilters() {
+    localStorage.setItem('filters', JSON.stringify({ keyword: null, category: null, page: 1, limit: 6 }));
+}
+
+function getSavedFilters() {
+    return JSON.parse(localStorage.getItem('filters')) || resetFilters();
 }
 
 function fetchInitialProducts() {
-    const filters = JSON.parse(localStorage.getItem('filters'));
-    if (filters) {
-        fetchFilteredProducts();
-    }
+    fetchFilteredProducts();
 }
