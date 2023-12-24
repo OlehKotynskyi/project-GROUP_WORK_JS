@@ -2,7 +2,6 @@
 import { handleHeaderScroll } from './js/base-js/scroll';
 // Експорт функції попапу
 import * as yourModule from './js/base-js/popup';
-import { renderPopularCard } from '../src/js/base-js/popular.js/render-popular';
 
 // визов функції ховати та показувати шапку сайту
 handleHeaderScroll();
