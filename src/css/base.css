@@ -36,6 +36,7 @@ body {
    font-weight: 400;
    font-size: 0.875rem;
    line-height: 1.29;
+
 }
 
 @media only screen and (min-width: 768px) {
@@ -43,6 +44,19 @@ body {
       font-size: 1.125rem;
       line-height: 1.33;
    }
+}
+
+.visually-hidden {
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   margin: -1px;
+   border: 0;
+   padding: 0;
+   white-space: nowrap;
+   clip-path: inset(100%);
+   clip: rect(0 0 0 0);
+   overflow: hidden;
 }
 
 /* розгортання блоків щоб футер постійно був в низу єкрана */
