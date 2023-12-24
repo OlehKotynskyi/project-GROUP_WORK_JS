@@ -87,12 +87,14 @@ export function createMarkupCart(arr) {
             <div class="cart-list-item-img-wrapper">
               <img width=64 src="${img}">
             </div>
+            <button class="remove-btn">+</button>
             <div class="cart-list-item-wrapper">
-              <button class="remove-btn">+</button>
-              <h3>${name}</h3>
-              <p>Category:  <span>${category}</span></p>
-              <p>Size:  <span>${size}</span></p>
-              <p>$ <span>${price}</span></p>
+              <h3 class="products-titel">${name}</h3>
+              <div class="list-item-info">
+                <p>Category:  <span>${category}</span></p>
+                <p>Size:  <span>${size}</span></p>
+              </div>
+              <p class="cart-item-price">$ <span>${price}</span></p>
               <div class="cart-amount-wrapper">
                 <button class="less-btn">-</button>
                 <span class="products-quantity"></span>
@@ -103,3 +105,4 @@ export function createMarkupCart(arr) {
       )
       .join('');
 }
+// list-item-info
