@@ -95,12 +95,12 @@ export function createMarkupCart(arr) {
                 <p>Size:  <span>${size}</span></p>
               </div>
               <p class="cart-item-price">$ <span>${price}</span></p>
+              </div>
               <div class="cart-amount-wrapper">
                 <button class="less-btn">-</button>
                 <span class="products-quantity"></span>
                 <button class="more-btn">+</button>
               </div>
-            </div>
         </li>`
       )
       .join('');
