@@ -87,6 +87,7 @@ export function createMarkupCart(arr) {
         </li>`
       )
       .join('');
+}
 
 export function createMarkupModal(arr) {
    return arr
@@ -115,6 +116,6 @@ export function createMarkupModal(arr) {
          </li>
          `
       )
-      .join('');
+      .join('')
 
 }
