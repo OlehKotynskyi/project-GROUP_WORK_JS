@@ -60,16 +60,18 @@ export function createMarkupProductsDiscount(arr) {
          return `<li class="discount-list-item" id="${_id}" >
             <div class="discount-card">
             <svg class="icon-styles discount-icon" width="14" height="14" > 
-      <use href="../img/sprite.svg#icon-discount"> </use > 
+      <use href="./img/sprite.svg#icon-discount"> </use > 
       </svg > 
             <img class="discount-img" src="${img}"></div>
             <div class="discount-info">
-            <h3>${name}</h3>
-            <p>$ <span>${price}</span></p>
-            <a href="../cart-page.html" class="header-link-basket icon-styles">
-                     <svg width="14" height="14" > 
-      <use href="../img/sprite.svg#icon-basket"> </use > 
+            <p>${name}</p>
+            <a href="./cart-page.html" class="discount-link-basket">
+            &dollar;<span class="discount-prise">${price}</span>
+            <span class="discount-basket-icon icon-styles">
+                     <svg  width="18" height="18" > 
+      <use href="./img/sprite.svg#icon-basket"> </use > 
       </svg > 
+      </span>
              </a>     
             </div>      
         </li>`;
