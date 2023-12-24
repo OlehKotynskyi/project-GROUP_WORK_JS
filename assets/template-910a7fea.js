@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const t of s)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&i(a)}).observe(document,{childList:!0,subtree:!0});function o(s){const t={};return s.integrity&&(t.integrity=s.integrity),s.referrerpolicy&&(t.referrerPolicy=s.referrerpolicy),s.crossorigin==="use-credentials"?t.credentials="include":s.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(s){if(s.ep)return;s.ep=!0;const t=o(s);fetch(s.href,t)}})();const c="/project-GROUP_WORK_JS/assets/sprite-3fe8f026.svg";function p(n){return n.map(({price:e,name:o,img:i,_id:s,category:t,size:a,popularity:r})=>`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const t of s)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&i(a)}).observe(document,{childList:!0,subtree:!0});function o(s){const t={};return s.integrity&&(t.integrity=s.integrity),s.referrerpolicy&&(t.referrerPolicy=s.referrerpolicy),s.crossorigin==="use-credentials"?t.credentials="include":s.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(s){if(s.ep)return;s.ep=!0;const t=o(s);fetch(s.href,t)}})();const c="/project-GROUP_WORK_JS/assets/sprite-a8de2b94.svg";function p(n){return n.map(({price:e,name:o,img:i,_id:s,category:t,size:a,popularity:r})=>`
                   <li class="list-item" id="${s}">
             <div class="list-item-img">
                <img width=100 src="${i}">
@@ -54,4 +54,4 @@
             <span class="products-quantity"></span>
             <button class="more-btn">+</button>
         </li>`).join("")}export{p as a,l as b,d as c,u as d};
-//# sourceMappingURL=template-9eea8095.js.map
+//# sourceMappingURL=template-910a7fea.js.map
