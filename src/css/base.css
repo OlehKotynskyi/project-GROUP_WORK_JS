@@ -180,6 +180,7 @@ body {
    background-color: var(--color-green);
 }
 
+
 .body-wrapper {}
 
 @media only screen and (min-width: 1440px) {
@@ -197,3 +198,4 @@ body {
       flex: 0 1 275px;
    }
 }
+

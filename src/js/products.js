@@ -46,18 +46,20 @@ renderDiscount();
 containerAll.addEventListener('click', addBtnClick);
 
 async function addBtnClick(event) {
-   if (event.target.nodeName !== 'BUTTON') {
-      return;
-   }
-   const selectedItem = event.target.closest('.list-item');
-   const selectedItemId = selectedItem.id;
-   console.log(selectedItemId);
-   try {
-      const currentProduct = await fetchProducts(selectedItemId);
-      const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
-      console.log(products);
-      const index = products.findIndex(item => item._id === selectedItemId);
-      console.log(index);
+      console.log(event.target.nodeName)
+
+  if (event.target.nodeName !== 'BUTTON' && event.target.nodeName !== 'svg' && event.target.nodeName !== 'use') {
+    return;
+  }
+  const selectedItem = event.target.closest('.list-item');
+  const selectedItemId = selectedItem.id;
+  console.log(selectedItemId);
+  try {
+    const currentProduct = await fetchProducts(selectedItemId);
+    const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+    console.log(products);
+    const index = products.findIndex(item => item._id === selectedItemId);
+    console.log(index);
 
       if (index !== -1) {
          products[index].quantity += 1;
@@ -71,3 +73,4 @@ async function addBtnClick(event) {
       console.log(error.message);
    }
 }
+

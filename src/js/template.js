@@ -25,15 +25,6 @@ export function createMarkupProductsAll(arr) {
             </div>
          </li>
          `
-         //  `<li class="list-item" id="${_id}" >
-         //      <img width=100 src="${img}">
-         //      <h3>${name}</h3>
-         //      <p>Category:  <span>${category}</span></p>
-         //      <p>Size:  <span>${size}</span></p>
-         //      <p>Popularity:  <span>${popularity}</span></p>
-         //      <p>$ <span>${price}</span></p>
-         //      <button class="add-btn">+</button>
-         //  </li>`
       )
       .join('');
 }
@@ -125,5 +116,6 @@ export function createMarkupModal(arr) {
          </li>
          `
       )
-      .join('');
+      .join('')
+
 }
