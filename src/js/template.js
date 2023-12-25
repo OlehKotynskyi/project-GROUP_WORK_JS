@@ -94,7 +94,7 @@ export function createMarkupModal(arr) {
       .map(
          ({ price, name, img, _id, category, size, popularity, desc }) =>
             `
-                  <li class="list-item" id="${_id}">
+            <li class="list-item" id="${_id}">
             <div class="list-item-img">
                <img width=100 src="${img}">
             </div>
@@ -114,6 +114,10 @@ export function createMarkupModal(arr) {
                </button>
             </div>
          </li>
+
+
+
+   
          `
       )
       .join('')
