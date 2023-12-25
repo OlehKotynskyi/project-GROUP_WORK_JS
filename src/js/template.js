@@ -54,7 +54,7 @@ export function createMarkupProductsDiscount(arr) {
          return `
          <li class="discount-list-item" id="${_id}" >
             <div class="discount-card">
-               <img class="icon-styles discount-icon" src="${discount}" alt="icon discount" width="100" height="100">
+               <img class="discount-icon" src="${discount}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${img}"></div>
             <div class="discount-info">
                <p>${name}</p>
