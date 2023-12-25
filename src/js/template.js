@@ -1,4 +1,6 @@
 import icons from '../img/sprite.svg';
+import minus from '../img/svg/minus.svg';
+import plus from '../img/svg/plus.svg';
 export function createMarkupProductsAll(arr) {
    return arr
       .map(
@@ -76,7 +78,7 @@ export function createMarkupCart(arr) {
       ({ price, name, img, _id, category, size }) =>
         `<li class="cart-list-item" id="${_id}" >
             <div class="cart-list-item-img-wrapper">
-              <img width=64 src="${img}">
+              <img class="cart-product-img" width=64 src="${img}">
             </div>
             <button class="remove-btn">+</button>
             <div class="cart-list-item-wrapper">
@@ -88,9 +90,13 @@ export function createMarkupCart(arr) {
               <p class="cart-item-price">$ <span>${price}</span></p>
               </div>
               <div class="cart-amount-wrapper">
-                <button class="less-btn">-</button>
+                <button class="less-btn">
+                  <img class="less-btn-img" src="${minus}" alt="icon bascket" width="18" height="18">
+                </button>
                 <span class="products-quantity"></span>
-                <button class="more-btn">+</button>
+                <button class="more-btn">
+                  <img class="more-btn-img" src="${plus}" alt="icon bascket" width="18" height="18">
+                </button>
               </div>
         </li>`
       )
