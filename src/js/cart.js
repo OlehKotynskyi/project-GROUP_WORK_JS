@@ -1,4 +1,5 @@
 import { createMarkupCart } from './template.js'
+import addCounter from './cart-header-counter';
 const title = document.querySelector('.products-quantity-title')
 const totalPrice = document.querySelector('.products-total-price')
 const containerCart = document.querySelector('.cart-container')
@@ -20,6 +21,7 @@ function clearCart() {
 // і приховувати розмітку товарів.
 // Викликається в cart.page.js
 export function renderCart() {
+    addCounter();
     const products = JSON.parse(localStorage.getItem(KEY))
     
     if (products === null || products === undefined || products.length === 0) {
@@ -64,6 +66,7 @@ function removeProduct(event) {
     products.splice(index, 1);
     localStorage.setItem(KEY, JSON.stringify(products));
     selectedItem.remove();
+    addCounter();
     
     countTotal(products);
 
