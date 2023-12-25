@@ -10,6 +10,17 @@ const containerPopular = document.querySelector('.popular-container');
 const containerDiscount = document.querySelector('.discount-container');
 const KEY = 'products in cart';
 
+// Функція для оновлення списку продуктів
+export function updateProductsList(products) {
+  const container = document.querySelector('.products-container');
+  if (products.length === 0) {
+      container.innerHTML = `<p>Nothing was found for the selected filters...</p>
+                             <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>`;
+  } else {
+      container.innerHTML = createMarkupProductsAll(products);
+  }
+}
+
 async function renderAll() {
    try {
       const data = await fetchProductsAll('Fresh_Produce');
