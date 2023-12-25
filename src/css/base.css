@@ -179,3 +179,21 @@ body {
 .btn-styles:active {
    background-color: var(--color-green);
 }
+
+.body-wrapper {}
+
+@media only screen and (min-width: 1440px) {
+   .body-wrapper {
+      display: flex;
+      justify-content: space-between;
+      column-gap: 40px;
+   }
+}
+
+.body-aside {}
+
+@media only screen and (min-width: 1440px) {
+   .body-aside {
+      flex: 0 1 275px;
+   }
+}
