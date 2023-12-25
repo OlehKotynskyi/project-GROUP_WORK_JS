@@ -29,7 +29,7 @@
         </li>`).join("")}function d(n){return n.splice(2),n.map(({price:i,name:o,img:e,_id:t})=>`
          <li class="discount-list-item" id="${t}" >
             <div class="discount-card">
-               <img class="icon-styles discount-icon" src="${l}" alt="icon discount" width="100" height="100">
+               <img class="discount-icon" src="${l}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${e}"></div>
             <div class="discount-info">
                <p>${o}</p>
@@ -53,4 +53,4 @@
              <img src="${c}" alt="icon bascket" width="18" height="18">
             </button>
         </li>`).join("")}export{p as a,u as b,m as c,d};
-//# sourceMappingURL=template-16948650.js.map
+//# sourceMappingURL=template-71ec6c1e.js.map
