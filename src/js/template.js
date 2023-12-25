@@ -37,18 +37,31 @@ export function createMarkupProductsAll(arr) {
       .join('');
 }
 
+
 export function createMarkupPopularProducts(arr) {
    return arr
       .map(({ price, name, img, _id, category, size, popularity }) => {
-         return `<li class="list-item" id="${_id}" >
-            <img width=100 src="${img}">
-            <h3>${name}</h3>
-            <p>Category:  <span>${category}</span></p>
-            <p>Size:  <span>${size}</span></p>
-            <p>Popularity:  <span>${popularity}</span></p>
-            <p>$ <span>${price}</span></p>
-            <button class="add-btn">+</button>
-        </li>`;
+         return `
+           <div class="product-popular-card">
+           <div class="popular-image-item">
+               <img src="${img}" alt="${name}" class="product-popular-image">
+           </div>
+           <div class="parameters-popular-products">
+               <h3 class="product-popular-title">${name}</h3>
+               <p class="product-popular-category">
+                   <span class="popular-text-card">Category:</span> ${category}
+               </p>
+               <div class="size-popularity">
+                   <p class="product-popular-size text-size-popularity"><span class="popular-text-card">Size:</span> ${size}</p>
+                   <p class="product-popularity text-size-popularity"><span class="popular-text-card">Popularity:</span> ${popularity}</p>
+               </div>
+               <button id="buy-button" class="add-popular-basket add-btn"('${name}')">
+                   <svg class="popular-basket-svg" width="12" height="12">
+                       <use href="./img/sprite.svg#icon-popular-basket"></use>
+                   </svg>
+               </button>
+           </div>
+       </div>`;
       })
       .join('');
 }

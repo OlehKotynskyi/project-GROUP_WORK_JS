@@ -41,14 +41,13 @@ export function renderPopularCard(data) {
             <p class="product-popular-size text-size-popularity"><span class="popular-text-card">Size:</span> ${size}</p>
             <p class="product-popularity text-size-popularity"><span class="popular-text-card">Popularity:</span> ${popularity}</p>
         </div>
-        <button id="buy-button" class="add-popular-basket" onclick="add_to_basket('${name}')">
+        <button id="buy-button" class="add-popular-basket add-btn"('${name}')">
             <svg class="popular-basket-svg" width="12" height="12">
                 <use href="./img/sprite.svg#icon-popular-basket"></use>
             </svg>
         </button>
     </div>
-</div>
-    `;
+</div>`;
   });
 
   popularContainer.innerHTML += markup;
