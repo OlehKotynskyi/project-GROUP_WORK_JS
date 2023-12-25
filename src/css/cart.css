@@ -6,8 +6,11 @@
 .cart {
   position: relative;
   margin-bottom: 48px;
+  display: block;
+  /* width: 100%; */
 }
 
+/* контейнер з товарами */
 .cart-container {
   /* position: relative; */
   margin-bottom: 50px;
@@ -16,7 +19,12 @@
 }
 
 .cart-container::-webkit-scrollbar {
-  width: 9px;
+  display: block;
+  /* overflow: auto; */
+  height: 0;
+  width: 5px;
+  padding: 0;
+  margin: 0;
 }
 
 .cart-container::-webkit-scrollbar-thumb {
@@ -113,6 +121,22 @@
   line-height: 1;
 }
 
+/* контейнер пустої корзини */
+.cart-empty {
+  text-align: center;
+  margin: 100px 0 120px;
+}
+
+.cart-empty img {
+  margin: 0 auto 28px;
+  width: 132px;
+  height: 114px;
+}
+
+.cart-empty h3 span {
+  color: var(--color-green);
+}
+
 .cart-desktop-wrapper {
   position: relative;
 }
@@ -165,6 +189,7 @@
 @media only screen and (min-width: 768px) {
   .cart {
     margin-bottom: 48px;
+    width: 704px;
   }
 
   .cart-container {
@@ -172,9 +197,16 @@
     margin-bottom: 60px;
   }
 
+  .cart-container::-webkit-scrollbar {
+    width: 9px;
+  }
+
   .cart-list-item {
     height: 200px;
     padding: 40px 0;
+    float: left;
+    width: 100%;
+    gap: 40px;
   }
 
   .cart-list-item-img-wrapper {
@@ -184,12 +216,6 @@
 
   .cart-container img {
     width: 72px;
-  }
-
-  .cart-list-item {
-    float: left;
-    width: 100%;
-    gap: 40px;
   }
 
   .cart-total-container {
@@ -222,6 +248,21 @@
     font-size: 16px;
     line-height: 1.25;
   }
+
+  .cart-empty {
+    margin-top: 130px;
+  }
+
+  .cart-empty img {
+    width: 164px;
+    height: 140px;
+    margin-bottom: 40px;
+  }
+
+  .cart-empty p {
+    width: 387px;
+    margin: 14px auto 0;
+  }
 }
 
 /* PC STYLES */
@@ -229,6 +270,7 @@
 @media only screen and (min-width: 1440px) {
   .cart {
     margin-bottom: 42px;
+    width: 1240px;
   }
 
   .cart-desktop-wrapper {
@@ -244,5 +286,10 @@
 
   .del-all-btn {
     right: 58%;
+  }
+
+  .cart-empty {
+    margin-top: 150px;
+    margin-bottom: 150px;
   }
 }
