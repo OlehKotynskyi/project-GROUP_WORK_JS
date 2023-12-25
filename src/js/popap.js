@@ -12,99 +12,18 @@ function handleClick(event) {
     }
 
     const itemId = event.target.closest('.list-item').id;
-
-    // Получите элемент из файла X с помощью его id
     const itemElement = document.getElementById(itemId);
-
-    // Добавьте содержимое элемента в контейнер
     container.innerHTML = itemElement.outerHTML;
 
+    // const modalContent = createMarkupModal();
+    // container.innerHTML = modalContent;
     container.style.display = 'flex';
 
     document.addEventListener("keydown", handleClickClose);
-    // document.addEventListener("keydown", handleKeyDown);
-    // close.addEventListener("click", handleClose);
     function handleClickClose(event) {
         if (event.key === "Escape" ) {
+            container.style.display = 'none';
             document.removeEventListener("keydown", handleClickClose);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-// function handleKeyDown(event) {
-//     if (event.key === "Escape") {
-//         closeContainer();
-//     }
-// }
-
-// function handleClose() {
-//     closeContainer();
-// }
-
-// function closeContainer() {
-//     container.style.display = 'none';
-//     document.removeEventListener("keydown", handleKeyDown);
-//     close.removeEventListener("click", handleClose);
-// }
