@@ -139,6 +139,8 @@
 
 .cart-desktop-wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .del-all-btn {
@@ -266,7 +268,6 @@
 }
 
 /* PC STYLES */
-
 @media only screen and (min-width: 1440px) {
   .cart {
     margin-bottom: 42px;
@@ -274,8 +275,7 @@
   }
 
   .cart-desktop-wrapper {
-    position: relative;
-    display: flex;
+    flex-direction: row;
     gap: 100px;
   }
 
