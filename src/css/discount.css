@@ -1,116 +1,121 @@
-.discount-section {
+.discount-section:not(:last-child) {
+   margin-bottom: 80px;
+}
+
+@media only screen and (min-width: 768px) {
+   .discount-section:not(:last-child) {
+      margin-bottom: 100px;
+   }
 }
 
 .discount-title {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.16;
-  margin-bottom: 20px;
-  margin-left: 20px;
+   font-size: 24px;
+   font-weight: 500;
+   line-height: 1.16;
+   margin-bottom: 20px;
+}
+
+.discount-container {
+   display: flex;
+   row-gap: 20px;
+   justify-content: center;
+   flex-wrap: wrap;
 }
 
 @media only screen and (min-width: 768px) {
-  .discount-title {
-    font-size: 28px;
-    line-height: 1.14;
-    margin-left: 32px;
-  }
+   .discount-title {
+      font-size: 28px;
+      line-height: 1.14;
+   }
 
-  .discount-container {
-    display: flex;
-    flex-wrap: nowrap;
-    column-gap: 32px;
-    justify-content: center;
-  }
+   .discount-container {
+      column-gap: 32px;
+      justify-content: center;
+   }
+
 }
 
 @media only screen and (min-width: 1440px) {
-  .discount-title {
-    margin-left: 40px;
-  }
-
-  .discount-container {
-    display: block;
-  }
+   .discount-container {
+      flex-direction: column;
+   }
 }
 
 .discount-list-item {
-  position: relative;
-  max-width: 335px;
-  padding: 15px 16px;
-  border-radius: 15px;
-  background: var(--color-white-grey);
+   position: relative;
+   max-width: 335px;
+   padding: 15px 16px;
+   border-radius: 15px;
+   background: var(--color-white-grey);
 }
 
 .discount-list-item {
-  margin-bottom: 20px;
-  min-width: 335px;
+   min-width: 335px;
 }
 
 @media only screen and (min-width: 1440px) {
-  .discount-list-item {
-    max-width: 275px;
-  }
-  .discount-list-item:not(:last-child) {
-    margin-bottom: 20px;
-  }
+   .discount-list-item {
+      min-width: 275px;
+   }
 }
 
 .discount-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  background: #e8e8e2;
-  min-height: 150px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 10px;
+   background: #e8e8e2;
+   min-height: 150px;
 }
 
 .discount-card:not(:last-child) {
-  margin-bottom: 23px;
+   margin-bottom: 23px;
 }
 
 @media only screen and (min-width: 768px) {
-  .discount-card:not(:last-child) {
-    margin-bottom: 21px;
-  }
+   .discount-card:not(:last-child) {
+      margin-bottom: 21px;
+   }
 }
 
 .discount-icon {
-  position: absolute;
-  top: 3px;
-  right: 10px;
-  width: 60px;
-  height: 60px;
+   position: absolute;
+   top: 3px;
+   right: 10px;
+   width: 60px;
+   height: 60px;
 }
 
 .discount-img {
-  max-width: 114px;
+   max-width: 114px;
 }
 
-.discount-basket-icon {
-}
+.discount-basket-icon {}
 
 .discount-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.11;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 18px;
+   font-weight: 500;
+   line-height: 1.11;
 }
 
 @media only screen and (min-width: 768px) {
-  .discount-info {
-    font-size: 20px;
-    line-height: 1.2;
-  }
+   .discount-info {
+      font-size: 20px;
+      line-height: 1.2;
+   }
 }
+
 .discount-link-basket {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: inherit;
+   font-weight: 500;
 }
 
 .discount-prise:not(:last-child) {
-  margin-right: 8px;
+   margin-right: 8px;
 }

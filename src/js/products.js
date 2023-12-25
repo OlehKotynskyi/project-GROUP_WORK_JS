@@ -1,7 +1,7 @@
 import {
-  createMarkupProductsAll,
-  createMarkupPopularProducts,
-  createMarkupProductsDiscount,
+   createMarkupProductsAll,
+   createMarkupPopularProducts,
+   createMarkupProductsDiscount,
 } from './template.js';
 import { fetchProductsAll, fetchProducts } from './fetch.js';
 import addCounter from './cart-header-counter.js';
@@ -10,36 +10,47 @@ const containerPopular = document.querySelector('.popular-container');
 const containerDiscount = document.querySelector('.discount-container');
 const KEY = 'products in cart';
 
-async function renderAll() {
-  try {
-    const data = await fetchProductsAll('Fresh_Produce');
-     containerAll.insertAdjacentHTML('beforeend', createMarkupProductsAll(data));
-     addCounter();
-  } catch (error) {
-    console.log(error.message);
+// Функція для оновлення списку продуктів
+export function updateProductsList(products) {
+  const container = document.querySelector('.products-container');
+  if (products.length === 0) {
+      container.innerHTML = `<p>Nothing was found for the selected filters...</p>
+                             <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>`;
+  } else {
+      container.innerHTML = createMarkupProductsAll(products);
   }
+}
+
+async function renderAll() {
+   try {
+      const data = await fetchProductsAll('Fresh_Produce');
+      containerAll.insertAdjacentHTML('beforeend', createMarkupProductsAll(data));
+      addCounter();
+   } catch (error) {
+      console.log(error.message);
+   }
 }
 renderAll();
 
 async function renderPopular() {
-  try {
-    const data = await fetchProducts('popular');
-    containerPopular.insertAdjacentHTML(
-      'beforeend',
-      createMarkupPopularProducts(data)
-    );
-  } catch (error) {
-    console.log(error.message);
-  }
+   try {
+      const data = await fetchProducts('popular');
+      containerPopular.insertAdjacentHTML(
+         'beforeend',
+         createMarkupPopularProducts(data)
+      );
+   } catch (error) {
+      console.log(error.message);
+   }
 }
 renderPopular();
 
 async function renderDiscount() {
-  const data = await fetchProducts('discount');
-  containerDiscount.insertAdjacentHTML(
-    'beforeend',
-    createMarkupProductsDiscount(data)
-  );
+   const data = await fetchProducts('discount');
+   containerDiscount.insertAdjacentHTML(
+      'beforeend',
+      createMarkupProductsDiscount(data)
+   );
 }
 renderDiscount();
 
@@ -61,16 +72,16 @@ async function addBtnClick(event) {
     const index = products.findIndex(item => item._id === selectedItemId);
     console.log(index);
 
-    if (index !== -1) {
-      products[index].quantity += 1;
-    } else {
-      currentProduct.quantity = 1;
-      products.push(currentProduct);
-    }
-    localStorage.setItem(KEY, JSON.stringify(products));
-    addCounter();
-  } catch (error) {
-    console.log(error.message);
-  }
+      if (index !== -1) {
+         products[index].quantity += 1;
+      } else {
+         currentProduct.quantity = 1;
+         products.push(currentProduct);
+      }
+      localStorage.setItem(KEY, JSON.stringify(products));
+      addCounter();
+   } catch (error) {
+      console.log(error.message);
+   }
 }
 

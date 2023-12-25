@@ -1,6 +1,9 @@
 import icons from '../img/sprite.svg';
 import minus from '../img/svg/minus.svg';
 import plus from '../img/svg/plus.svg';
+import basket from '../img/svg/basket.svg';
+import discount from '../img/svg/discount.svg';
+import popular from '../img/svg/organic-food.svg';
 export function createMarkupProductsAll(arr) {
    return arr
       .map(
@@ -19,9 +22,7 @@ export function createMarkupProductsAll(arr) {
             <div class="list-item-body-price">
                 <span>&#36;${price}</span>
                <button class="add-btn icon-styles">
-                  <svg width="18" height="18">
-                     <use xlink:href="${icons}#icon-basket"></use>
-                  </svg>
+                  <img src="${basket}" alt="icon bascket" width="18" height="18">
                </button>
             </div>
          </li>
@@ -39,8 +40,10 @@ export function createMarkupPopularProducts(arr) {
             <p>Category:  <span>${category}</span></p>
             <p>Size:  <span>${size}</span></p>
             <p>Popularity:  <span>${popularity}</span></p>
-            <p>$ <span>${price}</span></p>
-            <button class="add-btn">+</button>
+            <p>&#36;<span>${price}</span></p>
+            <button class="add-btn">
+             <img src="${basket}" alt="icon bascket" width="18" height="18">
+            </button>
         </li>`;
       })
       .join('');
@@ -50,24 +53,21 @@ export function createMarkupProductsDiscount(arr) {
    arr.splice(2);
    return arr
       .map(({ price, name, img, _id }) => {
-         return `<li class="discount-list-item" id="${_id}" >
+         return `
+         <li class="discount-list-item" id="${_id}" >
             <div class="discount-card">
-            <svg class="icon-styles discount-icon" width="14" height="14" > 
-      <use href="./img/sprite.svg#icon-discount"> </use > 
-      </svg > 
-            <img class="discount-img" src="${img}"></div>
+               <img class="discount-icon" src="${discount}" alt="icon discount" width="100" height="100">
+               <img class="discount-img" src="${img}"></div>
             <div class="discount-info">
-            <p>${name}</p>
-            <a href="./cart-page.html" class="discount-link-basket">
-            &dollar;<span class="discount-prise">${price}</span>
-            <span class="discount-basket-icon icon-styles">
-                     <svg  width="18" height="18" > 
-      <use href="./img/sprite.svg#icon-basket"> </use > 
-      </svg > 
-      </span>
-             </a>     
+               <p>${name}</p>
+               <button class="more-btn discount-link-basket">
+                  &#36;<span class="discount-prise">${price}</span>
+                  <span class="discount-basket-icon icon-styles">
+                     <img src="${basket}" alt="icon bascket" width="18" height="18">
+                  </span>
+               </button>    
             </div>      
-        </li>`;
+         </li>`;
       })
       .join('');
 }
@@ -122,9 +122,7 @@ export function createMarkupModal(arr) {
             <div class="list-item-body-price">
                 <span>&#36;${price}</span>
                <button class="add-btn icon-styles">Add to
-                  <svg width="18" height="18">
-                     <use xlink:href="${icons}#icon-basket"></use>
-                  </svg>
+                   <img src="${basket}" alt="icon bascket" width="18" height="18">
                </button>
             </div>
          </li>
