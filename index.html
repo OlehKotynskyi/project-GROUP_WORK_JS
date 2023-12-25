@@ -9,9 +9,9 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css" />
    
   <script type="module" crossorigin src="/project-GROUP_WORK_JS/commonHelpers2.js"></script>
-  <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/template-910a7fea.js">
+  <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/template-16948650.js">
   <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/vendor-a61d8330.js">
-  <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/template-a2127ea9.css">
+  <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/template-1dc71cbf.css">
 </head>
 
 <body>
@@ -51,7 +51,6 @@
 </header>
 
       <main>
-
          <section class="hero-section">
    <div class="hero-container container">
       <h1 class="hero-titel">
@@ -79,26 +78,72 @@
    </div>
 </section>
          <section class="filters-section-container">
-   <div class="filters-container container">
+  <div class="filters-container container">
+    <h2 class="filters">Filters:</h2>
 
-   </div>
+    <form class="search-form">
+      <div class="search-section">
+        <label for="search-box" class="visually-hidden">Search for anything:</label>
+        <input type="text" id="search-box" name="search-box" placeholder="Search for anything">
+        <button type="submit" class="search-button">
+          <svg class="search-icon" width="14.58" height="14.58"><use xlink:href="/project-GROUP_WORK_JS/assets/sprite-a8de2b94.svg#icon-search"></use></svg>
+        </button>
+      </div>
+    </form>
+
+    <div class="filter-section">
+      <label for="categories" class="visually-hidden">Categories:</label>
+      <select id="categories" name="categories"></select>
+       <!-- 
+       <option value="Beverages">Beverages</option>
+       <option value="Breads_&_Bakery">Breads_&_Bakery</option>
+       <option value="Dairy">Dairy</option>
+       <option value="Deli">Deli</option>
+       <option value="Eggs">Eggs</option>
+       <option value="Fresh_Produce">Fresh_Produce</option>
+       <option value="Frozen_Foods">Frozen_Foods</option> 
+       <option value="Meat_&_Seafood">Meat_&_Seafood</option>
+       <option value="Pantry_Items">Pantry_Items</option>
+       <option value="Prepared_Foods">Prepared_Foods</option>
+       <option value="Snacks">Snacks</option> 
+       [
+         "Beverages",
+         "Breads_&_Bakery",
+         "Dairy",
+         "Deli",
+         "Eggs",
+         "Fresh_Produce",
+         "Frozen_Foods",
+         "Meat_&_Seafood",
+         "Pantry_Items",
+         "Prepared_Foods",
+         "Snacks"
+     ] Додаємо опцію для вибору -->
+      
+    </div>
+  </div>
+</section>
+<!-- <div id="search-results-container">
+  Сюди будуть вставлені результати пошуку або повідомлення про відсутність результатів 
+</div>-->
+
+         <div class="body-wrapper container">
+            <section class="products-section">
+   <ul class="products-container"></ul>
 </section>
 
-         <section class="products-section">
-   <ul class="products-container container"></ul>
-</section>
-
-         <section class="popular-section-container">
+            <div class="body-aside">
+               <section class="popular-section-container">
    <h2 class="popular-title">Popular products</h2>
-   <div class="popular-container container"></div>
+   <div class="popular-container"></div>
 </section>
-
-
-         <section class="discount-section container">
+               <section class="discount-section">
    <h2 class="discount-title">Discount products</h2>
    <ul class="discount-container"></ul>
 </section>
 
+            </div>
+         </div>
       </main>
 
       <footer class="footer">
