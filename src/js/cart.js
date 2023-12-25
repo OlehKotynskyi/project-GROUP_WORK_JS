@@ -40,11 +40,7 @@ export function renderCart() {
             productsQuantity[index].textContent = el.quantity
         })
 
-        title.textContent = `Cart (${products.length})`
-        const total = products.reduce((acc, {quantity, price}) => {
-            return acc += quantity * price
-        }, 0)
-        totalPrice.textContent = `$${total.toFixed(2)}`
+        countTotal(products);
     }
 }
 
@@ -68,9 +64,20 @@ function removeProduct(event) {
     products.splice(index, 1);
     localStorage.setItem(KEY, JSON.stringify(products));
     selectedItem.remove();
+    
+    countTotal(products);
 
     if (products === null || products === undefined || products.length === 0) {
         renderCart();
         return;
     }
+}
+
+// обрахунок суми кошика
+function countTotal(obj) {
+    title.textContent = `Cart (${obj.length})`
+    const total = obj.reduce((acc, {quantity, price}) => {
+        return acc += quantity * price
+    }, 0)
+    totalPrice.textContent = `$${total.toFixed(2)}`
 }
