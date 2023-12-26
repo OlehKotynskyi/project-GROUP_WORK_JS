@@ -32,10 +32,10 @@ export function createMarkupProductsAll(arr) {
 }
 
 export function createMarkupPopularProducts(arr) {
-  return arr
-    .map(({ price, name, img, _id, category, size, popularity }) => {
-      return `
-           <div class="product-popular-card">
+   return arr
+      .map(({ price, name, img, _id, category, size, popularity }) => {
+         return `
+           <div id="${_id}" class="product-popular-card">
            <div class="popular-image-item">
                <img src="${img}" alt="${name}" class="product-popular-image">
            </div>
