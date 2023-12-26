@@ -1,7 +1,9 @@
+import icons from '../img/sprite.svg';
+import minus from '../img/svg/minus.svg';
+import plus from '../img/svg/plus.svg';
 import basket from '../img/svg/basket.svg';
 import discount from '../img/svg/discount.svg';
 import popular from '../img/svg/organic-food.svg';
-
 export function createMarkupProductsAll(arr) {
   return arr
     .map(
@@ -30,22 +32,33 @@ export function createMarkupProductsAll(arr) {
 }
 
 export function createMarkupPopularProducts(arr) {
-  return arr
-    .map(({ price, name, img, _id, category, size, popularity }) => {
-      return `<li class="list-item" id="${_id}" >
-            <img width=100 src="${img}">
-            <h3>${name}</h3>
-            <p>Category:  <span>${category}</span></p>
-            <p>Size:  <span>${size}</span></p>
-            <p>Popularity:  <span>${popularity}</span></p>
-            <p>&#36;<span>${price}</span></p>
-            <button class="add-btn">
-             <img src="${basket}" alt="icon bascket" width="18" height="18">
-            </button>
-        </li>`;
-    })
-    .join('');
-}
+   return arr
+      .map(({ price, name, img, _id, category, size, popularity }) => {
+         return `
+           <div class="product-popular-card">
+           <div class="popular-image-item">
+               <img src="${img}" alt="${name}" class="product-popular-image">
+           </div>
+           <div class="parameters-popular-products">
+               <h3 class="product-popular-title">${name}</h3>
+               <p class="product-popular-category">
+                   <span class="popular-text-card">Category:</span> ${category}
+               </p>
+               <div class="size-popularity">
+                   <p class="product-popular-size text-size-popularity"><span class="popular-text-card">Size:</span> ${size}</p>
+                   <p class="product-popularity text-size-popularity"><span class="popular-text-card">Popularity:</span> ${popularity}</p>
+               </div>
+               <button id="buy-button" class="add-popular-basket add-btn"('${name}')">
+                   <svg class="popular-basket-svg" width="12" height="12">
+                       <use href="./img/sprite.svg#icon-popular-basket"></use>
+                   </svg>
+               </button>
+           </div>
+       </div>`;
+      })
+      .join('');
+ }
+
 
 export function createMarkupProductsDiscount(arr) {
   arr.splice(2);
@@ -76,18 +89,28 @@ export function createMarkupCart(arr) {
   return arr
     .map(
       ({ price, name, img, _id, category, size }) =>
-        `<li class="list-item" id="${_id}" >
-            <img width=100 src="${img}">
-            <button class="remove-btn">X</button>
-            <h3>${name}</h3>
-            <p>Category:  <span>${category}</span></p>
-            <p>Size:  <span>${size}</span></p>
-            <p>&#36;<span>${price}</span></p>
-            <button class="less-btn">-</button>
-            <span class="products-quantity"></span>
-            <button class="more-btn">
-             <img src="${basket}" alt="icon bascket" width="18" height="18">
-            </button>
+        `<li class="cart-list-item" id="${_id}" >
+            <div class="cart-list-item-img-wrapper">
+              <img class="cart-product-img" width=64 src="${img}">
+            </div>
+            <button class="remove-btn">+</button>
+            <div class="cart-list-item-wrapper">
+              <h3 class="products-titel">${name}</h3>
+              <div class="list-item-info">
+                <p>Category:  <span>${category}</span></p>
+                <p>Size:  <span>${size}</span></p>
+              </div>
+              <p class="cart-item-price">$ <span>${price}</span></p>
+              </div>
+              <div class="cart-amount-wrapper">
+                <button class="less-btn">
+                  <img class="less-btn-img" src="${minus}" alt="icon bascket" width="18" height="18">
+                </button>
+                <span class="products-quantity"></span>
+                <button class="more-btn">
+                  <img class="more-btn-img" src="${plus}" alt="icon bascket" width="18" height="18">
+                </button>
+              </div>
         </li>`
     )
     .join('');
@@ -120,3 +143,4 @@ export function createMarkupModal(arr) {
     )
     .join('');
 }
+
