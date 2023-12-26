@@ -16,17 +16,20 @@ const KEY = 'products in cart';
 export function updateProductsList(products) {
   const container = document.querySelector('.products-container');
   if (products.length === 0) {
-      container.innerHTML = `<p>Nothing was found for the selected filters...</p>
+    container.innerHTML = `<p>Nothing was found for the selected filters...</p>
                              <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>`;
   } else {
-      container.innerHTML = createMarkupProductsAll(products);
+    container.innerHTML = createMarkupProductsAll(removeUnderscores(products));
   }
 }
 
 async function renderAll() {
   try {
     const data = await fetchProductsAll('Fresh_Produce');
-    containerAll.insertAdjacentHTML('beforeend', createMarkupProductsAll(data));
+    containerAll.insertAdjacentHTML(
+      'beforeend',
+      createMarkupProductsAll(removeUnderscores(data))
+    );
     addCounter();
   } catch (error) {
     console.log(error.message);
@@ -35,22 +38,28 @@ async function renderAll() {
 renderAll();
 
 export async function renderPopular() {
-   try {
-     const data = await fetchProducts('popular');
-     const newData = removeUnderscores(data);
- 
-     containerPopular.insertAdjacentHTML("beforeend", createMarkupPopularProducts(newData));
-   } catch (error) {
-     console.error('Error fetching and rendering popular products:', error.message);
-   }
- }
- renderPopular();
+  try {
+    const data = await fetchProducts('popular');
+    const newData = removeUnderscores(data);
+
+    containerPopular.insertAdjacentHTML(
+      'beforeend',
+      createMarkupPopularProducts(newData)
+    );
+  } catch (error) {
+    console.error(
+      'Error fetching and rendering popular products:',
+      error.message
+    );
+  }
+}
+renderPopular();
 
 async function renderDiscount() {
   const data = await fetchProducts('discount');
   containerDiscount.insertAdjacentHTML(
     'beforeend',
-    createMarkupProductsDiscount(data)
+    createMarkupProductsDiscount(removeUnderscores(data))
   );
 }
 renderDiscount();
@@ -58,15 +67,7 @@ renderDiscount();
 containerAll.addEventListener('click', addBtnClick);
 
 async function addBtnClick(event) {
-  console.log(event.target.nodeName);
-  console.log(event.target.className);
-  if (
-    event.target.nodeName === 'BUTTON' ||
-    event.target.nodeName === 'IMG'
-    //   && event.target.nodeName !== 'use'
-  ) {
-    //     return;
-    //   }
+  if (event.target.className === 'add-btn' || event.target.nodeName === 'IMG') {
     const selectedItem = event.target.closest('.list-item');
 
     const selectedItemId = selectedItem.id;
@@ -129,11 +130,11 @@ async function addBtnClickDiscount(event) {
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
-   return arr.map(obj => {
-     let category = obj.category;
-     if (typeof category === 'string') {
-       category = category.split('_').join(' ');
-     }
-     return { ...obj, category };
-   });
- }
+  return arr.map(obj => {
+    let category = obj.category;
+    if (typeof category === 'string') {
+      category = category.split('_').join(' ');
+    }
+    return { ...obj, category };
+  });
+}
