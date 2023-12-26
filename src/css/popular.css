@@ -131,6 +131,11 @@
       background-color: var(--color-green);
       fill:  rgba(232, 232, 226, 1);
    }
+/* 
+   button.disabled:hover {
+    background-color: rgba(232, 232, 226, 1);
+      fill: var(--color-green);
+  } */
 }
 
 
