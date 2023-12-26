@@ -124,7 +124,6 @@ async function addBtnClickDiscount(event) {
    ) {
       console.dir(event.target.className);
       const selectedItem = event.target.closest('.discount-list-item');
-
       const selectedItemId = selectedItem.id;
 
       try {
@@ -139,10 +138,14 @@ async function addBtnClickDiscount(event) {
             currentProduct.quantity = 1;
             products.push(currentProduct);
          }
-
+      }
+      catch (error) {
+         console.error();
       }
    }
+   return
 }
+
 renderDiscount();
 
 containerAll.addEventListener('click', addBtnClick);
