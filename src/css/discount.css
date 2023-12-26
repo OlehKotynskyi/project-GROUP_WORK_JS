@@ -109,9 +109,9 @@
 }
 
 .discount-link-basket {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   font-size: inherit;
   font-weight: 500;
 }
