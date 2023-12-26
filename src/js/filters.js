@@ -67,9 +67,10 @@ function resetPage() {
 
 async function fetchFilteredProducts() {
     const filters = getSavedFilters();
-    const limit = getProductsLimit(); // Отримуємо ліміт відповідно до ширини екрану
+    const limit = getProductsLimit();
 
     try {
+        // Відправка запиту з включенням обраних ключового слова і категорії
         const products = await fetchProductsAll(filters.category, filters.keyword, filters.page, limit);
         updateProductsList(products);
     } catch (error) {
