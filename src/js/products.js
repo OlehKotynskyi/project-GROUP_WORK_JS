@@ -49,8 +49,6 @@ function shuffleArray(array) {
    }
 }
 
-
-
 async function renderPopular() {
    try {
       const data = await fetchProducts('popular');
@@ -97,13 +95,7 @@ async function renderAll() {
 // renderAll();
 
 
-// перемішування масиву та вибору випадкових продуктів
-function shuffleArray(array) {
-   for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]; // Перемішування елементів
-   }
-}
+
 
 function getRandomProducts(products, count) {
    shuffleArray(products);
@@ -200,8 +192,8 @@ async function addBtnClickPopularCard(event) {
             const button = selectedItem.querySelector('button');
             button.disabled = true;
             button.innerHTML = `<svg class="popular-basket-svg" width="12" height="12">
-        <use href="../img/sprite.svg#icon-check"></use>
-        </svg>`;
+         <use href="../img/sprite.svg#icon-check"></use>
+         </svg>`;
             //   button.classList.add('disabled')
          }
          localStorage.setItem(KEY, JSON.stringify(products));
