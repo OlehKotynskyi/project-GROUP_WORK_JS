@@ -61,7 +61,7 @@ async function addBtnClick(event) {
   console.log(event.target.nodeName);
   console.log(event.target.className);
   if (
-    event.target.nodeName === 'BUTTON' ||
+    event.target.className === 'add-btn' ||
     event.target.nodeName === 'IMG'
     //   && event.target.nodeName !== 'use'
   ) {
@@ -91,7 +91,7 @@ async function addBtnClick(event) {
     return;
   }
 }
-//===============================
+
 containerDiscount.addEventListener('click', addBtnClickDiscount);
 
 async function addBtnClickDiscount(event) {
@@ -100,6 +100,7 @@ async function addBtnClickDiscount(event) {
     event.target.nodeName === 'IMG' ||
     event.target.nodeName === 'SPAN'
   ) {
+    console.dir(event.target.className);
     const selectedItem = event.target.closest('.discount-list-item');
 
     const selectedItemId = selectedItem.id;
@@ -125,7 +126,6 @@ async function addBtnClickDiscount(event) {
   return;
 }
 
-//================================
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
@@ -137,3 +137,4 @@ export function removeUnderscores(arr) {
      return { ...obj, category };
    });
  }
+
