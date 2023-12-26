@@ -19,6 +19,17 @@ export function updateProductsList(products) {
       container.innerHTML = createMarkupProductsAll(products);
   }
 }
+export function getProductsLimit() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 768) { // Мобільні пристрої
+      return 6;
+  } else if (screenWidth >= 768 && screenWidth < 1440) { // Таблет
+      return 8;
+  } else { // Десктоп
+      return 9;
+  }
+}
+
 
 async function renderAll() {
   try {

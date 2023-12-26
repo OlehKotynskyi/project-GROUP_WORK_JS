@@ -1,6 +1,7 @@
 // filters.js
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
+import { getProductsLimit } from './products.js';
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -8,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchCategories();
     setupEventListeners();
     fetchInitialProducts();
+});
+
+window.addEventListener('resize', () => {
+    fetchFilteredProducts(); // Перезавантаження продуктів
 });
 
 async function fetchCategories() {
@@ -62,8 +67,10 @@ function resetPage() {
 
 async function fetchFilteredProducts() {
     const filters = getSavedFilters();
+    const limit = getProductsLimit(); // Отримуємо ліміт відповідно до ширини екрану
+
     try {
-        const products = await fetchProductsAll(filters.category, filters.keyword, filters.page, filters.limit);
+        const products = await fetchProductsAll(filters.category, filters.keyword, filters.page, limit);
         updateProductsList(products);
     } catch (error) {
         console.error('Error fetching products:', error);
