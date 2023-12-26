@@ -307,7 +307,7 @@
 
 /*=========== FOR DESKTOP MORE THAN 1440PX  ===============*/
 
-@media only screen and (min-width: 1440px) {
+/* @media only screen and (min-width: 1440px) {
   .footer-section {
     padding-left: 100px;
     padding-right: 100px;
@@ -318,4 +318,4 @@
     height: 386px;
     display: flex;
   }
-}
+} */

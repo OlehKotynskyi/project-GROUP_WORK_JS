@@ -127,3 +127,8 @@
 }
 
 .add-btn {}
+
+.tui-page-btn.tui-is-disabled {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
