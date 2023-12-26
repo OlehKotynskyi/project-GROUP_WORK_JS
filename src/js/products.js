@@ -34,18 +34,17 @@ async function renderAll() {
 }
 renderAll();
 
-async function renderPopular() {
-  try {
-    const data = await fetchProducts('popular');
-    containerPopular.insertAdjacentHTML(
-      'beforeend',
-      createMarkupPopularProducts(data)
-    );
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-renderPopular();
+export async function renderPopular() {
+   try {
+     const data = await fetchProducts('popular');
+     const newData = removeUnderscores(data);
+ 
+     containerPopular.insertAdjacentHTML("beforeend", createMarkupPopularProducts(newData));
+   } catch (error) {
+     console.error('Error fetching and rendering popular products:', error.message);
+   }
+ }
+ renderPopular();
 
 async function renderDiscount() {
   const data = await fetchProducts('discount');
@@ -127,3 +126,14 @@ async function addBtnClickDiscount(event) {
 }
 
 //================================
+
+// Функція для видалення підкреслення між словами
+export function removeUnderscores(arr) {
+   return arr.map(obj => {
+     let category = obj.category;
+     if (typeof category === 'string') {
+       category = category.split('_').join(' ');
+     }
+     return { ...obj, category };
+   });
+ }
