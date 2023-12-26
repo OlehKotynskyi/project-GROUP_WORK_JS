@@ -200,3 +200,4 @@ function fetchInitialProducts() {
 //    fetchFilteredProducts();
 //}
 
+
