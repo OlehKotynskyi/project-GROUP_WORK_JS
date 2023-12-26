@@ -1,3 +1,243 @@
-.popular-section-container {}
+.popular-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}   
+  
+/* ---------------------- MOBILE ------------------------- */
 
-.popular-container {}
+@media screen and (min-width: 270px) {
+
+  .product-popular-card {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    padding: 12px 0px 12px 12px;
+
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .popular-title {
+   margin-bottom: 20px;
+   
+
+   font-size: 24px;
+   font-weight: 500;
+   line-height: 28px;
+   letter-spacing: 0em;
+   text-align: left;
+  }
+
+  .product-popular-card:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .product-popular-image {
+    width: 59px;
+    height: 59px;
+    background-color: rgba(232, 232, 226, 1);
+    border-radius: 10px;
+  }
+
+  .popular-image-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    height: 72px;
+    margin-right: 10px;
+    background-color: rgba(232, 232, 226, 1);
+    border-radius: 10px;
+  }
+
+  .product-popular-title {
+    margin-bottom: 12px;
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    color: rgba(1, 1, 1, 1);
+  }
+
+  .parameters-popular-products {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-popular-category {
+    margin-bottom: 9px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+    color: rgba(1, 1, 1, 1);
+  }
+
+  span.popular-text-card {
+    margin-right: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    color: rgba(1, 1, 1, 0.3);
+  }
+
+  .size-popularity {
+    display: flex;
+  }
+
+  .popular-size-text {
+    margin-right: 9px;
+  }
+
+  .product-popular-size {
+    margin-right: 9px;
+  }
+
+  .title-basket {
+   display: flex;
+  }
+
+  .add-popular-basket {
+    display: flex;
+    position: absolute;
+    top: 12px; right: 12px;
+    justify-content: center;
+    align-items: center;
+    fill: var(--color-green);
+    background-color: rgba(232, 232, 226, 1);
+  
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: background-color var(--animation);
+  }
+
+ .add-popular-basket:focus,
+ .add-popular-basket:hover {
+      background-color: var(--color-green);
+      fill:  rgba(232, 232, 226, 1);
+   }
+}
+
+
+@media screen and (min-width: 375px) {
+  .product-popular-card {
+   width: 335px;
+  }
+
+  .popular-section-container {
+    align-items: flex-start
+  } 
+  
+  .popular-title {
+    padding-left: 20px;
+   }
+}
+
+/* ---------------------- TABLET ------------------------- */
+
+@media screen and (min-width: 768px) {
+
+  .popular-section-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+
+  .popular-title {
+    padding-left: 32px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+   }
+
+   .popular-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+   }
+
+  .product-popular-card {
+    flex-wrap: nowrap;
+    padding: 12px;
+    width: 275px;
+    height: 98px;
+  }
+
+  .product-popular-card:not(:last-child) {
+    margin-bottom: 0px;
+  }
+
+  .product-popular-category {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+  }
+
+  .product-popular-title {
+    margin-bottom: 10px;
+  }
+
+  .text-size-popularity {
+   font-size: 12px;
+   font-weight: 400;
+   line-height: 14px;
+   letter-spacing: 0em;
+   text-align: left;
+
+  }
+}
+
+/* ---------------------- LAPTOP ------------------------- */
+
+@media screen and (min-width: 1150px) {
+  
+  .popular-section-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0;
+    
+    width: 275px;
+  }
+
+  .popular-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px;
+    margin: 0px;
+    gap: 0px;
+   }
+
+  .popular-title {
+    padding-left: 0px;
+    width: 275px;
+   }
+
+   .product-popular-card:not(:last-child) {
+    margin-bottom: 13px;
+  }
+}

@@ -4,9 +4,12 @@ import {
   createMarkupProductsDiscount,
 } from './template.js';
 import { fetchProductsAll, fetchProducts } from './fetch.js';
+import addCounter from './cart-header-counter.js';
+
 const containerAll = document.querySelector('.products-container');
 const containerPopular = document.querySelector('.popular-container');
 const containerDiscount = document.querySelector('.discount-container');
+
 const KEY = 'products in cart';
 
 // Функція для оновлення списку продуктів
@@ -34,13 +37,15 @@ export function updateProductsList(products) {
 
 async function renderAll() {
   try {
-     const data = await fetchProductsAll('Fresh_Produce')
-     containerAll.insertAdjacentHTML("beforeend", createMarkupProductsAll(data))
+    const data = await fetchProductsAll('Fresh_Produce');
+    containerAll.insertAdjacentHTML('beforeend', createMarkupProductsAll(data));
+    addCounter();
   } catch (error) {
-     console.log(error.message)
+    console.log(error.message);
   }
 }
-renderAll()
+renderAll();
+
 
 // перемішування масиву та вибору випадкових продуктів
 function shuffleArray(array) {
@@ -82,27 +87,83 @@ renderDiscount();
 containerAll.addEventListener('click', addBtnClick);
 
 async function addBtnClick(event) {
-  if (event.target.nodeName !== 'BUTTON') {
-     return;
-  }
-  const selectedItem = event.target.closest('.list-item');
-  const selectedItemId = selectedItem.id;
-  console.log(selectedItemId);
-  try {
-     const currentProduct = await fetchProducts(selectedItemId);
-     const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
-     console.log(products);
-     const index = products.findIndex(item => item._id === selectedItemId);
-     console.log(index);
+  console.log(event.target.nodeName);
+  console.log(event.target.className);
+  if (
+    event.target.className === 'add-btn' ||
+    event.target.nodeName === 'IMG'
+    //   && event.target.nodeName !== 'use'
+  ) {
+    //     return;
+    //   }
+    const selectedItem = event.target.closest('.list-item');
 
-     if (index !== -1) {
+    const selectedItemId = selectedItem.id;
+
+    try {
+      const currentProduct = await fetchProducts(selectedItemId);
+      const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+
+      const index = products.findIndex(item => item._id === selectedItemId);
+
+      if (index !== -1) {
         products[index].quantity += 1;
-     } else {
+      } else {
         currentProduct.quantity = 1;
         products.push(currentProduct);
-     }
-     localStorage.setItem(KEY, JSON.stringify(products));
-  } catch (error) {
-     console.log(error.message);
+      }
+      localStorage.setItem(KEY, JSON.stringify(products));
+      addCounter();
+    } catch (error) {
+      console.log(error.message);
+    }
+    return;
   }
 }
+
+containerDiscount.addEventListener('click', addBtnClickDiscount);
+
+async function addBtnClickDiscount(event) {
+  if (
+    event.target.nodeName === 'BUTTON' ||
+    event.target.nodeName === 'IMG' ||
+    event.target.nodeName === 'SPAN'
+  ) {
+    console.dir(event.target.className);
+    const selectedItem = event.target.closest('.discount-list-item');
+
+    const selectedItemId = selectedItem.id;
+
+    try {
+      const currentProduct = await fetchProducts(selectedItemId);
+      const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+
+      const index = products.findIndex(item => item._id === selectedItemId);
+
+      if (index !== -1) {
+        products[index].quantity += 1;
+      } else {
+        currentProduct.quantity = 1;
+        products.push(currentProduct);
+      }
+      localStorage.setItem(KEY, JSON.stringify(products));
+      addCounter();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  return;
+}
+
+
+// Функція для видалення підкреслення між словами
+export function removeUnderscores(arr) {
+   return arr.map(obj => {
+     let category = obj.category;
+     if (typeof category === 'string') {
+       category = category.split('_').join(' ');
+     }
+     return { ...obj, category };
+   });
+ }
+
