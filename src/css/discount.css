@@ -109,16 +109,14 @@
 }
 
 .discount-link-basket {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   font-size: inherit;
   font-weight: 500;
+  padding: 0;
 }
-
 .discount-prise:not(:last-child) {
   margin-right: 8px;
 }
+
 /*=============== 
 .not-more-btn {
    disable: true;
