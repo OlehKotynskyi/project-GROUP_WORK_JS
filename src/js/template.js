@@ -86,10 +86,10 @@ export function createMarkupProductsDiscount(arr) {
 }
 
 export function createMarkupCart(arr) {
-  return arr
-    .map(
-      ({ price, name, img, _id, category, size }) =>
-        `<li class="cart-list-item" id="${_id}" >
+   return arr
+      .map(
+         ({ price, name, img, _id, category, size }) =>
+            `<li class="cart-list-item" id="${_id}" >
             <div class="cart-list-item-img-wrapper">
               <img class="cart-product-img" width=64 src="${img}">
             </div>
@@ -107,7 +107,7 @@ export function createMarkupCart(arr) {
                   <img class="less-btn-img" src="${minus}" alt="icon bascket" width="18" height="18">
                 </button>
                 <span class="products-quantity"></span>
-                <button class="more-btn">
+                <button class="more-btn more-btn-card">
                   <img class="more-btn-img" src="${plus}" alt="icon bascket" width="18" height="18">
                 </button>
               </div>
