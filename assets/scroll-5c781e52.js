@@ -75,4 +75,4 @@
                 </button>
               </div>
         </li>`).join("")}const v="products in cart";function S(){const i=document.querySelector(".header-basket-counter"),e=JSON.parse(localStorage.getItem(v));e===null||e.length===0?i.textContent="0":i.textContent=`${e.length}`}let l=0;const d=60,p=document.querySelector(".header"),u=document.querySelector(".header-section"),r=()=>window.pageYOffset||document.documentElement.scrollTop,m=()=>p.classList.contains("hide");function O(){window.addEventListener("scroll",()=>{r()>l&&!m()&&r()>d?p.classList.add("hide"):r()<l&&m()&&p.classList.remove("hide"),r()>d?u.classList.add("scrolled"):u.classList.remove("scrolled"),l=r()})}export{S as a,$ as b,w as c,y as d,k as e,O as h};
-//# sourceMappingURL=scroll-e03d10dd.js.map
+//# sourceMappingURL=scroll-5c781e52.js.map
