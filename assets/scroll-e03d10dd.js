@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))c(s);new MutationObserver(s=>{for(const t of s)if(t.type==="childList")for(const o of t.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&c(o)}).observe(document,{childList:!0,subtree:!0});function a(s){const t={};return s.integrity&&(t.integrity=s.integrity),s.referrerpolicy&&(t.referrerPolicy=s.referrerpolicy),s.crossorigin==="use-credentials"?t.credentials="include":s.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function c(s){if(s.ep)return;s.ep=!0;const t=a(s);fetch(s.href,t)}})();const f="/project-GROUP_WORK_JS/assets/minus-7f58cb69.svg",h="/project-GROUP_WORK_JS/assets/plus-8292619f.svg",g="/project-GROUP_WORK_JS/assets/basket-a161fb4d.svg",b="/project-GROUP_WORK_JS/assets/discount-8db0687b.svg";function $(i){return i.map(({price:e,name:a,img:c,_id:s,category:t,size:o,popularity:n})=>`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))c(s);new MutationObserver(s=>{for(const t of s)if(t.type==="childList")for(const o of t.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&c(o)}).observe(document,{childList:!0,subtree:!0});function a(s){const t={};return s.integrity&&(t.integrity=s.integrity),s.referrerpolicy&&(t.referrerPolicy=s.referrerpolicy),s.crossorigin==="use-credentials"?t.credentials="include":s.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function c(s){if(s.ep)return;s.ep=!0;const t=a(s);fetch(s.href,t)}})();const f="/project-GROUP_WORK_JS/assets/minus-7f58cb69.svg",b="/project-GROUP_WORK_JS/assets/plus-8292619f.svg",g="/project-GROUP_WORK_JS/assets/basket-a161fb4d.svg",h="/project-GROUP_WORK_JS/assets/discount-8db0687b.svg";function $(i){return i.map(({price:e,name:a,img:c,_id:s,category:t,size:o,popularity:n})=>`
                   <li class="list-item" id="${s}">
             <div class="list-item-img">
                <img width=100 src="${c}">
@@ -39,7 +39,7 @@
        </div>`).join("")}function k(i){return i.splice(2),i.map(({price:e,name:a,img:c,_id:s})=>`
          <li class="discount-list-item" id="${s}" >
             <div class="discount-card">
-               <img class="discount-icon" src="${b}" alt="icon discount" width="100" height="100">
+               <img class="discount-icon" src="${h}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${c}"></div>
             <div class="discount-info">
                <p>${a}</p>
@@ -70,9 +70,9 @@
                   <img class="less-btn-img" src="${f}" alt="icon bascket" width="18" height="18">
                 </button>
                 <span class="products-quantity"></span>
-                <button class="more-btn">
-                  <img class="more-btn-img" src="${h}" alt="icon bascket" width="18" height="18">
+                <button class="more-btn more-btn-card">
+                  <img class="more-btn-img" src="${b}" alt="icon bascket" width="18" height="18">
                 </button>
               </div>
         </li>`).join("")}const v="products in cart";function S(){const i=document.querySelector(".header-basket-counter"),e=JSON.parse(localStorage.getItem(v));e===null||e.length===0?i.textContent="0":i.textContent=`${e.length}`}let l=0;const d=60,p=document.querySelector(".header"),u=document.querySelector(".header-section"),r=()=>window.pageYOffset||document.documentElement.scrollTop,m=()=>p.classList.contains("hide");function O(){window.addEventListener("scroll",()=>{r()>l&&!m()&&r()>d?p.classList.add("hide"):r()<l&&m()&&p.classList.remove("hide"),r()>d?u.classList.add("scrolled"):u.classList.remove("scrolled"),l=r()})}export{S as a,$ as b,w as c,y as d,k as e,O as h};
-//# sourceMappingURL=scroll-9f6f1c2a.js.map
+//# sourceMappingURL=scroll-e03d10dd.js.map
