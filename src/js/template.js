@@ -59,6 +59,7 @@ export function createMarkupPopularProducts(arr) {
     .join('');
 }
 
+
 export function createMarkupProductsDiscount(arr) {
   arr.splice(2);
   return arr
@@ -70,12 +71,14 @@ export function createMarkupProductsDiscount(arr) {
                <img class="discount-img" src="${img}"></div>
             <div class="discount-info">
                <p>${name}</p>
-               <span class="discount-prise">&#36;${price}
-                 <button class="more-btn discount-link-basket"> <span class="discount-basket-icon icon-styles">
-                     <img src="${basket}" alt="icon bascket" width="18" height="18">
+               <div class="discount-prise">
+                <span>&#36;${price}</span>
+                  <button class="discount-link-basket more-btn "> 
+                  <span class="icon-styles">
+                     <img class="discount-basket-icon" src="${basket}" alt="icon bascket" width="18" height="18">
                   </span>
-               </button>
-               </span>   
+               </button> 
+               </div>   
             </div>      
          </li>`;
     })
@@ -140,3 +143,4 @@ export function createMarkupModal(arr) {
     )
     .join('');
 } // list-item-info
+
