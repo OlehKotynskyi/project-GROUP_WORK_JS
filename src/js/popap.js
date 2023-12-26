@@ -27,3 +27,17 @@ function handleClick(event) {
         }
     }
 }
+
+
+
+const refs = {
+    popupCart: document.querySelector('.popup-cart'),
+    closeBtn: document.querySelector('.popup-cart-close-btn'),
+ };
+ 
+ refs.closeBtn.addEventListener('click', closeModal);
+ 
+ function closeModal() {
+    refs.popupCart.classList.add('is-hidden');
+    window.removeEventListener('keydown', closeByEscape);
+  }
