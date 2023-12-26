@@ -20,7 +20,7 @@ export function updateProductsList(products) {
        container.innerHTML = `<p>Nothing was found for the selected filters...</p>
                               <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>`;
    } else {
-       container.innerHTML = createMarkupProductsAll(products);
+       container.innerHTML = createMarkupProductsAll(removeUnderscores(products));
    }
  }
  export function getProductsLimit() {
@@ -38,14 +38,16 @@ export function updateProductsList(products) {
 async function renderAll() {
   try {
     const data = await fetchProductsAll('Fresh_Produce');
-    containerAll.insertAdjacentHTML('beforeend', createMarkupProductsAll(data));
+    containerAll.insertAdjacentHTML(
+      'beforeend',
+      createMarkupProductsAll(removeUnderscores(data))
+    );
     addCounter();
   } catch (error) {
     console.log(error.message);
   }
 }
 renderAll();
-
 
 // перемішування масиву та вибору випадкових продуктів
 function shuffleArray(array) {
@@ -80,6 +82,7 @@ async function renderDiscount() {
   } catch (error) {
        console.log(error.message);
        }
+
 }
 
 renderDiscount();
@@ -96,6 +99,7 @@ async function addBtnClick(event) {
   ) {
     //     return;
     //   }
+
     const selectedItem = event.target.closest('.list-item');
 
     const selectedItemId = selectedItem.id;
