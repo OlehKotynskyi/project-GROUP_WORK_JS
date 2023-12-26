@@ -28,16 +28,39 @@ function handleClick(event) {
     }
 }
 
+// я намагалась додати таким способом /1
+
+// const refs = {
+//     popupCart: document.querySelector('.popup-cart'),
+//     closeBtn: document.querySelector('.popup-cart-close-btn'),
+//  };
+ 
+//  refs.closeBtn.addEventListener('click', closeModal);
+ 
+//  function closeModal() {
+//     refs.popupCart.classList.add('is-hidden');
+//     window.removeEventListener('keydown', closeByEscape);
+//   }
 
 
-const refs = {
-    popupCart: document.querySelector('.popup-cart'),
-    closeBtn: document.querySelector('.popup-cart-close-btn'),
- };
- 
- refs.closeBtn.addEventListener('click', closeModal);
- 
- function closeModal() {
-    refs.popupCart.classList.add('is-hidden');
-    window.removeEventListener('keydown', closeByEscape);
-  }
+
+  
+//  чи ось так/2
+
+//   function closeModal() {
+//     modal.classList.remove('active');
+//     overlay.classList.remove('active');
+//     document.body.style.overflow = '';
+//   }
+//   closeBtn.addEventListener('click', closeModal);
+  
+  
+//   document.addEventListener('keydown', (e) => {
+//     if (e.key === "Escape") {
+//       closeModal(); 
+//     }
+//   })
+  
+//   overlay.addEventListener('click', () =>  {
+//       closeModal();
+//     });
