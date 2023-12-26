@@ -1,8 +1,29 @@
 import axios from 'axios'
 
-export async function fetchProductsAll(category) {
-    const response = await axios(`https://food-boutique.b.goit.study/api/products?keyword=Ac&category=${category}&page=1&limit=10`)
-    return response.data.results
+export async function fetchProductsAll(category, keyword, page, limit, sortMethod) {
+    try {
+        const params = {
+            keyword: keyword || '',
+            category: category || '',
+            page: page || 1,
+            limit: limit || 6
+        };
+
+        // Додаємо спосіб сортування до параметрів запиту, якщо він існує
+        if (sortMethod) {
+            params.sort = sortMethod;
+        }
+
+        const response = await axios({
+            method: 'get',
+            url: 'https://food-boutique.b.goit.study/api/products',
+            params: params
+        });
+        return response.data.results;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        return []; // повертаємо порожній масив у випадку помилки
+    }
 }
 
 export async function fetchProducts(select) {
