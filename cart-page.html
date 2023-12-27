@@ -11,8 +11,8 @@
     />
     
     <script type="module" crossorigin src="/project-GROUP_WORK_JS/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/scroll-0b51e808.js">
-    <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/scroll-4ba2f41d.css">
+    <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/scroll-68ecbcb9.js">
+    <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/scroll-85269e30.css">
   </head>
 
   <body>
@@ -88,6 +88,22 @@
           <h2 class="products-total">Total</h2>
           <p>Sum: <span class="products-total-price cart-title"></span></p>
         </div>
+
+        <form class="form-checkout" id="formEmail">
+          <input
+            class="inputEmail"
+            type="email"
+            placeholder="Enter your email"
+            autofocus
+            name="user-email-subscribe"
+            id="formInput"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Please enter a valid email address"
+            required
+          />
+
+          <button class="btnCheckout" type="submit">Checkout</button>
+        </form>
       </div>
     </div>
   </div>
