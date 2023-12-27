@@ -3,6 +3,7 @@ import {
    createMarkupPopularProducts,
    createMarkupProductsDiscount,
 } from './template.js';
+import check from '../img/svg/check.svg';
 import { fetchProductsAll, fetchProducts } from './fetch.js';
 import addCounter from './cart-header-counter.js';
 
@@ -15,22 +16,24 @@ const KEY = 'products in cart';
 // Функція для оновлення списку продуктів
 export function updateProductsList(products) {
    const container = document.querySelector('.products-container');
-   // Перевіряємо, що products не є null і має властивість length
    if (!products || products.length === 0) {
-      container.innerHTML = `<p>Nothing was found for the selected filters...</p>
-                              <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>`;
-
+      // Якщо продуктів немає, показуємо повідомлення
+      container.innerHTML = `<div class="cart-empty">
+           <h3 class="products-titel">Nothing was found for the selected <span>filters...</span></h3>
+           <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
+       </div>`;
    } else {
+      // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
       container.innerHTML = createMarkupProductsAll(products);
-
    }
 }
+
 export function getProductsLimit() {
    const screenWidth = window.innerWidth;
-   if (screenWidth < 768) {
+   if (screenWidth < 375) {
       // Мобільні пристрої
       return 6;
-   } else if (screenWidth >= 768 && screenWidth < 1440) {
+   } else if (screenWidth >= 375 && screenWidth < 768) {
       // Таблет
       return 8;
    } else {
@@ -39,7 +42,6 @@ export function getProductsLimit() {
    }
 }
 renderAll();
-
 
 // перемішування масиву та вибору випадкових продуктів
 function shuffleArray(array) {
@@ -60,11 +62,7 @@ async function renderPopular() {
    }
 }
 
-renderPopular()
-
-
-
-
+renderPopular();
 
 async function renderAll() {
    try {
@@ -74,11 +72,12 @@ async function renderAll() {
          createMarkupProductsAll(removeUnderscores(data))
       );
       addCounter();
+      console.log(data)
+
    } catch (error) {
       console.log(error.message);
    }
 }
-
 
 // async function renderAll() {
 //   try {
@@ -93,9 +92,6 @@ async function renderAll() {
 //   }
 // }
 // renderAll();
-
-
-
 
 function getRandomProducts(products, count) {
    shuffleArray(products);
@@ -113,17 +109,20 @@ async function renderDiscount() {
    return;
 }
 
-
 containerDiscount.addEventListener('click', addBtnClickDiscount);
 
-async function addBtnClickDiscount(event) {
+export async function addBtnClickDiscount(event) {
    if (
-      event.target.nodeName === 'BUTTON' ||
-      event.target.nodeName === 'IMG' ||
-      event.target.nodeName === 'SPAN'
+      event.target.className === 'discount-link-basket' ||
+      event.target.className === 'discount-basket-icon' ||
+      event.target.className === 'discount-basket-icon'
+      // event.target.className === 'add-btn'
+      // event.target.nodeName === 'BUTTON' ||
+      // event.target.nodeName === 'SPAN' ||
+      //   event.target.nodeName === 'IMG'
    ) {
-      console.dir(event.target.className);
       const selectedItem = event.target.closest('.discount-list-item');
+
       const selectedItemId = selectedItem.id;
 
       try {
@@ -135,39 +134,67 @@ async function addBtnClickDiscount(event) {
          if (index !== -1) {
             products[index].quantity += 1;
          } else {
-            currentProduct.quantity = 1;
+            currentProduct.quantity = 0;
             products.push(currentProduct);
+            const button = selectedItem.querySelector('button');
+            button.disabled = true;
+            button.innerHTML = `<span class="icon-styles">
+                     <img class="discount-basket-icon" src="${check}" alt="icon bascket" width="18" height="18">
+                  </span>`;
+            button.classList.add('disabled');
          }
-      }
-      catch (error) {
-         console.error();
+         localStorage.setItem(KEY, JSON.stringify(products));
+         addCounter();
+      } catch (error) {
+         console.log(error.message);
       }
    }
-   return
+   return;
 }
 
 renderDiscount();
 
 containerAll.addEventListener('click', addBtnClick);
 
-async function addBtnClick(event) {
-   console.log(event.target.nodeName);
-   console.log(event.target.className);
+export async function addBtnClick(event) {
    if (
+      event.target.nodeName === 'BUTTON' ||
       event.target.className === 'add-btn' ||
       event.target.nodeName === 'IMG'
-      //   && event.target.nodeName !== 'use'
    ) {
       //     return;
       //   }
-      const selectedItem = event.target.closest('.list-item');
+      const selectedItem = event.target.closest('.list-item-body-price');
+
+      const selectedItemId = selectedItem.parentElement.id;
+      //const selectedItemId = selectedItem.id;
+
+      try {
+         const currentProduct = await fetchProducts(selectedItemId);
+         const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+
+         const index = products.findIndex(item => item._id === selectedItemId);
+
+         if (index !== -1) {
+            products[index].quantity += 1;
+         } else {
+            currentProduct.quantity = 0;
+            products.push(currentProduct);
+            //==========
+            const button = selectedItem.querySelector('button');
+            button.disabled = true;
+            button.innerHTML = `<img src="${check}" alt="icon check" width="18" height="18">`;
+            button.classList.add('disabled');
+            //=========
+         }
+         localStorage.setItem(KEY, JSON.stringify(products));
+         addCounter();
+      } catch (error) {
+         console.error();
+      }
    }
+   return;
 }
-
-
-
-
-
 
 
 containerPopular.addEventListener('click', addBtnClickPopularCard);
@@ -215,5 +242,4 @@ export function removeUnderscores(arr) {
       return { ...obj, category };
    });
 }
-
 
