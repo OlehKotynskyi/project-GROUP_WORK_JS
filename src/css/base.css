@@ -177,6 +177,13 @@ body {
 }
 
 .body-wrapper {
+  margin-bottom: 80px;
+}
+
+@media only screen and (min-width: 768px) {
+  .body-wrapper {
+    margin-bottom: 100px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
@@ -184,6 +191,7 @@ body {
     display: flex;
     justify-content: space-between;
     column-gap: 40px;
+    margin-bottom: 140px;
   }
 }
 
