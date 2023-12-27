@@ -1,14 +1,54 @@
 import { createMarkupModal } from './template';
-
+import { addBtnClickDiscount, addBtnClick } from './products';
 // console.log(5); //то була перевірка чи працює файл
 const container = document.querySelector('.popup');
 const item = document.querySelector('.products-container ');
-
+//=========
+const itemDiscount = document.querySelector('.discount-section ');
+//==========
 const close = document.querySelector('.popup-close');
 item.addEventListener('click', handleClick);
+
+//=========
+itemDiscount.addEventListener('click', handleClickDiscount);
+function handleClickDiscount(event) {
+  if (
+    event.target.className === 'discount-link-basket' ||
+    event.target.className === 'discount-basket-icon' ||
+    event.target.className === 'discount-basket-icon'
+  ) {
+    addBtnClickDiscount(event);
+    return;
+  }
+
+  const itemIdDiscount = event.target.closest('.discount-list-item').id;
+  const itemElementDiscount = document.getElementById(itemIdDiscount);
+
+  container.innerHTML = itemElementDiscount.outerHTML;
+
+  container.style.display = 'flex';
+
+  document.addEventListener('keydown', handleClickClose);
+  function handleClickClose(event) {
+    if (event.key === 'Escape') {
+      container.style.display = 'none';
+      document.removeEventListener('keydown', handleClickClose);
+    }
+  }
+}
+//===============
 function handleClick(event) {
   // console.log(event.target);
-  if (event.target === event.currentTarget) {
+  // if (event.target === event.currentTarget) {
+  //   return;
+  // }
+  //=============
+  if (
+    event.target.nodeName === 'BUTTON' ||
+    event.target.className === 'add-btn' ||
+    event.target.nodeName === 'IMG'
+  ) {
+    addBtnClick(event);
     return;
   }
 
