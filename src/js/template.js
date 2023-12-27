@@ -60,14 +60,13 @@ export function createMarkupPopularProducts(arr) {
     .join('');
 }
 
-
 export function createMarkupProductsDiscount(arr) {
   arr.splice(2);
   return arr
     .map(({ price, name, img, _id }) => {
       return `
          <li class="discount-list-item" id="${_id}" >
-            <div class="discount-card">
+            <div class="discount-card" >
                <img class="discount-icon" src="${discount}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${img}"></div>
             <div class="discount-info">
@@ -87,10 +86,10 @@ export function createMarkupProductsDiscount(arr) {
 }
 
 export function createMarkupCart(arr) {
-   return arr
-      .map(
-         ({ price, name, img, _id, category, size }) =>
-            `<li class="cart-list-item" id="${_id}" >
+  return arr
+    .map(
+      ({ price, name, img, _id, category, size }) =>
+        `<li class="cart-list-item" id="${_id}" >
             <div class="cart-list-item-img-wrapper">
               <img class="cart-product-img" width=64 src="${img}">
             </div>
@@ -144,4 +143,3 @@ export function createMarkupModal(arr) {
     )
     .join('');
 } // list-item-info
-
