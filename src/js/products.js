@@ -105,12 +105,15 @@ async function renderDiscount() {
 
 containerDiscount.addEventListener('click', addBtnClickDiscount);
 
-async function addBtnClickDiscount(event) {
+export async function addBtnClickDiscount(event) {
   if (
-    event.target.nodeName === 'BUTTON' ||
-    event.target.nodeName === 'SPAN' ||
-    //   event.target.nodeName === 'IMG'
+    event.target.className === 'discount-link-basket' ||
+    event.target.className === 'discount-basket-icon' ||
     event.target.className === 'discount-basket-icon'
+    // event.target.className === 'add-btn'
+    // event.target.nodeName === 'BUTTON' ||
+    // event.target.nodeName === 'SPAN' ||
+    //   event.target.nodeName === 'IMG'
   ) {
     const selectedItem = event.target.closest('.discount-list-item');
 
