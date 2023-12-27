@@ -2,7 +2,7 @@ import { createMarkupModal } from './template';
 import { addBtnClickDiscount, addBtnClick } from './products';
 // console.log(5); //то була перевірка чи працює файл
 const container = document.querySelector('.popup');
-const item = document.querySelector('.products-container ');
+const item = document.querySelector('body ');
 //=========
 const itemDiscount = document.querySelector('.discount-section ');
 //==========
@@ -23,6 +23,7 @@ function handleClickDiscount(event) {
 
   const itemIdDiscount = event.target.closest('.discount-list-item').id;
   const itemElementDiscount = document.getElementById(itemIdDiscount);
+  itemElementDiscount.classList.add("popap-card");
 
   container.innerHTML = itemElementDiscount.outerHTML;
 
@@ -32,6 +33,7 @@ function handleClickDiscount(event) {
   function handleClickClose(event) {
     if (event.key === 'Escape') {
       container.style.display = 'none';
+      itemElementDiscount.classList.remove("popap-card");
       document.removeEventListener('keydown', handleClickClose);
     }
   }
@@ -54,6 +56,9 @@ function handleClick(event) {
 
   const itemId = event.target.closest('.list-item').id;
   const itemElement = document.getElementById(itemId);
+  itemElement.classList.add("popap-card");
+  // itemElement.createElement("button")
+
   container.innerHTML = itemElement.outerHTML;
 
   // const modalContent = createMarkupModal();
@@ -64,6 +69,7 @@ function handleClick(event) {
   function handleClickClose(event) {
     if (event.key === 'Escape') {
       container.style.display = 'none';
+      itemElement.classList.remove("popap-card");
       document.removeEventListener('keydown', handleClickClose);
     }
   }
@@ -101,3 +107,33 @@ function handleClick(event) {
 //   overlay.addEventListener('click', () =>  {
 //       closeModal();
 //     });
+// const itemPopular = document.querySelector('.popular-section-container ');
+
+// itemPopular.addEventListener('click', handleClickPopular);
+// function handleClickPopular(event) {
+//   // if (
+//   //   event.target.className === 'add-popular-basket' ||///btn
+//   //   event.target.className === 'popular-basket-svg' ||//icon btn
+//   //   event.target.className === 'popular-basket-svg'
+//   // ) {
+//   //   addBtnClickDiscount(event);
+//   //   return;
+//   // }
+
+//   const itemIdPopular = event.target.closest('.product-popular-card').id;
+//   const itemElementPopular = document.getElementById(itemIdPopular);
+//   itemElementPopular.classList.add("popap-card");
+
+//   container.innerHTML = itemElementPopular.outerHTML;
+
+//   container.style.display = 'flex';
+
+//   document.addEventListener('keydown', handleClickClose);
+//   function handleClickClose(event) {
+//     if (event.key === 'Escape') {
+//       container.style.display = 'none';
+//       itemElementPopular.classList.remove("popap-card");
+//       document.removeEventListener('keydown', handleClickClose);
+//     }
+//   }
+// }
