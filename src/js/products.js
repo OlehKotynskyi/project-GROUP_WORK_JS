@@ -68,6 +68,8 @@ async function renderAll() {
       createMarkupProductsAll(removeUnderscores(data))
     );
     addCounter();
+          console.log(data)
+
   } catch (error) {
     console.log(error.message);
   }
