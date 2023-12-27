@@ -1,54 +1,53 @@
-import { createMarkupCart } from './template.js'
+import { createMarkupCart } from './template.js';
 import addCounter from './cart-header-counter';
-const title = document.querySelector('.products-quantity-title')
-const totalPrice = document.querySelector('.products-total-price')
-const containerCart = document.querySelector('.cart-container')
-const cartWrapper = document.querySelector('.cart-desktop-wrapper')
-const emptyCart = document.querySelector('.cart-empty')
-const deleteAllBtn = document.querySelector('.del-all-btn')
-const KEY = 'products in cart'
+const title = document.querySelector('.products-quantity-title');
+const totalPrice = document.querySelector('.products-total-price');
+const containerCart = document.querySelector('.cart-container');
+const cartWrapper = document.querySelector('.cart-desktop-wrapper');
+const emptyCart = document.querySelector('.cart-empty');
+const deleteAllBtn = document.querySelector('.del-all-btn');
+const KEY = 'products in cart';
 
-
-const formEmailRet = document.querySelector(".form-checkout")
-const formInputRet = document.getElementById(".inputEmail")
-const btnSumbit= document.querySelector('.btnCheckout')
+const formEmailRet = document.querySelector('.form-checkout');
+const formInputRet = document.getElementById('.inputEmail');
+const btnSumbit = document.querySelector('.btnCheckout');
 
 renderCart();
 
 // очистка всієї корзини (localStorage)
-deleteAllBtn.addEventListener('click', clearCart)
+deleteAllBtn.addEventListener('click', clearCart);
 function clearCart() {
-    localStorage.removeItem(KEY)
-    renderCart();
+  localStorage.removeItem(KEY);
+  renderCart();
 }
 
 // якщо localStorage пустий, показувати розмітку пустої корзини
 // і приховувати розмітку товарів.
 // Викликається в cart.page.js
 export function renderCart() {
-    addCounter();
-    const products = JSON.parse(localStorage.getItem(KEY))
-    
-    if (products === null || products === undefined || products.length === 0) {
-        cartWrapper.style.display = 'none';
-        emptyCart.style.display = 'block';
-        containerCart.innerHTML = '';
-        title.textContent = 'Cart (0)'
-        totalPrice.textContent = '$0';
-    } else {
-        containerCart.innerHTML = '';
-       // cartWrapper.style.display = 'flex';
-        emptyCart.style.display = 'none';
+  addCounter();
+  const products = JSON.parse(localStorage.getItem(KEY));
 
-        containerCart.insertAdjacentHTML('beforeend', createMarkupCart(products))
-        const productsQuantity = document.querySelectorAll('.products-quantity')
-    
-        products.forEach((el, index) => {
-            productsQuantity[index].textContent = el.quantity
-        })
+  if (products === null || products === undefined || products.length === 0) {
+    cartWrapper.style.display = 'none';
+    emptyCart.style.display = 'block';
+    containerCart.innerHTML = '';
+    title.textContent = 'Cart (0)';
+    totalPrice.textContent = '$0';
+  } else {
+    containerCart.innerHTML = '';
+    // cartWrapper.style.display = 'flex';
+    emptyCart.style.display = 'none';
 
-        countTotal(products);
-    }
+    containerCart.insertAdjacentHTML('beforeend', createMarkupCart(products));
+    const productsQuantity = document.querySelectorAll('.products-quantity');
+
+    products.forEach((el, index) => {
+      productsQuantity[index].textContent = el.quantity;
+    });
+
+    countTotal(products);
+  }
 }
 
 // додавання, віднімання продуктів
@@ -57,50 +56,47 @@ export function renderCart() {
 
 // видалення конкретного продукту
 // можна оптимізувати
-containerCart.addEventListener('click', removeProduct)
+containerCart.addEventListener('click', removeProduct);
 function removeProduct(event) {
-    if (event.target.className !== 'remove-btn') {
-        return;
-    }
+  if (event.target.className !== 'remove-btn') {
+    return;
+  }
 
-    const selectedItem = event.target.closest('.cart-list-item');
-    const selectedItemId = selectedItem.id;
-    const products = JSON.parse(localStorage.getItem(KEY));
-    const index = products.findIndex(item => item._id === selectedItemId);
-    
-    products.splice(index, 1);
-    localStorage.setItem(KEY, JSON.stringify(products));
-    selectedItem.remove();
-    addCounter();
-    
-    countTotal(products);
+  const selectedItem = event.target.closest('.cart-list-item');
+  const selectedItemId = selectedItem.id;
+  const products = JSON.parse(localStorage.getItem(KEY));
+  const index = products.findIndex(item => item._id === selectedItemId);
 
-    if (products === null || products === undefined || products.length === 0) {
-        renderCart();
-        return;
-    }
+  products.splice(index, 1);
+  localStorage.setItem(KEY, JSON.stringify(products));
+  selectedItem.remove();
+  addCounter();
+
+  countTotal(products);
+
+  if (products === null || products === undefined || products.length === 0) {
+    renderCart();
+    return;
+  }
 }
 
 // обрахунок суми кошика
 function countTotal(obj) {
-    title.textContent = `Cart (${obj.length})`
-    const total = obj.reduce((acc, {quantity, price}) => {
-        return acc += quantity * price
-    }, 0)
-    totalPrice.textContent = `$${total.toFixed(2)}`
+  title.textContent = `Cart (${obj.length})`;
+  const total = obj.reduce((acc, { quantity, price }) => {
+    return (acc += quantity * price);
+  }, 0);
+  totalPrice.textContent = `$${total.toFixed(2)}`;
 }
-
 
 //email and checkout
 formEmailRet.addEventListener('sumbit', function (evt) {
-  if (!formEmailRet.checkValidity()) {
+  if (!formEmailRet.value) {
     alert('Please enter a valid email');
-    evt.preventDefault()
-    
-
-    return;
+  
+    //return;
   }
-})
+});
 // document
 //   .getElementById('subscribeFormEm')
 //   .addEventListener('submit', function (event) {
