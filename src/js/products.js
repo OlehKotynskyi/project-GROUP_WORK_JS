@@ -15,22 +15,25 @@ const KEY = 'products in cart';
 // Функція для оновлення списку продуктів
 export function updateProductsList(products) {
    const container = document.querySelector('.products-container');
-   // Перевіряємо, що products не є null і має властивість length
+   
    if (!products || products.length === 0) {
-      container.innerHTML = `<p>Nothing was found for the selected filters...</p>
-                              <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>`;
-
+       // Якщо продуктів немає, показуємо повідомлення
+       container.innerHTML = `<div class="cart-empty">
+           <h3 class="products-titel">Nothing was found for the selected <span>filters...</span></h3>
+           <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
+       </div>`;
    } else {
-      container.innerHTML = createMarkupProductsAll(products);
-
+       // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
+       container.innerHTML = createMarkupProductsAll(products);
    }
 }
+
 export function getProductsLimit() {
    const screenWidth = window.innerWidth;
-   if (screenWidth < 768) {
+   if (screenWidth < 375) {
       // Мобільні пристрої
       return 6;
-   } else if (screenWidth >= 768 && screenWidth < 1440) {
+   } else if (screenWidth >= 375 && screenWidth < 768) {
       // Таблет
       return 8;
    } else {
@@ -219,5 +222,3 @@ export function removeUnderscores(arr) {
       return { ...obj, category };
    });
 }
-
-

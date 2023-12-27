@@ -17,34 +17,31 @@ window.addEventListener('resize', () => {
 
 async function fetchCategories() {
   try {
-    const response = await fetch(
-      'https://food-boutique.b.goit.study/api/products/categories'
-    );
-    const categories = await response.json();
-
-    populateCategorySelect(categories);
+      const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+      const categories = await response.json();
+      populateCategorySelect(categories);
   } catch (error) {
-    console.error('Error fetching categories:', error);
+      console.error('Error fetching categories:', error);
   }
 }
 
 function populateCategorySelect(categories) {
-  const select = document.getElementById('categories');
+  const selectElement = document.getElementById('categories');
+  selectElement.innerHTML = '';
+
   // Додаємо опцію "Show all"
-  select.appendChild(new Option('Show all', ''));
+  selectElement.appendChild(new Option('Show all', ''));
 
   categories.forEach(category => {
-    const option = document.createElement('option');
-    option.value = category;
-    option.textContent = category.replace(/_/g, ' ');
-    select.appendChild(option);
+      selectElement.appendChild(new Option(category.replace(/_/g, ' '), category));
   });
 
-  const savedFilters = getSavedFilters();
-  if (savedFilters.category) {
-    select.value = savedFilters.category;
-  }
+  // Ініціалізація Slim Select
+  new SlimSelect({
+      select: '#categories'
+  });
 }
+
 
 function setupEventListeners() {
   const searchForm = document.querySelector('.search-form');
@@ -223,4 +220,3 @@ export default fetchFilteredProducts;
 //function fetchInitialProducts() {
 //    fetchFilteredProducts();
 //}
-
