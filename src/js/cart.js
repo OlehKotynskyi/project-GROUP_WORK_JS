@@ -8,6 +8,11 @@ const emptyCart = document.querySelector('.cart-empty')
 const deleteAllBtn = document.querySelector('.del-all-btn')
 const KEY = 'products in cart'
 
+
+const formEmailRet = document.querySelector(".form-checkout")
+const formInputRet = document.getElementById(".inputEmail")
+const btnSumbit= document.querySelector('.btnCheckout')
+
 renderCart();
 
 // очистка всієї корзини (localStorage)
@@ -32,7 +37,7 @@ export function renderCart() {
         totalPrice.textContent = '$0';
     } else {
         containerCart.innerHTML = '';
-        cartWrapper.style.display = 'flex';
+       // cartWrapper.style.display = 'flex';
         emptyCart.style.display = 'none';
 
         containerCart.insertAdjacentHTML('beforeend', createMarkupCart(products))
@@ -84,3 +89,54 @@ function countTotal(obj) {
     }, 0)
     totalPrice.textContent = `$${total.toFixed(2)}`
 }
+
+
+//email and checkout
+formEmailRet.addEventListener('sumbit', function (evt) {
+  if (!formEmailRet.checkValidity()) {
+    alert('Please enter a valid email');
+    evt.preventDefault()
+    
+
+    return;
+  }
+})
+// document
+//   .getElementById('subscribeFormEm')
+//   .addEventListener('submit', function (event) {
+//     event.preventDefault();
+
+//     var emailInput = document.getElementById('form');
+//     var email = emailInput.value;
+// console.log(email)
+//     if (!validateEmail(email)) {
+//       alert('Please enter a valid email address');
+//       return;
+//     }
+
+//     // Відправляємо дані на сервер за допомогою fetch
+//     fetch('', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ email: email }),
+//     })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error('Network response was not ok');
+//         }
+//         console.log('Data sent successfully');
+//         // Очищаємо поле введення після успішної відправки
+//         emailInput.value = '';
+//       })
+//       .catch(error => {
+//         console.error('There was a problem with the fetch operation:', error);
+//       });
+//   });
+
+// // Функція для перевірки коректності введеної електронної пошти
+// function validateEmail(email) {
+//   var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+//   return emailRegex.test(email);
+// }

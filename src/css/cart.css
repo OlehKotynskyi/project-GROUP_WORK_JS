@@ -140,7 +140,7 @@
 .cart-desktop-wrapper {
    position: relative;
    display: flex;
-   flex-direction: column;
+   flex-direction:column;
 }
 
 .del-all-btn {
@@ -155,20 +155,25 @@
 
 .cart-checkout-container {
    margin-bottom: 30px;
+   display: flex;
+   flex-direction: column;
+      gap: 14px;
 }
 
-.cart-checkout-container > .cart-title {
+.cart-checkout-container>.cart-title {
    margin-left: 14px;
 }
 
 .cart-total-container {
    margin-top: 40px;
+   margin-bottom: 30px;
    border-radius: 8px;
    background: rgba(109, 132, 52, 0.05);
    display: flex;
    justify-content: space-between;
    align-items: baseline;
    padding: 18px 18px 14px;
+
 }
 
 .products-total {
@@ -186,7 +191,37 @@
 .cart-total-container p span {
    color: #010101;
 }
+.form-checkout {
+display: flex;
 
+   flex-direction: column;
+   gap: 14px;
+}
+.inputEmail{
+height: 42px;
+/* width: 359px; */
+  
+   border-radius: 30px;
+   border: 1px;
+   gap: 8px;
+   border-color: #FAFAFA;
+   font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.3;
+      padding: 12px 20px;
+}
+.btnCheckout{
+   height: 42px;
+   border-radius: 30px;
+      border: 1px;
+      background-color: rgba(109, 132, 52, 1);
+      color: rgba(232, 232, 226, 0.70);
+         font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 1.3;
+}
 /* TABLET STYLES */
 @media only screen and (min-width: 768px) {
    .cart {
@@ -223,6 +258,7 @@
    .cart-total-container {
       max-width: 590px;
       padding: 14px 28px;
+      margin-bottom: 40px;
    }
 
    .cart-title {
@@ -243,6 +279,7 @@
    }
 
    .cart-checkout-container {
+      display: block;
       margin-bottom: 40px;
    }
 
@@ -280,7 +317,25 @@
       padding: 6px 16px 6px 10px;
    }
 }
-
+.form-checkout{
+   
+      flex-direction: row;
+         gap: 16px;
+         width: 590px;
+}
+.inputEmail{
+   height: 54px;
+      width: 360px;
+      padding: 15px
+         172px
+         15px
+         20px;
+}
+.btnCheckout{
+   height: 54px;
+   width: 215px;
+   padding: 15px 65px;
+}
 /* PC STYLES */
 @media only screen and (min-width: 1440px) {
    .cart {
@@ -289,13 +344,21 @@
    }
 
    .cart-desktop-wrapper {
-      flex-direction: row;
+      /* display: flex; */
+      flex-direction:row;
       gap: 100px;
+    
+      
    }
 
    .cart-checkout-container {
       width: 590px;
       flex-shrink: 0;
+
+
+      
+      margin-top: 49px;
+      margin-left: 101px;
    }
 
    .del-all-btn {
@@ -310,4 +373,7 @@
    .cart-list-item {
       min-width: 540px;
    }
+}
+.inputEmail{
+   width: 359px;
 }
