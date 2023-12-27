@@ -15,33 +15,32 @@ const KEY = 'products in cart';
 
 // Функція для оновлення списку продуктів
 export function updateProductsList(products) {
-   const container = document.querySelector('.products-container');
-   
-   if (!products || products.length === 0) {
-       // Якщо продуктів немає, показуємо повідомлення
-       container.innerHTML = `<div class="cart-empty">
+  const container = document.querySelector('.products-container');
+
+  if (!products || products.length === 0) {
+    // Якщо продуктів немає, показуємо повідомлення
+    container.innerHTML = `<div class="cart-empty">
            <h3 class="products-titel">Nothing was found for the selected <span>filters...</span></h3>
            <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
        </div>`;
-   } else {
-       // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
-       container.innerHTML = createMarkupProductsAll(products);
-   }
+  } else {
+    // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
+    container.innerHTML = createMarkupProductsAll(products);
+  }
 }
 
 export function getProductsLimit() {
-   const screenWidth = window.innerWidth;
-   if (screenWidth < 375) {
-      // Мобільні пристрої
-      return 6;
-   } else if (screenWidth >= 375 && screenWidth < 768) {
-      // Таблет
-      return 8;
-   } else {
-      // Десктоп і вище
-      return 9;
-   }
-
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 375) {
+    // Мобільні пристрої
+    return 6;
+  } else if (screenWidth >= 375 && screenWidth < 768) {
+    // Таблет
+    return 8;
+  } else {
+    // Десктоп і вище
+    return 9;
+  }
 }
 renderAll();
 
@@ -74,8 +73,7 @@ async function renderAll() {
       createMarkupProductsAll(removeUnderscores(data))
     );
     addCounter();
-          console.log(data)
-
+    console.log(data);
   } catch (error) {
     console.log(error.message);
   }
@@ -141,7 +139,7 @@ export async function addBtnClickDiscount(event) {
         const button = selectedItem.querySelector('button');
         button.disabled = true;
         button.innerHTML = `<span class="icon-styles">
-                     <img class="discount-basket-icon" src="${check}" alt="icon bascket" width="18" height="18">
+                     <img class="discount-basket-icon icon-style" src="${check}" alt="icon bascket" width="18" height="18">
                   </span>`;
         button.classList.add('disabled');
       }
@@ -239,12 +237,11 @@ async function addBtnClickPopularCard(event) {
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
-   return arr.map(obj => {
-      let category = obj.category;
-      if (typeof category === 'string') {
-         category = category.split('_').join(' ');
-      }
-      return { ...obj, category };
-   });
+  return arr.map(obj => {
+    let category = obj.category;
+    if (typeof category === 'string') {
+      category = category.split('_').join(' ');
+    }
+    return { ...obj, category };
+  });
 }
-
