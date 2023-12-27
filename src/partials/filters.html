@@ -1,25 +1,27 @@
-<section class="filters-section-container">
-  <div class="filters-container container">
-    <h2 class="filters">Filters:</h2>
+<section class="filters-section">
+   <div class="filters-container container">
+      <h2 class="filters-titel">Filters:</h2>
+      <div class="filters-wrapper">
+         <form class="search-form">
+            <div class="search-section">
+               <!--  <label for="search-box" class="visually-hidden">Search for anything:</label>-->
+               <input type="text" id="search-box" name="search-box" placeholder="Search for anything">
+               <button type="submit" class="search-button">
+                  <svg class="search-icon" width="14.58" height="14.58">
+                     <use xlink:href="img/sprite.svg#icon-search"></use>
+                  </svg>
+               </button>
+            </div>
+         </form>
 
-    <form class="search-form">
-      <div class="search-section">
-        <!--  <label for="search-box" class="visually-hidden">Search for anything:</label>-->
-        <input type="text" id="search-box" name="search-box" placeholder="Search for anything">
-        <button type="submit" class="search-button">
-          <svg class="search-icon" width="14.58" height="14.58"><use xlink:href="img/sprite.svg#icon-search"></use></svg>
-        </button>
+         <div class="filter-section">
+            <!-- <label for="categories" class="visually-hidden">Categories:</label> -->
+            <select id="categories" name="categories"></select>
+            <!-- 
+         -->
+         </div>
       </div>
-    </form>
-
-    <div class="filter-section">
-      <!-- <label for="categories" class="visually-hidden">Categories:</label> -->
-      <select id="categories" name="categories"></select>
-       <!-- 
-        -->
-      
-    </div>
-  </div>
+   </div>
 </section>
 
 <script type="module" src="./js/filters.js"></script>

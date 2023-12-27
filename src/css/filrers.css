@@ -1,3 +1,138 @@
-.filters-section-container {}
+.filters-section:not(:last-child) {
+   margin-bottom: 100px;
+}
+
+@media only screen and (min-width: 768px) {
+   .filters-section:not(:last-child) {
+      margin-bottom: 40px;
+   }
+}
 
 .filters-container {}
+
+.filters-titel {
+   color: rgba(1, 1, 1, 0.30);
+   font-size: 14px;
+   font-weight: 400;
+}
+
+.filters-titel:not(:last-child) {
+   margin-bottom: 8px;
+}
+
+
+
+
+@media only screen and (min-width: 768px) {
+   .search-form {
+      width: 269px;
+   }
+
+   .filters-wrapper {
+      display: flex;
+      align-items: start;
+      gap: 8px;
+   }
+}
+
+.search-form:not(:last-child) {
+   margin-bottom: 10px;
+}
+
+.search-section {
+   position: relative;
+   width: 100%;
+}
+
+
+
+.search-section input {
+   padding: 14px 20px;
+   border-radius: 30px;
+   border: 1px solid rgba(1, 1, 1, 0.30);
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 1.28;
+   background-color: inherit;
+   width: 100%;
+   height: 52px;
+}
+
+.search-section input::placeholder {
+   color: #010101;
+}
+
+@media (hover: hover) {
+
+   .search-section input:hover {
+      outline: 1px solid #6D8434;
+   }
+}
+
+.search-section input:focus,
+.search-section input:active {
+   outline: 1px solid #6D8434;
+}
+
+@media only screen and (min-width: 768px) {
+   .search-section input {
+      font-size: 18px;
+      line-height: 1.33;
+   }
+}
+
+.search-button {
+   position: absolute;
+   top: 15px;
+   right: 20px;
+   width: 20px;
+   height: 20px;
+}
+
+.search-icon {}
+
+.filter-section {}
+
+@media only screen and (min-width: 768px) {
+   .filter-section {
+      width: 189px;
+   }
+}
+
+.filter-section select {
+   padding: 14px 20px;
+   border-radius: 30px;
+   border: 1px solid rgba(1, 1, 1, 0.30);
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 1.28;
+   background-color: inherit;
+   width: 100%;
+   height: 52px;
+   color: #010101;
+   padding-right: 20px;
+   appearance: none;
+   overflow: hidden;
+   background: url('../img/svg/arrow-down.svg') no-repeat 95%;
+   background-size: 14.4px;
+}
+
+
+@media (hover: hover) {
+   .filter-section select:hover {
+      outline: 1px solid #6D8434;
+   }
+}
+
+.filter-section select:focus,
+.filter-section select:active {
+   outline: 1px solid #6D8434;
+}
+
+@media only screen and (min-width: 768px) {
+   .filter-section select {
+      background: url('../img/svg/arrow-down.svg') no-repeat 90%;
+      font-size: 18px;
+      line-height: 1.33;
+   }
+}
