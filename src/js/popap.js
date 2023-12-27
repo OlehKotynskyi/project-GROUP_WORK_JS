@@ -1,5 +1,5 @@
 import { createMarkupModal } from './template';
-import { addBtnClickDiscount } from './products';
+import { addBtnClickDiscount, addBtnClick } from './products';
 // console.log(5); //то була перевірка чи працює файл
 const container = document.querySelector('.popup');
 const item = document.querySelector('.products-container ');
@@ -23,7 +23,7 @@ function handleClickDiscount(event) {
 
   const itemIdDiscount = event.target.closest('.discount-list-item').id;
   const itemElementDiscount = document.getElementById(itemIdDiscount);
-  console.log(itemElementDiscount);
+
   container.innerHTML = itemElementDiscount.outerHTML;
 
   container.style.display = 'flex';
@@ -39,7 +39,16 @@ function handleClickDiscount(event) {
 //===============
 function handleClick(event) {
   // console.log(event.target);
-  if (event.target === event.currentTarget) {
+  // if (event.target === event.currentTarget) {
+  //   return;
+  // }
+  //=============
+  if (
+    event.target.nodeName === 'BUTTON' ||
+    event.target.className === 'add-btn' ||
+    event.target.nodeName === 'IMG'
+  ) {
+    addBtnClick(event);
     return;
   }
 

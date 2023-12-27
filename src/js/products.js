@@ -150,17 +150,18 @@ renderDiscount();
 
 containerAll.addEventListener('click', addBtnClick);
 
-async function addBtnClick(event) {
+export async function addBtnClick(event) {
   if (
     event.target.nodeName === 'BUTTON' ||
     event.target.className === 'add-btn' ||
     event.target.nodeName === 'IMG'
-    //   && event.target.nodeName !== 'use'
   ) {
     //     return;
     //   }
-    const selectedItem = event.target.closest('.list-item');
-    const selectedItemId = selectedItem.id;
+    const selectedItem = event.target.closest('.list-item-body-price');
+
+    const selectedItemId = selectedItem.parentElement.id;
+    //const selectedItemId = selectedItem.id;
 
     try {
       const currentProduct = await fetchProducts(selectedItemId);
@@ -171,9 +172,17 @@ async function addBtnClick(event) {
       if (index !== -1) {
         products[index].quantity += 1;
       } else {
-        currentProduct.quantity = 1;
+        currentProduct.quantity = 0;
         products.push(currentProduct);
+        //==========
+        const button = selectedItem.querySelector('button');
+        button.disabled = true;
+        button.innerHTML = `<img src="${check}" alt="icon check" width="18" height="18">`;
+        button.classList.add('disabled');
+        //=========
       }
+      localStorage.setItem(KEY, JSON.stringify(products));
+      addCounter();
     } catch (error) {
       console.error();
     }
