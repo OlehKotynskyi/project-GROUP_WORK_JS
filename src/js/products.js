@@ -220,7 +220,7 @@ async function addBtnClickPopularCard(event) {
          } else {
             currentProduct.quantity = 1;
             products.push(currentProduct);
-            button.innerHTML = '<img class="popular-basket-img" src="../img/svg/check.svg" alt="icon bascket" width="12" height="12">';
+            button.innerHTML = `<img class="popular-basket-img" src="${check}" alt="icon bascket" width="12" height="12">`;
          }
          localStorage.setItem(KEY, JSON.stringify(products));
          addCounter();
