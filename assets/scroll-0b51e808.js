@@ -17,7 +17,7 @@
             </div>
          </li>
          `).join("")}function y(i){return i.map(({price:e,name:a,img:c,_id:s,category:t,size:o,popularity:n})=>`
-           <div id="${s}" class="product-popular-card">
+           <div class="product-popular-card">
            <div class="popular-image-item">
                <img src="${c}" alt="${a}" class="product-popular-image">
            </div>
@@ -38,7 +38,7 @@
            </div>
        </div>`).join("")}function k(i){return i.splice(2),i.map(({price:e,name:a,img:c,_id:s})=>`
          <li class="discount-list-item" id="${s}" >
-            <div class="discount-card">
+            <div class="discount-card" >
                <img class="discount-icon" src="${h}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${c}"></div>
             <div class="discount-info">
@@ -75,4 +75,4 @@
                 </button>
               </div>
         </li>`).join("")}const v="products in cart";function S(){const i=document.querySelector(".header-basket-counter"),e=JSON.parse(localStorage.getItem(v));e===null||e.length===0?i.textContent="0":i.textContent=`${e.length}`}let l=0;const d=60,p=document.querySelector(".header"),u=document.querySelector(".header-section"),r=()=>window.pageYOffset||document.documentElement.scrollTop,m=()=>p.classList.contains("hide");function O(){window.addEventListener("scroll",()=>{r()>l&&!m()&&r()>d?p.classList.add("hide"):r()<l&&m()&&p.classList.remove("hide"),r()>d?u.classList.add("scrolled"):u.classList.remove("scrolled"),l=r()})}export{S as a,$ as b,w as c,y as d,k as e,O as h};
-//# sourceMappingURL=scroll-1fc55454.js.map
+//# sourceMappingURL=scroll-0b51e808.js.map
