@@ -4,14 +4,15 @@ import plus from '../img/svg/plus.svg';
 import basket from '../img/svg/basket.svg';
 import discount from '../img/svg/discount.svg';
 import popular from '../img/svg/organic-food.svg';
+
 export function createMarkupProductsAll(arr) {
   return arr
     .map(
-      ({ price, name, img, _id, category, size, popularity }) =>
-        `
-                  <li class="list-item" id="${_id}">
+      ({ price, name, img, _id, category, size, popularity, is10PercentOff }) =>
+        `<li class="list-item" id="${_id}">
             <div class="list-item-img">
-               <img width=100 src="${img}">
+               ${is10PercentOff ? `<img class="products-discount-icon" src="${discount}" alt="icon discount" width="100" height="100">` : ''} 
+               <img class="product-img" width=100 src="${img}">
             </div>
             <p class="products-titel">${name}</p>
             <div class="list-item-info">
@@ -20,9 +21,9 @@ export function createMarkupProductsAll(arr) {
                <p>Popularity: <span>${popularity}</span></p>
             </div>
             <div class="list-item-body-price">
-                <span>&#36;${price}</span>
+               <span>&#36;${price}</span>
                <button class="add-btn icon-styles">
-                  <img src="${basket}" alt="icon bascket" width="18" height="18">
+               <img src="${basket}" alt="icon bascket" width="18" height="18">
                </button>
             </div>
          </li>
