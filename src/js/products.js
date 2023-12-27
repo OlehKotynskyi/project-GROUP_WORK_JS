@@ -16,27 +16,30 @@ const KEY = 'products in cart';
 // Функція для оновлення списку продуктів
 export function updateProductsList(products) {
    const container = document.querySelector('.products-container');
-   // Перевіряємо, що products не є null і має властивість length
    if (!products || products.length === 0) {
-      container.innerHTML = `<p>Nothing was found for the selected filters...</p>
-                              <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>`;
+       // Якщо продуктів немає, показуємо повідомлення
+       container.innerHTML = `<div class="cart-empty">
+           <h3 class="products-titel">Nothing was found for the selected <span>filters...</span></h3>
+           <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
+       </div>`;
    } else {
-      container.innerHTML = createMarkupProductsAll(products);
+       // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
+       container.innerHTML = createMarkupProductsAll(products);
    }
 }
+
 export function getProductsLimit() {
    const screenWidth = window.innerWidth;
-   if (screenWidth < 768) {
+   if (screenWidth < 375) {
       // Мобільні пристрої
       return 6;
-   } else if (screenWidth >= 768 && screenWidth < 1440) {
+   } else if (screenWidth >= 375 && screenWidth < 768) {
       // Таблет
       return 8;
    } else {
       // Десктоп і вище
       return 9;
    }
-}
 renderAll();
 
 // перемішування масиву та вибору випадкових продуктів
@@ -107,31 +110,34 @@ async function renderDiscount() {
 
 containerDiscount.addEventListener('click', addBtnClickDiscount);
 
-async function addBtnClickDiscount(event) {
-   if (
-      event.target.nodeName === 'BUTTON' ||
-      event.target.nodeName === 'SPAN' ||
-      //   event.target.nodeName === 'IMG'
-      event.target.className === 'discount-basket-icon'
-   ) {
-      const selectedItem = event.target.closest('.discount-list-item');
+export async function addBtnClickDiscount(event) {
+  if (
+    event.target.className === 'discount-link-basket' ||
+    event.target.className === 'discount-basket-icon' ||
+    event.target.className === 'discount-basket-icon'
+    // event.target.className === 'add-btn'
+    // event.target.nodeName === 'BUTTON' ||
+    // event.target.nodeName === 'SPAN' ||
+    //   event.target.nodeName === 'IMG'
+  ) {
+    const selectedItem = event.target.closest('.discount-list-item');
 
-      const selectedItemId = selectedItem.id;
+    const selectedItemId = selectedItem.id;
 
-      try {
-         const currentProduct = await fetchProducts(selectedItemId);
-         const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+    try {
+      const currentProduct = await fetchProducts(selectedItemId);
+      const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
 
-         const index = products.findIndex(item => item._id === selectedItemId);
+      const index = products.findIndex(item => item._id === selectedItemId);
 
-         if (index !== -1) {
-            products[index].quantity += 1;
-         } else {
-            currentProduct.quantity = 0;
-            products.push(currentProduct);
-            const button = selectedItem.querySelector('button');
-            button.disabled = true;
-            button.innerHTML = `<span class="icon-styles">
+      if (index !== -1) {
+        products[index].quantity += 1;
+      } else {
+        currentProduct.quantity = 0;
+        products.push(currentProduct);
+        const button = selectedItem.querySelector('button');
+        button.disabled = true;
+        button.innerHTML = `<span class="icon-styles">
                      <img class="discount-basket-icon" src="${check}" alt="icon bascket" width="18" height="18">
                   </span>`;
             button.classList.add('disabled');
@@ -149,35 +155,44 @@ renderDiscount();
 
 containerAll.addEventListener('click', addBtnClick);
 
-async function addBtnClick(event) {
-   if (
-      event.target.nodeName === 'BUTTON' ||
-      event.target.className === 'add-btn' ||
-      event.target.nodeName === 'IMG'
-      //   && event.target.nodeName !== 'use'
-   ) {
-      //     return;
-      //   }
-      const selectedItem = event.target.closest('.list-item');
-      const selectedItemId = selectedItem.id;
+export async function addBtnClick(event) {
+  if (
+    event.target.nodeName === 'BUTTON' ||
+    event.target.className === 'add-btn' ||
+    event.target.nodeName === 'IMG'
+  ) {
+    //     return;
+    //   }
+    const selectedItem = event.target.closest('.list-item-body-price');
 
-      try {
-         const currentProduct = await fetchProducts(selectedItemId);
-         const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+    const selectedItemId = selectedItem.parentElement.id;
+    //const selectedItemId = selectedItem.id;
 
-         const index = products.findIndex(item => item._id === selectedItemId);
+    try {
+      const currentProduct = await fetchProducts(selectedItemId);
+      const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
 
-         if (index !== -1) {
-            products[index].quantity += 1;
-         } else {
-            currentProduct.quantity = 1;
-            products.push(currentProduct);
-         }
-      } catch (error) {
-         console.error();
+      const index = products.findIndex(item => item._id === selectedItemId);
+
+      if (index !== -1) {
+        products[index].quantity += 1;
+      } else {
+        currentProduct.quantity = 0;
+        products.push(currentProduct);
+        //==========
+        const button = selectedItem.querySelector('button');
+        button.disabled = true;
+        button.innerHTML = `<img src="${check}" alt="icon check" width="18" height="18">`;
+        button.classList.add('disabled');
+        //=========
       }
-   }
-   return;
+      localStorage.setItem(KEY, JSON.stringify(products));
+      addCounter();
+    } catch (error) {
+      console.error();
+    }
+  }
+  return;
 }
 
 containerPopular.addEventListener('click', addBtnClickPopularCard);
@@ -229,3 +244,4 @@ export function removeUnderscores(arr) {
       return { ...obj, category };
    });
 }
+
