@@ -40,6 +40,7 @@ export function getProductsLimit() {
       // Десктоп і вище
       return 9;
    }
+
 }
 renderAll();
 
@@ -140,6 +141,7 @@ export async function addBtnClickDiscount(event) {
             button.disabled = true;
             button.innerHTML = `<span class="icon-styles">
                      <img class="discount-basket-icon" src="${check}" alt="icon bascket" width="18" height="18">
+
                   </span>`;
             button.classList.add('disabled');
          }
@@ -234,12 +236,11 @@ async function addBtnClickPopularCard(event) {
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
-   return arr.map(obj => {
-      let category = obj.category;
-      if (typeof category === 'string') {
-         category = category.split('_').join(' ');
-      }
-      return { ...obj, category };
-   });
+  return arr.map(obj => {
+    let category = obj.category;
+    if (typeof category === 'string') {
+      category = category.split('_').join(' ');
+    }
+    return { ...obj, category };
+  });
 }
-
