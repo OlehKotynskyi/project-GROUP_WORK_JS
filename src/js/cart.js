@@ -50,12 +50,8 @@ export function renderCart() {
   }
 }
 
-// додавання, віднімання продуктів
-// const moreBtn = document.querySelectorAll('.more-btn')
-// const lessBtn = document.querySelectorAll('.less-btn')
-
 // видалення конкретного продукту
-// можна оптимізувати
+// можна оптимізувати ??
 containerCart.addEventListener('click', removeProduct);
 function removeProduct(event) {
   if (event.target.className !== 'remove-btn') {
@@ -77,6 +73,54 @@ function removeProduct(event) {
   if (products === null || products === undefined || products.length === 0) {
     renderCart();
     return;
+  }
+}
+
+// віднімання і додавання кількості продукту
+// логіка в тому, щоб дозволити юзеру мати 0 продуктів не видаляючи його
+// (на випадок того, коли випадково проклікав, щоб мати змогу доддати кількість знову).
+// !!!
+// на майбутнє - треба прописати логіку, щоб при кліку на checkout
+// юзеру вилітало повідомлення, щоб або видалив, або додав кількість більше за 0.
+// Тобто, при кліку на кнопку Checkout, треба пройтись по localStorage(KEY), і якщо є хоч один обєкт з quantity: 0, вивести повідомлення
+containerCart.addEventListener('click', changeQuantity);
+function changeQuantity(event) {
+  if (
+    event.target.className !== 'more-btn-img'
+    && event.target.className !== 'less-btn'
+    && event.target.className !== 'more-btn-card'
+    && event.target.className !== 'less-btn-img'
+  ) {
+    return;
+  }
+  
+  const selectedItem = event.target.closest('.cart-list-item');
+  const selectedItemId = selectedItem.id;
+  const products = JSON.parse(localStorage.getItem(KEY));
+  const index = products.findIndex(item => item._id === selectedItemId);
+  const productQuantity = selectedItem.querySelector('.products-quantity');
+
+  if (
+    event.target.className === 'more-btn-card'
+    || event.target.className === 'more-btn-img'
+  ) {
+    products[index].quantity++;
+    productQuantity.innerHTML = products[index].quantity;
+    localStorage.setItem(KEY, JSON.stringify(products));
+    countTotal(products)
+  }
+
+  if (
+    event.target.className === 'less-btn'
+    || event.target.className === 'less-btn-img'
+  ) {
+    if (products[index].quantity === 0) {
+      return;
+    }
+    products[index].quantity--;
+    productQuantity.innerHTML = products[index].quantity;
+    localStorage.setItem(KEY, JSON.stringify(products));
+    countTotal(products)
   }
 }
 
