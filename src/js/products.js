@@ -226,7 +226,7 @@ async function addBtnClickPopularCard(event) {
          addCounter();
       } catch (error) {
          console.log(error.message);
-         button.disabled = false; 
+         button.disabled = false;
       }
    }
    return;

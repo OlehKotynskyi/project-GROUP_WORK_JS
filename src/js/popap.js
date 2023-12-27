@@ -12,67 +12,68 @@ item.addEventListener('click', handleClick);
 //=========
 itemDiscount.addEventListener('click', handleClickDiscount);
 function handleClickDiscount(event) {
-  if (
-    event.target.className === 'discount-link-basket' ||
-    event.target.className === 'discount-basket-icon' ||
-    event.target.className === 'discount-basket-icon'
-  ) {
-    addBtnClickDiscount(event);
-    return;
-  }
+   if (
+      event.target.className === 'discount-link-basket' ||
+      event.target.className === 'discount-basket-icon' ||
+      event.target.className === 'discount-basket-icon'
+   ) {
+      addBtnClickDiscount(event);
+      return;
+   }
 
-  const itemIdDiscount = event.target.closest('.discount-list-item').id;
-  const itemElementDiscount = document.getElementById(itemIdDiscount);
-  itemElementDiscount.classList.add("popap-card");
+   const itemIdDiscount = event.target.closest('.discount-list-item').id;
+   const itemElementDiscount = document.getElementById(itemIdDiscount);
+   itemElementDiscount.classList.add("popap-card");
 
-  container.innerHTML = itemElementDiscount.outerHTML;
+   container.innerHTML = itemElementDiscount.outerHTML;
 
-  container.style.display = 'flex';
+   container.style.display = 'flex';
 
-  document.addEventListener('keydown', handleClickClose);
-  function handleClickClose(event) {
-    if (event.key === 'Escape') {
-      container.style.display = 'none';
-      itemElementDiscount.classList.remove("popap-card");
-      document.removeEventListener('keydown', handleClickClose);
-    }
-  }
+   document.addEventListener('keydown', handleClickClose);
+   function handleClickClose(event) {
+      if (event.key === 'Escape') {
+         container.style.display = 'none';
+         itemElementDiscount.classList.remove("popap-card");
+         document.removeEventListener('keydown', handleClickClose);
+      }
+   }
 }
+
 //===============
 function handleClick(event) {
-  // console.log(event.target);
-  // if (event.target === event.currentTarget) {
-  //   return;
-  // }
-  //=============
-  if (
-    event.target.nodeName === 'BUTTON' ||
-    event.target.className === 'add-btn' ||
-    event.target.nodeName === 'IMG'
-  ) {
-    addBtnClick(event);
-    return;
-  }
+   // console.log(event.target);
+   // if (event.target === event.currentTarget) {
+   //   return;
+   // }
+   //=============
+   if (
+      event.target.nodeName === 'BUTTON' ||
+      event.target.className === 'add-btn' ||
+      event.target.nodeName === 'IMG'
+   ) {
+      addBtnClick(event);
+      return;
+   }
 
-  const itemId = event.target.closest('.list-item').id;
-  const itemElement = document.getElementById(itemId);
-  itemElement.classList.add("popap-card");
-  // itemElement.createElement("button")
+   const itemId = event.target.closest('.list-item').id;
+   const itemElement = document.getElementById(itemId);
+   itemElement.classList.add("popap-card");
+   // itemElement.createElement("button")
 
-  container.innerHTML = itemElement.outerHTML;
+   container.innerHTML = itemElement.outerHTML;
 
-  // const modalContent = createMarkupModal();
-  // container.innerHTML = modalContent;
-  container.style.display = 'flex';
+   // const modalContent = createMarkupModal();
+   // container.innerHTML = modalContent;
+   container.style.display = 'flex';
 
-  document.addEventListener('keydown', handleClickClose);
-  function handleClickClose(event) {
-    if (event.key === 'Escape') {
-      container.style.display = 'none';
-      itemElement.classList.remove("popap-card");
-      document.removeEventListener('keydown', handleClickClose);
-    }
-  }
+   document.addEventListener('keydown', handleClickClose);
+   function handleClickClose(event) {
+      if (event.key === 'Escape') {
+         container.style.display = 'none';
+         itemElement.classList.remove("popap-card");
+         document.removeEventListener('keydown', handleClickClose);
+      }
+   }
 }
 
 // я намагалась додати таким способом /1

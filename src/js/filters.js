@@ -1,4 +1,5 @@
 // filters.js
+import SlimSelect from 'slim-select'
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 import { getProductsLimit } from './products.js';
@@ -16,30 +17,30 @@ window.addEventListener('resize', () => {
 
 
 async function fetchCategories() {
-  try {
+   try {
       const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
       const categories = await response.json();
       populateCategorySelect(categories);
-  } catch (error) {
+   } catch (error) {
       console.error('Error fetching categories:', error);
-  }
+   }
 }
 
 function populateCategorySelect(categories) {
-  const selectElement = document.getElementById('categories');
-  selectElement.innerHTML = '';
+   const selectElement = document.getElementById('categories');
+   selectElement.innerHTML = '';
 
-  // Додаємо опцію "Show all"
-  selectElement.appendChild(new Option('Show all', ''));
+   // Додаємо опцію "Show all"
+   selectElement.appendChild(new Option('Show all', ''));
 
-  categories.forEach(category => {
+   categories.forEach(category => {
       selectElement.appendChild(new Option(category.replace(/_/g, ' '), category));
-  });
+   });
 
-  // Ініціалізація Slim Select
-  new SlimSelect({
+   // Ініціалізація Slim Select
+   new SlimSelect({
       select: '#categories'
-  });
+   });
 }
 
 
