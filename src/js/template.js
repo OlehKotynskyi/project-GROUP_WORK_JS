@@ -3,6 +3,7 @@ import minus from '../img/svg/minus.svg';
 import plus from '../img/svg/plus.svg';
 import basket from '../img/svg/basket.svg';
 import discount from '../img/svg/discount.svg';
+import popular from '../img/svg/popular-baskett.svg';
 import popular from '../img/svg/organic-food.svg';
 
 export function createMarkupProductsAll(arr) {
@@ -50,9 +51,7 @@ export function createMarkupPopularProducts(arr) {
                    <p class="product-popularity text-size-popularity"><span class="popular-text-card">Popularity:</span> ${popularity}</p>
                </div>
                <button id="buy-button" class="add-popular-basket add-btn"('${name}')">
-                   <svg class="popular-basket-svg" width="12" height="12">
-                       <use href="./img/sprite.svg#icon-popular-basket"></use>
-                   </svg>
+                   <img class="popular-basket-img" src="${popular}" alt="icon bascket" width="12" height="12">
                </button>
            </div>
        </div>`;

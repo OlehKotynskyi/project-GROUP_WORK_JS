@@ -196,17 +196,18 @@ export async function addBtnClick(event) {
    return;
 }
 
+
 containerPopular.addEventListener('click', addBtnClickPopularCard);
 
 async function addBtnClickPopularCard(event) {
    if (
       event.target.nodeName === 'BUTTON' ||
-      event.target.nodeName === 'svg' ||
-      event.target.nodeName === 'use'
+      event.target.className === 'popular-basket-img'
    ) {
       const selectedItem = event.target.closest('.product-popular-card');
-
       const selectedItemId = selectedItem.id;
+      const button = selectedItem.querySelector('button');
+      button.disabled = true;
 
       try {
          const currentProduct = await fetchProducts(selectedItemId);
@@ -217,19 +218,15 @@ async function addBtnClickPopularCard(event) {
          if (index !== -1) {
             products[index].quantity += 1;
          } else {
-            currentProduct.quantity = 0;
+            currentProduct.quantity = 1;
             products.push(currentProduct);
-            const button = selectedItem.querySelector('button');
-            button.disabled = true;
-            button.innerHTML = `<svg class="popular-basket-svg" width="12" height="12">
-         <use href="../img/sprite.svg#icon-check"></use>
-         </svg>`;
-            //   button.classList.add('disabled')
+            button.innerHTML = '<img class="popular-basket-img" src="../img/svg/check.svg" alt="icon bascket" width="12" height="12">';
          }
          localStorage.setItem(KEY, JSON.stringify(products));
          addCounter();
       } catch (error) {
          console.log(error.message);
+         button.disabled = false; 
       }
    }
    return;
