@@ -1,52 +1,108 @@
 // filters.js
 import SlimSelect from 'slim-select';
 //import 'slim-select/dist/slimselect.min.css';
-
-
-
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 import { getProductsLimit } from './products.js';
 
+function debounce(func, wait, immediate) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-  initializeFilters();
-  fetchCategories();
-  setupEventListeners();
-  fetchInitialProducts();
+    initializeFilters();
+    fetchCategories();
+    setupEventListeners();
+    fetchInitialProducts();
+
+    // Відновлення значень фільтрів
+    const savedFilters = getSavedFilters();
+   if (savedFilters.keyword) {
+       document.getElementById('search-box').value = savedFilters.keyword;
+   }
+
+   if (savedFilters.category) {
+       document.getElementById('categories').value = savedFilters.category;
+   }
 });
 
-window.addEventListener('resize', () => {
-  fetchFilteredProducts(); // Перезавантаження продуктів
-});
+let wasMobile = window.innerWidth <= 375;
+let wasTablet = window.innerWidth > 375 && window.innerWidth <= 768;
+
+function handleResize() {
+    const width = window.innerWidth;
+    const isMobile = width <= 375;
+    const isTablet = width > 375 && width <= 768;
+
+    if (isMobile !== wasMobile || isTablet !== wasTablet) {
+        fetchFilteredProducts();
+        wasMobile = isMobile;
+        wasTablet = isTablet;
+    }
+}
+
+window.addEventListener('resize', debounce(handleResize, 300));
 
 async function fetchCategories() {
-  try {
-      const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
-      const categories = await response.json();
-      populateCategorySelect(categories);
-  } catch (error) {
-      console.error('Error fetching categories:', error);
-  }
+    try {
+        const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+        const categories = await response.json();
+        populateCategorySelect(categories);
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
 }
 
 function populateCategorySelect(categories) {
-  const selectElement = document.getElementById('categories');
-  selectElement.innerHTML = '';
+    const selectElement = document.getElementById('categories');
+    selectElement.innerHTML = '';
 
-  // Спочатку додаємо категорії
-  categories.forEach(category => {
-      selectElement.appendChild(new Option(category.replace(/_/g, ' '), category));
-  });
 
-  // Додаємо опцію 'Show all' в кінець списку
-  selectElement.appendChild(new Option('Show all', ''));
+    new SlimSelect({
+      select: '#categories',
+      placeholder: 'Categories',
+      showSearch: false, // Вимкнути пошук, якщо не потрібно
+      data: [{text: 'Categories', value: ''}].concat(
+          categories.map(category => ({
+              text: category.replace(/_/g, ' '),
+              value: category
+          }))
+      )
+    });
 
-  // Ініціалізація Slim Select
-  //new SlimSelect({
-   //   select: '#categories'
+   
+    // Ініціалізація Slim Select з плейсхолдером "Categories"
+    //const slimSelect = new SlimSelect({
+    //  select: '#categories',
+     // placeholder: 'Categories',
+     // data: [{text: 'Show all', value: ''}].concat(
+     //     categories.map(category => ({
+     //         text: category.replace(/_/g, ' '),
+      //        value: category
+      //    }))
+      //)
  // });
-}
 
+    // Ініціалізація Slim Select
+    //const slimSelect = new SlimSelect({
+    //    select: '#categories'
+    //});
+
+    // Додавання класів для стилізації
+    slimSelect.slim.container.classList.add('category-dropdown');
+    slimSelect.slim.container.querySelector('.ss-content').classList.add('selected-category');
+}
 
 
 function setupEventListeners() {
