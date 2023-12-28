@@ -40,6 +40,7 @@ export function getProductsLimit() {
       // Десктоп і вище
       return 9;
    }
+
 }
 renderAll();
 
@@ -140,6 +141,7 @@ export async function addBtnClickDiscount(event) {
             button.disabled = true;
             button.innerHTML = `<span class="icon-styles">
                      <img class="discount-basket-icon" src="${check}" alt="icon bascket" width="18" height="18">
+
                   </span>`;
             button.classList.add('disabled');
          }
@@ -218,9 +220,10 @@ async function addBtnClickPopularCard(event) {
          if (index !== -1) {
             products[index].quantity += 1;
          } else {
-            currentProduct.quantity = 1;
+            currentProduct.quantity = 0;
             products.push(currentProduct);
-            button.innerHTML = '<img class="popular-basket-img" src="../img/svg/check.svg" alt="icon bascket" width="12" height="12">';
+            button.innerHTML = `<img class="popular-disadbled-img" src="${check}" alt="icon bascket" width="20" height="20">`;
+            button.classList.add('popular-disadbled-btn');
          }
          localStorage.setItem(KEY, JSON.stringify(products));
          addCounter();
@@ -234,12 +237,11 @@ async function addBtnClickPopularCard(event) {
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
-   return arr.map(obj => {
-      let category = obj.category;
-      if (typeof category === 'string') {
-         category = category.split('_').join(' ');
-      }
-      return { ...obj, category };
-   });
+  return arr.map(obj => {
+    let category = obj.category;
+    if (typeof category === 'string') {
+      category = category.split('_').join(' ');
+    }
+    return { ...obj, category };
+  });
 }
-
