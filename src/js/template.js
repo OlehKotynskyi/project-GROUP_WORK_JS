@@ -127,8 +127,8 @@ export function createMarkupModal(arr) {
             <div class="list-item-img">
                <img width=100 src="${img}">
             </div>
-            <p class="products-titel">${name}</p>
             <div class="list-item-info">
+            <p class="products-titel">${name}</p>
                <p>Category: <span>${category}</span></p>
                <p>Size: <span>${size}</span></p>
                <p>Popularity: <span>${popularity}</span></p>
