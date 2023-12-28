@@ -9,11 +9,50 @@ document.addEventListener('DOMContentLoaded', function () {
    fetchCategories();
    setupEventListeners();
    fetchInitialProducts();
+
+   // Відновлюємо значення фільтрів після завантаження сторінки
+   const savedFilters = getSavedFilters();
+   if (savedFilters.keyword) {
+       document.getElementById('search-box').value = savedFilters.keyword;
+   }
+
+   if (savedFilters.category) {
+       document.getElementById('categories').value = savedFilters.category;
+   }
 });
 
-window.addEventListener('resize', () => {
-   fetchFilteredProducts(); // Перезавантаження продуктів
-});
+let wasMobile = window.innerWidth <= 375;
+let wasTablet = window.innerWidth > 375 && window.innerWidth <= 768;
+
+function handleResize() {
+    const width = window.innerWidth;
+    const isMobile = width <= 375;
+    const isTablet = width > 375 && width <= 768;
+
+    // Якщо ширина вікна переходить у мобільну або покидає мобільну точку перелому
+    if (isMobile !== wasMobile) {
+        fetchFilteredProducts();
+        wasMobile = isMobile;
+    }
+
+    // Якщо ширина вікна переходить у планшетну або покидає планшетну точку перелому
+    if (isTablet !== wasTablet) {
+        fetchFilteredProducts();
+        wasTablet = isTablet;
+    }
+}
+
+window.addEventListener('resize', debounce(handleResize, 300));
+
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+      const context = this, args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
 
 
 async function fetchCategories() {
@@ -27,7 +66,8 @@ async function fetchCategories() {
 }
 
 function populateCategorySelect(categories) {
-   const selectElement = document.getElementById('categories');
+  const selectElement = document.getElementById('categories');
+  if (!selectElement) return;
    selectElement.innerHTML = '';
 
    // Додаємо опцію "Show all"
@@ -38,9 +78,9 @@ function populateCategorySelect(categories) {
    });
 
    // Ініціалізація Slim Select
-   new SlimSelect({
-      select: '#categories'
-   });
+   //new SlimSelect({
+   //   select: '#categories'
+   //});
 }
 
 
