@@ -1,3 +1,4 @@
+
 .cart-section-container .header-link-basket {
   display: inline-flex;
   margin-right: 14px;
@@ -194,7 +195,7 @@
   color: #010101;
 }
 .form-checkout {
- 
+ display: grid;
 }
 .inputEmail {
   height: 42px;
@@ -208,7 +209,7 @@ background-color: inherit;
   font-weight: 400;
   line-height: 1.3;
   padding: 12px 20px;
-  /* margin-bottom: 14px; */
+  margin-bottom: 14px;
 }
 .inputEmail:hover,
 .inputEmail:focus {
@@ -350,11 +351,13 @@ background-color: inherit;
 @media only screen and (min-width: 1440px) {
   .cart-container{
     margin-bottom: 100px;
-    display: block;
-  }
+    
+    /* display: bl 
   .cart {
     /* margin-bottom: 42px; */
     width: 1240px;
+  
+   
   }
 
  .cart-desktop-wrapper {
@@ -384,5 +387,6 @@ background-color: inherit;
   .cart-list-item {
     min-width: 540px;
   }
+ 
 }
 

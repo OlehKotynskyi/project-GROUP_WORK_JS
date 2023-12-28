@@ -53,6 +53,9 @@ export function renderCart() {
 // додавання, віднімання продуктів
 // const moreBtn = document.querySelectorAll('.more-btn')
 // const lessBtn = document.querySelectorAll('.less-btn')
+// const numberValue = document.querySelector('.products-quantity')
+ 
+
 
 // видалення конкретного продукту
 // можна оптимізувати

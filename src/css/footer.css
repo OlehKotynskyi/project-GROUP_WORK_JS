@@ -10,6 +10,9 @@
    line-height: 1.28;
 }
 
+.footer-contact-form{
+   margin-bottom: 80px;
+}
 @media only screen and (min-width: 768px) {
    .footer-container {
       display: flex;
@@ -36,7 +39,9 @@
       flex: 1 1 61%;
    }
 }
-
+.footer-contact-form{
+   margin-bottom: 0;
+}
 @media only screen and (min-width: 1440px) {
    .footer-wrapper {
       flex: 1 1 5.8%;
