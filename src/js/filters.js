@@ -1,4 +1,8 @@
 // filters.js
+import SlimSelect from 'slim-select';
+//import 'slim-select/dist/slimselect.min.css';
+
+
 
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
@@ -29,18 +33,20 @@ function populateCategorySelect(categories) {
   const selectElement = document.getElementById('categories');
   selectElement.innerHTML = '';
 
-  // Додаємо опцію "Show all"
-  selectElement.appendChild(new Option('Show all', ''));
-
+  // Спочатку додаємо категорії
   categories.forEach(category => {
       selectElement.appendChild(new Option(category.replace(/_/g, ' '), category));
   });
 
+  // Додаємо опцію 'Show all' в кінець списку
+  selectElement.appendChild(new Option('Show all', ''));
+
   // Ініціалізація Slim Select
-  new SlimSelect({
-      select: '#categories'
-  });
+  //new SlimSelect({
+   //   select: '#categories'
+ // });
 }
+
 
 
 function setupEventListeners() {
