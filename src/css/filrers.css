@@ -138,3 +138,39 @@
       line-height: 1.33;
    }
 }
+
+
+/* Стилі для мобільних пристроїв (за замовчуванням) */
+.empty-filter-message {
+   text-align: center;
+   margin: 100px 0 120px;
+   word-wrap: break-word;
+   width: 279px; /* Приблизна ширина для мобільного */
+   gap: 14px;
+   /* Ваші стилі */
+}
+
+.empty-filter-message h3,
+.empty-filter-message p {
+   overflow-wrap: break-word;
+}
+
+.empty-filter-message h3 span {
+   color: var(--color-green);
+}
+
+/* Медіа-запити для планшетів */
+@media (min-width: 768px) {
+   .empty-filter-message {
+      width: 371px; /* Приблизна ширина для планшета */
+      /* Інші стилі, якщо потрібно */
+   }
+}
+
+/* Медіа-запити для десктопів */
+@media (min-width: 1024px) {
+   .empty-filter-message {
+      width: 371px; /* Приблизна ширина для десктопа */
+      /* Інші стилі, якщо потрібно */
+   }
+}

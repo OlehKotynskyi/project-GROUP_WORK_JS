@@ -18,7 +18,7 @@ export function updateProductsList(products) {
    const container = document.querySelector('.products-container');
    if (!products || products.length === 0) {
       // Якщо продуктів немає, показуємо повідомлення
-      container.innerHTML = `<div class="cart-empty">
+      container.innerHTML = `<div class="empty-filter-message">
            <h3 class="products-titel">Nothing was found for the selected <span>filters...</span></h3>
            <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
        </div>`;
