@@ -139,6 +139,7 @@
    }
 }
 
+<<<<<<< Updated upstream
 
 /* Стилі для мобільних пристроїв (за замовчуванням) */
 .empty-filter-message {
@@ -148,17 +149,33 @@
    width: 279px; /* Приблизна ширина для мобільного */
    gap: 14px;
    /* Ваші стилі */
+=======
+/* Контейнер повідомлення про відсутність результатів пошуку */
+.empty-filter-message {
+   text-align: center;
+   margin: 100px 0 120px;
+   word-wrap: break-word; /* Дозволяє переносити довгі слова на новий рядок */
+>>>>>>> Stashed changes
 }
 
 .empty-filter-message h3,
 .empty-filter-message p {
+<<<<<<< Updated upstream
    overflow-wrap: break-word;
 }
 
+=======
+   overflow-wrap: break-word; /* Забезпечує перенос слів всередині заголовків та параграфів */
+}
+
+
+
+>>>>>>> Stashed changes
 .empty-filter-message h3 span {
    color: var(--color-green);
 }
 
+<<<<<<< Updated upstream
 /* Медіа-запити для планшетів */
 @media (min-width: 768px) {
    .empty-filter-message {
@@ -173,4 +190,17 @@
       width: 371px; /* Приблизна ширина для десктопа */
       /* Інші стилі, якщо потрібно */
    }
+=======
+/* Медіа-запити для адаптивних стилів */
+@media (min-width: 768px) {
+  .empty-filter-message {
+    /* Адаптивні стилі для планшетів */
+  }
+}
+
+@media (min-width: 1024px) {
+  .empty-filter-message {
+    /* Адаптивні стилі для десктопів */
+  }
+>>>>>>> Stashed changes
 }
