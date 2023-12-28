@@ -5,7 +5,7 @@ const totalPrice = document.querySelector('.products-total-price');
 const containerCart = document.querySelector('.cart-container');
 const cartWrapper = document.querySelector('.cart-desktop-wrapper');
 const emptyCart = document.querySelector('.cart-empty');
-const deleteAllBtn = document.querySelector('.del-all-btn');
+const deleteAllBtn = document.querySelector('.del-all-wrapper');
 const KEY = 'products in cart';
 
 const formEmailRet = document.querySelector('.form-checkout');
@@ -54,7 +54,9 @@ export function renderCart() {
 // можна оптимізувати ??
 containerCart.addEventListener('click', removeProduct);
 function removeProduct(event) {
-  if (event.target.className !== 'remove-btn') {
+  if (
+    event.target.className !== 'remove-btn'
+    && event.target.className !== 'remove-btn-img') {
     return;
   }
 
@@ -78,6 +80,7 @@ function removeProduct(event) {
 
 // віднімання і додавання кількості продукту
 // логіка в тому, щоб дозволити юзеру мати 0 продуктів не видаляючи його
+// з першого разу, але на другий клік по мінусу він видаляється
 // (на випадок того, коли випадково проклікав, щоб мати змогу доддати кількість знову).
 // !!!
 // на майбутнє - треба прописати логіку, щоб при кліку на checkout
@@ -100,6 +103,7 @@ function changeQuantity(event) {
   const index = products.findIndex(item => item._id === selectedItemId);
   const productQuantity = selectedItem.querySelector('.products-quantity');
 
+  // тут обробляємо додавання
   if (
     event.target.className === 'more-btn-card'
     || event.target.className === 'more-btn-img'
@@ -110,13 +114,25 @@ function changeQuantity(event) {
     countTotal(products)
   }
 
+  // тут обробляємо віднімання
   if (
     event.target.className === 'less-btn'
     || event.target.className === 'less-btn-img'
   ) {
+    // тут видаляємо при повторному кліку на мінус, коли кількість товару нуль
     if (products[index].quantity === 0) {
+      products.splice(index, 1);
+      selectedItem.remove();
+      localStorage.setItem(KEY, JSON.stringify(products));
+      addCounter();
+      countTotal(products);
+      // тут показуємо пусту корзину, коли товарів не залишилось взагалі
+      if (products === null || products === undefined || products.length === 0) {
+        renderCart();
+      }
       return;
     }
+    // тут обробляємо звичайне віднімання
     products[index].quantity--;
     productQuantity.innerHTML = products[index].quantity;
     localStorage.setItem(KEY, JSON.stringify(products));

@@ -5,6 +5,7 @@ import basket from '../img/svg/basket.svg';
 import discount from '../img/svg/discount.svg';
 import popular from '../img/svg/popular-baskett.svg';
 import organic from '../img/svg/organic-food.svg';
+import closed from '../img/svg/closed.svg'
 
 export function createMarkupProductsAll(arr) {
    return arr
@@ -92,7 +93,9 @@ export function createMarkupCart(arr) {
             <div class="cart-list-item-img-wrapper">
               <img class="cart-product-img" width=64 src="${img}">
             </div>
-            <button class="remove-btn">+</button>
+            <button class="remove-btn">
+               <img class="remove-btn-img" src="${closed}" alt="icon bascket" width="18" height="18">
+            </button>
             <div class="cart-list-item-wrapper">
               <h3 class="products-titel">${name}</h3>
               <div class="list-item-info">
