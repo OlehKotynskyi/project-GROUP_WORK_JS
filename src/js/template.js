@@ -5,6 +5,7 @@ import basket from '../img/svg/basket.svg';
 import discount from '../img/svg/discount.svg';
 import popular from '../img/svg/popular-baskett.svg';
 import organic from '../img/svg/organic-food.svg';
+import closed from '../img/svg/closed.svg'
 
 export function createMarkupProductsAll(arr) {
    return arr
@@ -37,7 +38,7 @@ export function createMarkupPopularProducts(arr) {
    return arr
       .map(({ price, name, img, _id, category, size, popularity }) => {
          return `
-           <div class="product-popular-card">
+           <div class="product-popular-card" id="${_id}">
            <div class="popular-image-item">
                <img src="${img}" alt="${name}" class="product-popular-image">
            </div>
@@ -92,7 +93,9 @@ export function createMarkupCart(arr) {
             <div class="cart-list-item-img-wrapper">
               <img class="cart-product-img" width=64 src="${img}">
             </div>
-            <button class="remove-btn">+</button>
+            <button class="remove-btn">
+               <img class="remove-btn-img" src="${closed}" alt="icon bascket" width="18" height="18">
+            </button>
             <div class="cart-list-item-wrapper">
               <h3 class="products-titel">${name}</h3>
               <div class="list-item-info">
@@ -106,7 +109,7 @@ export function createMarkupCart(arr) {
                   <img class="less-btn-img" src="${minus}" alt="icon bascket" width="18" height="18">
                 </button>
                 <span class="products-quantity"></span>
-                <button class="more-btn more-btn-card">
+                <button class="more-btn-card">
                   <img class="more-btn-img" src="${plus}" alt="icon bascket" width="18" height="18">
                 </button>
               </div>
@@ -120,16 +123,16 @@ export function createMarkupModal(arr) {
       .map(
          ({ price, name, img, _id, category, size, popularity, desc }) =>
             `
-                  <li class="list-item" id="${_id}">
+                  <li class="popup-list-item" id="${_id}">
             <div class="list-item-img">
                <img width=100 src="${img}">
             </div>
-            <p class="products-titel">${name}</p>
             <div class="list-item-info">
+            <p class="products-titel">${name}</p>
                <p>Category: <span>${category}</span></p>
                <p>Size: <span>${size}</span></p>
                <p>Popularity: <span>${popularity}</span></p>
-               <p>${desc}</p>
+               <p class="modal-desc" >${desc}</p>
             </div>
             <div class="list-item-body-price">
                 <span>&#36;${price}</span>
