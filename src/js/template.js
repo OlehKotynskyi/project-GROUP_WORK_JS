@@ -38,7 +38,7 @@ export function createMarkupPopularProducts(arr) {
    return arr
       .map(({ price, name, img, _id, category, size, popularity }) => {
          return `
-           <div class="product-popular-card">
+           <div class="product-popular-card" id="${_id}">
            <div class="popular-image-item">
                <img src="${img}" alt="${name}" class="product-popular-image">
            </div>
@@ -123,7 +123,7 @@ export function createMarkupModal(arr) {
       .map(
          ({ price, name, img, _id, category, size, popularity, desc }) =>
             `
-                  <li class="list-item" id="${_id}">
+                  <li class="popup-list-item" id="${_id}">
             <div class="list-item-img">
                <img width=100 src="${img}">
             </div>
@@ -132,7 +132,7 @@ export function createMarkupModal(arr) {
                <p>Category: <span>${category}</span></p>
                <p>Size: <span>${size}</span></p>
                <p>Popularity: <span>${popularity}</span></p>
-               <p>${desc}</p>
+               <p class="modal-desc" >${desc}</p>
             </div>
             <div class="list-item-body-price">
                 <span>&#36;${price}</span>
