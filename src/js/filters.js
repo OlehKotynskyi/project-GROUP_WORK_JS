@@ -55,14 +55,22 @@ function handleResize() {
 window.addEventListener('resize', debounce(handleResize, 300));
 
 async function fetchCategories() {
-    try {
-        const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
-        const categories = await response.json();
-        populateCategorySelect(categories);
-    } catch (error) {
-        console.error('Error fetching categories:', error);
-    }
+  try {
+      const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const categories = await response.json();
+      if (categories && categories.length > 0) {
+          populateCategorySelect(categories);
+      } else {
+          console.error('No categories found');
+      }
+  } catch (error) {
+      console.error('Error fetching categories:', error);
+  }
 }
+
 
 function populateCategorySelect(categories) {
     const selectElement = document.getElementById('categories');
