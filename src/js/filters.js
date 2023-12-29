@@ -1,17 +1,33 @@
 // filters.js
-import SlimSelect from 'slim-select'
+import SlimSelect from 'slim-select';
+//import '../../node_modules/slim-select/dist/slimselect.css';
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 import { getProductsLimit } from './products.js';
 
-document.addEventListener('DOMContentLoaded', function () {
-   initializeFilters();
-   fetchCategories();
-   setupEventListeners();
-   fetchInitialProducts();
+function debounce(func, wait, immediate) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
 
-   // Відновлюємо значення фільтрів після завантаження сторінки
-   const savedFilters = getSavedFilters();
+document.addEventListener('DOMContentLoaded', function () {
+    initializeFilters();
+    fetchCategories();
+    setupEventListeners();
+    fetchInitialProducts();
+
+    // Відновлення значень фільтрів
+    const savedFilters = getSavedFilters();
    if (savedFilters.keyword) {
        document.getElementById('search-box').value = savedFilters.keyword;
    }
@@ -29,60 +45,85 @@ function handleResize() {
     const isMobile = width <= 375;
     const isTablet = width > 375 && width <= 768;
 
-    // Якщо ширина вікна переходить у мобільну або покидає мобільну точку перелому
-    if (isMobile !== wasMobile) {
+    if (isMobile !== wasMobile || isTablet !== wasTablet) {
         fetchFilteredProducts();
         wasMobile = isMobile;
-    }
-
-    // Якщо ширина вікна переходить у планшетну або покидає планшетну точку перелому
-    if (isTablet !== wasTablet) {
-        fetchFilteredProducts();
         wasTablet = isTablet;
     }
 }
 
 window.addEventListener('resize', debounce(handleResize, 300));
 
-function debounce(func, wait) {
-  let timeout;
-  return function() {
-      const context = this, args = arguments;
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(context, args), wait);
-  };
-}
-
-
-
 async function fetchCategories() {
-   try {
-      const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
-      const categories = await response.json();
-      populateCategorySelect(categories);
-   } catch (error) {
-      console.error('Error fetching categories:', error);
-   }
+    try {
+        const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+        const categories = await response.json();
+        populateCategorySelect(categories);
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
 }
 
 function populateCategorySelect(categories) {
-  const selectElement = document.getElementById('categories');
-  if (!selectElement) return;
-   selectElement.innerHTML = '';
+    const selectElement = document.getElementById('categories');
+    selectElement.innerHTML = '';
 
-   // Додаємо опцію "Show all"
-   selectElement.appendChild(new Option('Show all', ''));
+// Додаємо категорію "Show all" в кінець списку
+const modifiedCategories = categories.map(category => ({
+  text: category.replace(/_/g, ' '),
+  value: category
+})).concat({text: 'Show all', value: ''});
 
-   categories.forEach(category => {
-      selectElement.appendChild(new Option(category.replace(/_/g, ' '), category));
-   });
-
-   // Ініціалізація Slim Select
-   //new SlimSelect({
-   //   select: '#categories'
-   //});
+new SlimSelect({
+select: '#categories',
+placeholder: 'Categories',
+showSearch: false, // Вимкнути пошук, якщо не потрібно
+data: modifiedCategories
+});
 }
 
+fetchCategories();
+
+// async function fetchCategories() {
+//     try {
+//         const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+//         const categories = await response.json();
+//         populateCategorySelect(categories);
+//     } catch (error) {
+//         console.error('Error fetching categories:', error);
+//     }
+// }
+
+// function populateCategorySelect(categories) {
+//     new SlimSelect({
+//         select: '#categories',
+//         placeholder: 'Categories',
+//         showSearch: false, // Вимкнути пошук, якщо не потрібно
+//         data: [{ text: 'Categories', value: '' }, ...categories.map(category => ({
+//             text: category.replace(/_/g, ' '),
+//             value: category
+//         }))]
+//     });
+// }
+//fetchCategories();
+
+   
+    // Ініціалізація Slim Select з плейсхолдером "Categories"
+    //const slimSelect = new SlimSelect({
+    //  select: '#categories',
+     // placeholder: 'Categories',
+     // data: [{text: 'Show all', value: ''}].concat(
+     //     categories.map(category => ({
+     //         text: category.replace(/_/g, ' '),
+      //        value: category
+      //    }))
+      //)
+ // });
+
+    // Ініціалізація Slim Select
+    //const slimSelect = new SlimSelect({
+    //    select: '#categories'
+    //});
 
 function setupEventListeners() {
    const searchForm = document.querySelector('.search-form');
