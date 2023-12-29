@@ -45,12 +45,12 @@
             </div>
          </div>
          <div class="footer-form">
-            <form class="footer-contact-form" name="contact_form">
+            <form class="footer-contact-form" autocomplete="off" name="contact_form" id="formEmail">
                <p class="footer-form-text">
                   Subscribe and learn about new products!
                </p>
                <label for="contact-info" class="footer-contact-label">
-                  <input class="footer-contact-input" type="email" name="contact-info" placeholder="Email" id="contact-info" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" />
+                  <input class="footer-contact-input" type="email" name="contact-info" placeholder="Email" id="formInput" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" />
                </label>
                <button class="footer-contact-btn" type="submit">Send</button>
             </form>
@@ -66,3 +66,4 @@
       </div>
    </div>
 </footer>
+<script type="module" src="./js/footer.js"></script>
