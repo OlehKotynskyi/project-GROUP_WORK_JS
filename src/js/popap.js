@@ -203,3 +203,44 @@ async function renderProductModal(id, e) {
       console.log(error.message);
    }
 }
+
+// modal for checkout
+
+
+// btnCheckout.addEventListener('click', onModal)
+// function onModal(evt) {
+//   evt.preventDefault()
+//   if (evt.target === currentTarget) {
+//     return
+//   }
+//   const modalOn = basicLightbox.create(`<div id="myModal" class="modal">
+//   <div class="modal-content">
+//     <button class="btn-close">
+//       <svg width="16" height="16">
+//         <use href="./img/sprite.svg#icon-closed"></use>
+//       </svg>
+//     </button>
+//     <div>
+//       <h2 class="modalH">Order success</h2>
+//       <p class="modalMessage">
+//         Thank you for shopping at Food Boutique. Your order has been received
+//         and is now being freshly prepared just for you! Get ready to indulge in
+//         nourishing goodness, delivered right to your doorstep. We're thrilled to
+//         be part of your journey to better health and happiness.
+//       </p>
+//     </div>
+//   </div>
+// </div>`, {
+//      onShow: () => {
+//       document.addEventListener('keydown', OnEscClose);
+//     },
+//     onClose: () => {
+//       document.removeEventListener('keydown', OnEscClose);
+//     },
+//   });
+//   modalOn.show();
+//   function OnEscClose(evt) {
+//     if (evt.code === 'Escape') return modalOn.close();
+//   }
+// }
+

@@ -196,3 +196,32 @@ formEmailRet.addEventListener('sumbit', function (evt) {
 //   var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 //   return emailRegex.test(email);
 // }
+
+
+
+//modal window
+
+//const closeBtn = document.querySelector(".btn-close")
+const btnCheckout = document.querySelector('.btnCheckout')
+const modalCheckout = document.querySelector('.modal')
+
+console.log(btnCheckout)
+var span = document.getElementsByClassName("close")[0];
+
+
+btnCheckout.addEventListener("click", function (evt) {
+  evt.preventDefault()
+  modalCheckout.style.display = "block";
+})
+
+
+span.onclick = function() {
+  modalCheckout.style.display = "block";
+}
+
+
+window.onclick = function(event) {
+  if (event.target == modalCheckout) {
+    modalCheckout.style.display = "block";
+  }
+}
