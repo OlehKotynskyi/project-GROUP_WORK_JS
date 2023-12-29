@@ -68,18 +68,18 @@ function populateCategorySelect(categories) {
     const selectElement = document.getElementById('categories');
     selectElement.innerHTML = '';
 
+// Додаємо категорію "Show all" в кінець списку
+const modifiedCategories = categories.map(category => ({
+  text: category.replace(/_/g, ' '),
+  value: category
+})).concat({text: 'Show all', value: ''});
 
-    new SlimSelect({
-      select: '#categories',
-      placeholder: 'Categories',
-      showSearch: false, // Вимкнути пошук, якщо не потрібно
-      data: [{text: 'Categories', value: ''}].concat(
-          categories.map(category => ({
-              text: category.replace(/_/g, ' '),
-              value: category
-          }))
-      )
-    });
+new SlimSelect({
+select: '#categories',
+placeholder: 'Categories',
+showSearch: false, // Вимкнути пошук, якщо не потрібно
+data: modifiedCategories
+});
 }
 
 fetchCategories();

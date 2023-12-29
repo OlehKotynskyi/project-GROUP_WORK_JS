@@ -236,17 +236,17 @@
    flex-direction: row;
    position: relative;
    user-select: none;
-   color: var(--ss-font-color);
+ color: inherit;
    min-height: var(--ss-main-height);
    width: 100%;
-   padding: var(--ss-spacing-s);
+   padding: 8px;
    cursor: pointer;
-   border: 1px solid var(--ss-border-color);
-   border-radius: var(--ss-border-radius);
-   background-color: var(--ss-bg-color);
+ 
+   
+   
    outline: 0;
    box-sizing: border-box;
-   transition: background-color var(--ss-animation-timing);
+   
    overflow: hidden;
  }
  
@@ -260,7 +260,7 @@
  }
  
  .ss-main.ss-disabled .ss-values .ss-disabled {
-   color: var(--ss-font-color);
+   color: var( --fon-grey);
  }
  
  .ss-main.ss-disabled .ss-values .ss-value .ss-value-delete {
@@ -417,6 +417,20 @@
    transform-origin: center top;
    overflow: hidden;
    z-index: 10000;
+
+
+   color: var(--ss-font-color);
+   min-height: var(--ss-main-height);
+   width: 100%;
+   padding: var(--ss-spacing-s);
+   cursor: pointer;
+   border: 1px solid var(--ss-border-color);
+   border-radius: var(--ss-border-radius);
+   background-color: var(--ss-bg-color);
+   outline: 0;
+   box-sizing: border-box;
+   transition: background-color var(--ss-animation-timing);
+   
  }
  
  .ss-content.ss-relative {
@@ -430,7 +444,7 @@
    transform: scaleY(1);
    transform-origin: center bottom;
    border-radius: 15px;
-   margin: 8px;
+   padding-bottom: 8px;
   
  }
  
@@ -439,7 +453,7 @@
    transform: scaleY(1);
    transform-origin: center top;
    border-radius: 15px;
-   padding: 8px;
+   padding-top: 8px;
  }
  
  .ss-content .ss-search {
@@ -466,6 +480,7 @@
  }
  
  .ss-content .ss-list {
+   
    flex: 1 1 auto;
    height: auto;
    overflow-x: hidden;
