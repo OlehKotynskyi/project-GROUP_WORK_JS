@@ -192,16 +192,29 @@ async function renderProductModal(id, e) {
       }
       const instance = basicLightBox.create(createMarkupModal(data), {
          onClose: (instance) => document.removeEventListener('keydown', closeWithEsc),
-         onClose: (instance) => modalContainer.querySelector('button').removeEventListener('click', addBtnClick)
+          onClose: (instance) => modalContainer.querySelector('.add-btn').removeEventListener('click', addBtnClick),
+          onClose: (instance) => modalContainer.removeEventListener('click', modalClose)
       });
       instance.show();
       document.addEventListener('keydown', closeWithEsc);
 
       const modalContainer = document.querySelector('.basicLightbox__placeholder');
-      modalContainer.querySelector('button').addEventListener('click', addBtnClick);
+       modalContainer.querySelector('.add-btn').addEventListener('click', addBtnClick);
+       modalContainer.addEventListener('click', modalClose)
+
+       function modalClose(evt) {
+            if (
+                evt.target.className === 'remove-btn'
+                || evt.target.className === 'remove-btn-img'
+            ) {
+                instance.close();
+            }
+                return;
+        }
    } catch (error) {
       console.log(error.message);
    }
+    
 }
 
 // modal for checkout

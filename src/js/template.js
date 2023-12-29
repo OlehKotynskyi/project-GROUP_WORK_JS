@@ -123,7 +123,10 @@ export function createMarkupModal(arr) {
       .map(
          ({ price, name, img, _id, category, size, popularity, desc }) =>
             `
-                  <li class="popup-list-item" id="${_id}">
+         <li class="popup-list-item" id="${_id}">
+            <button class="remove-btn">
+               <img class="remove-btn-img" src="${closed}" alt="icon bascket" width="18" height="18">
+            </button>
             <div class="list-item-img">
                <img width=100 src="${img}">
             </div>
