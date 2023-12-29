@@ -143,3 +143,77 @@
 
 @media only screen and (min-width: 1440px) {
 }
+
+.sub-modal {
+  position: relative;
+  max-width: 335px;
+  border-radius: 20px;
+  background-color: var(--fon-grey);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: center;
+  gap: 10px;
+}
+
+.sub-modal p {
+  color: var(--color-text-dark);
+}
+
+.sub-modal .remove-btn {
+  top: 14px;
+  right: 8px;
+}
+
+.sub-modal .remove-btn-img {
+  width: 16px;
+  height: 16px;
+}
+
+.sub-modal span {
+  color: var(--color-green);
+}
+
+.sub-modal-content {
+  padding: 100px 44.5px 120px;
+}
+
+.sub-modal-content .products-titel {
+  margin-bottom: 14px;
+}
+
+.sub-modal-pic {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 335px;
+  object-fit: contain;
+}
+
+@media only screen and (min-width: 768px) {
+  .sub-modal {
+    max-width: 490px;
+  }
+
+  .sub-modal-content {
+    padding: 90px 81px 160px;
+  }
+
+  .sub-modal-pic {
+    max-width: 100%;
+  }
+
+  .sub-modal .remove-btn {
+    top: 24px;
+    right: 18px;
+  }
+
+  .sub-modal-content .products-titel {
+    margin-bottom: 20px;
+  }
+
+  .sub-modal p {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
