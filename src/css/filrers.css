@@ -435,8 +435,6 @@
    transform-origin: center top;
    overflow: hidden;
    z-index: 10000;
-
-
    color: var(--ss-font-color);
    min-height: var(--ss-main-height);
    width: 100%;
