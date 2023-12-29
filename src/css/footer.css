@@ -10,9 +10,10 @@
    line-height: 1.28;
 }
 
-.footer-contact-form{
+.footer-contact-form {
    margin-bottom: 80px;
 }
+
 @media only screen and (min-width: 768px) {
    .footer-container {
       display: flex;
@@ -24,6 +25,10 @@
 
 .footer-wrapper:not(:last-child) {
    margin-bottom: 40px;
+}
+
+.footer-wrapper-info:not(:last-child) {
+   margin-bottom: 80px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -38,10 +43,16 @@
    .footer-wrapper-info {
       flex: 1 1 61%;
    }
+
+   .footer-wrapper-info:not(:last-child) {
+      margin-bottom: 0px;
+   }
 }
-.footer-contact-form{
+
+.footer-contact-form {
    margin-bottom: 0;
 }
+
 @media only screen and (min-width: 1440px) {
    .footer-wrapper {
       flex: 1 1 5.8%;
