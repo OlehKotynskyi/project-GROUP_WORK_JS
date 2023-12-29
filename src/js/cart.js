@@ -204,17 +204,39 @@ formEmailRet.addEventListener('sumbit', function (evt) {
 //const closeBtn = document.querySelector(".btn-close")
 const btnCheckout = document.querySelector('.btnCheckout')
 const modalCheckout = document.querySelector('.modal')
+const formOrder = document.querySelector('#formEmailOrder')
+const inputOrder = document.querySelector('#formInputOrder')
 
-console.log(btnCheckout)
+formOrder.addEventListener('submit', handleOrder);
+inputOrder.addEventListener('keyup', handleKeyPress);
+
+function handleOrder(event) {
+  event.preventDefault();
+  const email = inputOrder.value.trim();
+
+  if (!validateEmail(email)) {
+      alert('Please enter a valid email address');
+      return;
+  }
+  
+  if (email === '') {
+      alert('Please enter an email address');
+      return;
+  }
+
+  sendDataToServer({ email })
+    .then(() => {
+        console.log('Data sent successfully');
+        inputOrder.value = '';
+        clearCart()
+        modalCheckout.style.display = "block";
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetchoperation:', error);
+    });
+}
+
 var span = document.getElementsByClassName("close")[0];
-
-
-btnCheckout.addEventListener("click", function (evt) {
-  evt.preventDefault()
-  clearCart()
-  modalCheckout.style.display = "block";
-})
-
 
 span.onclick = function() {
   modalCheckout.style.display = "none";
@@ -222,7 +244,27 @@ span.onclick = function() {
 
 
 window.onclick = function(event) {
-  if (event.target == modalCheckout) {
-    modalCheckout.style.display = "block";
+  if (event.currentTarget.className !== 'modal') {
+    modalCheckout.style.display = "none";
   }
+}
+
+function validateEmail(email) {
+   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+   return emailRegex.test(email);
+}
+
+function handleKeyPress(event) {
+   if (event.key === 'Enter') {
+      handleFormSubmit(event);
+   }
+}
+
+function sendDataToServer(data) {
+   return new Promise((resolve, reject) => {
+      setTimeout(() => {
+         console.log('Imitating sending data to server:', data);
+         resolve();
+      }, 2000);
+   });
 }
