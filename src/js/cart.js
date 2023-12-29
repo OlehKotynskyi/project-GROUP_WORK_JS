@@ -213,7 +213,17 @@ inputOrder.addEventListener('keyup', handleKeyPress);
 function handleOrder(event) {
   event.preventDefault();
   const email = inputOrder.value.trim();
+  const products = JSON.parse(localStorage.getItem(KEY));
 
+  const productsInCart = products.reduce((acc, { quantity }) => {
+    return (acc += quantity);
+  }, 0);
+
+  if (productsInCart === 0) {
+      alert(`You must add products' quantity!`)
+      return;
+  }
+  
   if (!validateEmail(email)) {
       alert('Please enter a valid email address');
       return;
