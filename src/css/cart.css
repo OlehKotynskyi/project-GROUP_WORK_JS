@@ -445,3 +445,67 @@
     min-width: 540px;
   }
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: (0, 0, 0, 0.8);
+}
+
+.modal-content {
+  border-radius: 20px;
+  background-color: #fafafa;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #fafafa;
+  width: 560px;
+  height: 509px;
+}
+.imgMogal {
+  width: 140px;
+  height: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 37px;
+}
+
+.modalH {
+  color: #010101;
+  font-family: neue_montreal;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.11;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.modalMessage {
+  color: #010101;
+  font-family: neue_montreal;
+  text-align: center;
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.11;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
