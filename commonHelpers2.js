@@ -1,2 +1,2 @@
-import{h as r}from"./assets/scroll-1c6ad45b.js";import"./assets/vendor-4ea89540.js";r();
+import{h as r}from"./assets/scroll-1d54fca5.js";import"./assets/vendor-4ea89540.js";r();
 //# sourceMappingURL=commonHelpers2.js.map
