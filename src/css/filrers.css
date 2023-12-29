@@ -1,3 +1,7 @@
+.filters-section-container {
+  padding-bottom: 40px;
+}
+
 .filters-section:not(:last-child) {
    margin-bottom: 100px;
 }
@@ -79,6 +83,14 @@
       font-size: 18px;
       line-height: 1.33;
    }
+
+   .search-select {
+    display: flex;
+  }
+
+  .search-form {
+    margin-right: 8px;
+  }
 }
 
 .search-button {
@@ -135,6 +147,12 @@
       font-size: 18px;
       line-height: 1.33;
    }
+}
+
+@media only screen and (min-width: 1440px) {
+  .filters-section-container {
+    padding-bottom: 40px;
+  }
 }
 
 
@@ -445,7 +463,6 @@
    transform-origin: center bottom;
    border-radius: 15px;
    padding-bottom: 8px;
-  
  }
  
  .ss-content.ss-open-below {
@@ -617,6 +634,10 @@
    color: var(--color-text-dark);
    background-color: inherit;
  }
+
+ .ss-content {
+  margin-top: 2px !important;
+}
  
 
  
