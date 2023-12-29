@@ -40,6 +40,7 @@ export function getProductsLimit() {
       // Десктоп і вище
       return 9;
    }
+
 }
 renderAll();
 
@@ -140,6 +141,7 @@ export async function addBtnClickDiscount(event) {
             button.disabled = true;
             button.innerHTML = `<span class="icon-styles">
                      <img class="discount-basket-icon" src="${check}" alt="icon bascket" width="18" height="18">
+
                   </span>`;
             button.classList.add('disabled');
          }
@@ -196,17 +198,18 @@ export async function addBtnClick(event) {
    return;
 }
 
+
 containerPopular.addEventListener('click', addBtnClickPopularCard);
 
 async function addBtnClickPopularCard(event) {
    if (
       event.target.nodeName === 'BUTTON' ||
-      event.target.nodeName === 'svg' ||
-      event.target.nodeName === 'use'
+      event.target.className === 'popular-basket-img'
    ) {
       const selectedItem = event.target.closest('.product-popular-card');
-
       const selectedItemId = selectedItem.id;
+      const button = selectedItem.querySelector('button');
+      button.disabled = true;
 
       try {
          const currentProduct = await fetchProducts(selectedItemId);
@@ -219,17 +222,14 @@ async function addBtnClickPopularCard(event) {
          } else {
             currentProduct.quantity = 0;
             products.push(currentProduct);
-            const button = selectedItem.querySelector('button');
-            button.disabled = true;
-            button.innerHTML = `<svg class="popular-basket-svg" width="12" height="12">
-         <use href="../img/sprite.svg#icon-check"></use>
-         </svg>`;
-            //   button.classList.add('disabled')
+            button.innerHTML = `<img class="popular-disadbled-img" src="${check}" alt="icon bascket" width="20" height="20">`;
+            button.classList.add('popular-disadbled-btn');
          }
          localStorage.setItem(KEY, JSON.stringify(products));
          addCounter();
       } catch (error) {
          console.log(error.message);
+         button.disabled = false;
       }
    }
    return;
@@ -237,12 +237,11 @@ async function addBtnClickPopularCard(event) {
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
-   return arr.map(obj => {
-      let category = obj.category;
-      if (typeof category === 'string') {
-         category = category.split('_').join(' ');
-      }
-      return { ...obj, category };
-   });
+  return arr.map(obj => {
+    let category = obj.category;
+    if (typeof category === 'string') {
+      category = category.split('_').join(' ');
+    }
+    return { ...obj, category };
+  });
 }
-

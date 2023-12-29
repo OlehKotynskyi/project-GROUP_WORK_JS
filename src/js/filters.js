@@ -1,4 +1,5 @@
 // filters.js
+import SlimSelect from 'slim-select'
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 import { getProductsLimit } from './products.js';
@@ -8,38 +9,78 @@ document.addEventListener('DOMContentLoaded', function () {
    fetchCategories();
    setupEventListeners();
    fetchInitialProducts();
+
+   // Відновлюємо значення фільтрів після завантаження сторінки
+   const savedFilters = getSavedFilters();
+   if (savedFilters.keyword) {
+       document.getElementById('search-box').value = savedFilters.keyword;
+   }
+
+   if (savedFilters.category) {
+       document.getElementById('categories').value = savedFilters.category;
+   }
 });
 
-window.addEventListener('resize', () => {
-   fetchFilteredProducts(); // Перезавантаження продуктів
-});
+let wasMobile = window.innerWidth <= 375;
+let wasTablet = window.innerWidth > 375 && window.innerWidth <= 768;
+
+function handleResize() {
+    const width = window.innerWidth;
+    const isMobile = width <= 375;
+    const isTablet = width > 375 && width <= 768;
+
+    // Якщо ширина вікна переходить у мобільну або покидає мобільну точку перелому
+    if (isMobile !== wasMobile) {
+        fetchFilteredProducts();
+        wasMobile = isMobile;
+    }
+
+    // Якщо ширина вікна переходить у планшетну або покидає планшетну точку перелому
+    if (isTablet !== wasTablet) {
+        fetchFilteredProducts();
+        wasTablet = isTablet;
+    }
+}
+
+window.addEventListener('resize', debounce(handleResize, 300));
+
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+      const context = this, args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
 
 
 async function fetchCategories() {
-  try {
+   try {
       const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
       const categories = await response.json();
       populateCategorySelect(categories);
-  } catch (error) {
+   } catch (error) {
       console.error('Error fetching categories:', error);
-  }
+   }
 }
 
 function populateCategorySelect(categories) {
   const selectElement = document.getElementById('categories');
-  selectElement.innerHTML = '';
+  if (!selectElement) return;
+   selectElement.innerHTML = '';
 
-  // Додаємо опцію "Show all"
-  selectElement.appendChild(new Option('Show all', ''));
+   // Додаємо опцію "Show all"
+   selectElement.appendChild(new Option('Show all', ''));
 
-  categories.forEach(category => {
+   categories.forEach(category => {
       selectElement.appendChild(new Option(category.replace(/_/g, ' '), category));
-  });
+   });
 
-  // Ініціалізація Slim Select
-  new SlimSelect({
-      select: '#categories'
-  });
+   // Ініціалізація Slim Select
+   //new SlimSelect({
+   //   select: '#categories'
+   //});
 }
 
 

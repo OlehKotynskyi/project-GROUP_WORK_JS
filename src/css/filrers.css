@@ -8,7 +8,8 @@
    }
 }
 
-.filters-container {}
+/* .filters-container {} */
+
 
 .filters-titel {
    color: rgba(1, 1, 1, 0.30);
@@ -89,9 +90,10 @@
    height: 20px;
 }
 
-.search-icon {}
+/* .search-icon {}
 
 .filter-section {}
+ */
 
 @media only screen and (min-width: 768px) {
    .filter-section {
