@@ -267,13 +267,7 @@
    cursor: not-allowed;
  }
  
- .ss-main.ss-open-above {
-  margin-bottom: 8px;
- }
  
- .ss-main.ss-open-below {
-   margin-top: 8px;
- }
  
  .ss-main .ss-values {
    display: inline-flex;
@@ -445,7 +439,7 @@
    transform: scaleY(1);
    transform-origin: center top;
    border-radius: 15px;
-   margin: 8px;
+   padding: 8px;
  }
  
  .ss-content .ss-search {
