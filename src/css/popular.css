@@ -25,7 +25,7 @@
       align-items: center;
       width: 100%;
       padding: 12px 0px 12px 12px;
-
+      cursor: pointer;
       background-color: var(--color-white-grey);
       border-radius: 10px;
    }
@@ -125,7 +125,6 @@
       right: 12px;
       justify-content: center;
       align-items: center;
-      fill: var(--color-green);
       background-color: rgba(232, 232, 226, 1);
 
       width: 20px;
@@ -137,13 +136,27 @@
    .add-popular-basket:focus,
    .add-popular-basket:hover {
       background-color: var(--color-green);
-      fill: rgba(232, 232, 226, 1);
    }
-/* 
-   button.disabled:hover {
-    background-color: rgba(232, 232, 226, 1);
-      fill: var(--color-green);
-  } */
+
+   .add-popular-basket:focus .popular-basket-img,
+   .add-popular-basket:hover .popular-basket-img {
+      filter: brightness(400%);
+   }
+
+   .popular-basket-img img {
+      width: 100%;
+      height: 100%;
+   }
+
+   .popular-disadbled-btn {
+      background-color: var(--color-green);
+   }
+
+   .popular-disadbled-img {
+      fill: rgba(232, 232, 226, 1);
+      background-color: var(--color-green);
+      border-radius: 50%;
+   }
 }
 
 

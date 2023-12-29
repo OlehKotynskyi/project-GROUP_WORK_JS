@@ -1,39 +1,49 @@
-document
-  .getElementById('subscribeForm')
-  .addEventListener('submit', function (event) {
-    event.preventDefault();
+const form = document.querySelector('#formEmail');
+const emailInput = document.querySelector('#formInput');
 
-    var emailInput = document.getElementById('form-input-footer');
-    var email = emailInput.value;
+form.addEventListener('submit', handleFormSubmit);
+emailInput.addEventListener('keyup', handleKeyPress);
 
-    if (!validateEmail(email)) {
+function handleFormSubmit(event) {
+   event.preventDefault();
+   const email = emailInput.value.trim();
+
+   if (!validateEmail(email)) {
       alert('Please enter a valid email address');
       return;
-    }
+   }
 
-    // Відправляємо дані на сервер за допомогою fetch
-    fetch('', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email: email }),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        console.log('Data sent successfully');
-        // Очищаємо поле введення після успішної відправки
-        emailInput.value = '';
+   if (email === '') {
+      alert('Please enter an email address');
+      return;
+   }
+
+   sendDataToServer({ email })
+      .then(() => {
+         console.log('Data sent successfully');
+         emailInput.value = '';
       })
       .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+         console.error('There was a problem with the fetch operation:', error);
       });
-  });
+}
 
-// Функція для перевірки коректності введеної електронної пошти
+function handleKeyPress(event) {
+   if (event.key === 'Enter') {
+      handleFormSubmit(event);
+   }
+}
+
+function sendDataToServer(data) {
+   return new Promise((resolve, reject) => {
+      setTimeout(() => {
+         console.log('Imitating sending data to server:', data);
+         resolve();
+      }, 2000);
+   });
+}
+
 function validateEmail(email) {
-  var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  return emailRegex.test(email);
+   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+   return emailRegex.test(email);
 }

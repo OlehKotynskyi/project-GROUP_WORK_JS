@@ -3,6 +3,7 @@ import {
    createMarkupPopularProducts,
    createMarkupProductsDiscount,
 } from './template.js';
+import check from '../img/svg/check.svg';
 import { fetchProductsAll, fetchProducts } from './fetch.js';
 import addCounter from './cart-header-counter.js';
 
@@ -15,7 +16,6 @@ const KEY = 'products in cart';
 // Функція для оновлення списку продуктів
 export function updateProductsList(products) {
    const container = document.querySelector('.products-container');
-   
    if (!products || products.length === 0) {
        // Якщо продуктів немає, показуємо повідомлення
        container.innerHTML = `<div class="cart-empty empty-filter">
@@ -23,8 +23,8 @@ export function updateProductsList(products) {
            <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
        </div>`;
    } else {
-       // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
-       container.innerHTML = createMarkupProductsAll(products);
+      // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
+      container.innerHTML = createMarkupProductsAll(products);
    }
 }
 
@@ -40,9 +40,9 @@ export function getProductsLimit() {
       // Десктоп і вище
       return 9;
    }
+
 }
 renderAll();
-
 
 // перемішування масиву та вибору випадкових продуктів
 function shuffleArray(array) {
@@ -63,11 +63,7 @@ async function renderPopular() {
    }
 }
 
-renderPopular()
-
-
-
-
+renderPopular();
 
 async function renderAll() {
    try {
@@ -77,10 +73,13 @@ async function renderAll() {
          createMarkupProductsAll(removeUnderscores(data))
       );
       addCounter();
+      console.log(data)
+
    } catch (error) {
       console.log(error.message);
    }
 }
+
 renderAll();
 
 // async function renderAll() {
@@ -96,9 +95,6 @@ renderAll();
 //   }
 // }
 // renderAll();
-
-
-
 
 function getRandomProducts(products, count) {
    shuffleArray(products);
@@ -116,71 +112,19 @@ async function renderDiscount() {
    return;
 }
 
-
 containerDiscount.addEventListener('click', addBtnClickDiscount);
 
-async function addBtnClickDiscount(event) {
+export async function addBtnClickDiscount(event) {
    if (
-      event.target.nodeName === 'BUTTON' ||
-      event.target.nodeName === 'IMG' ||
-      event.target.nodeName === 'SPAN'
+      event.target.className === 'discount-link-basket' ||
+      event.target.className === 'discount-basket-icon' ||
+      event.target.className === 'discount-basket-icon'
+      // event.target.className === 'add-btn'
+      // event.target.nodeName === 'BUTTON' ||
+      // event.target.nodeName === 'SPAN' ||
+      //   event.target.nodeName === 'IMG'
    ) {
-      console.dir(event.target.className);
       const selectedItem = event.target.closest('.discount-list-item');
-      const selectedItemId = selectedItem.id;
-
-      try {
-         const currentProduct = await fetchProducts(selectedItemId);
-         const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
-
-         const index = products.findIndex(item => item._id === selectedItemId);
-
-         if (index !== -1) {
-            products[index].quantity += 1;
-         } else {
-            currentProduct.quantity = 1;
-            products.push(currentProduct);
-         }
-      }
-      catch (error) {
-         console.error();
-      }
-   }
-   return
-}
-
-renderDiscount();
-
-containerAll.addEventListener('click', addBtnClick);
-
-async function addBtnClick(event) {
-   console.log(event.target.nodeName);
-   console.log(event.target.className);
-   if (
-      event.target.className === 'add-btn' ||
-      event.target.nodeName === 'IMG'
-      //   && event.target.nodeName !== 'use'
-   ) {
-      //     return;
-      //   }
-      const selectedItem = event.target.closest('.list-item');
-   }
-}
-
-
-
-
-
-
-containerPopular.addEventListener('click', addBtnClickPopularCard);
-
-async function addBtnClickPopularCard(event) {
-   if (
-      event.target.nodeName === 'BUTTON' ||
-      event.target.nodeName === 'svg' ||
-      event.target.nodeName === 'use'
-   ) {
-      const selectedItem = event.target.closest('.product-popular-card');
 
       const selectedItemId = selectedItem.id;
 
@@ -197,10 +141,11 @@ async function addBtnClickPopularCard(event) {
             products.push(currentProduct);
             const button = selectedItem.querySelector('button');
             button.disabled = true;
-            button.innerHTML = `<svg class="popular-basket-svg" width="12" height="12">
-         <use href="../img/sprite.svg#icon-check"></use>
-         </svg>`;
-            //   button.classList.add('disabled')
+            button.innerHTML = `<span class="icon-styles">
+                     <img class="discount-basket-icon" src="${check}" alt="icon bascket" width="18" height="18">
+
+                  </span>`;
+            button.classList.add('disabled');
          }
          localStorage.setItem(KEY, JSON.stringify(products));
          addCounter();
@@ -211,14 +156,94 @@ async function addBtnClickPopularCard(event) {
    return;
 }
 
+renderDiscount();
+
+containerAll.addEventListener('click', addBtnClick);
+
+export async function addBtnClick(event) {
+   if (
+      event.target.nodeName === 'BUTTON' ||
+      event.target.className === 'add-btn' ||
+      event.target.nodeName === 'IMG'
+   ) {
+      //     return;
+      //   }
+      const selectedItem = event.target.closest('.list-item-body-price');
+
+      const selectedItemId = selectedItem.parentElement.id;
+      //const selectedItemId = selectedItem.id;
+
+      try {
+         const currentProduct = await fetchProducts(selectedItemId);
+         const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+
+         const index = products.findIndex(item => item._id === selectedItemId);
+
+         if (index !== -1) {
+            products[index].quantity += 1;
+         } else {
+            currentProduct.quantity = 0;
+            products.push(currentProduct);
+            //==========
+            const button = selectedItem.querySelector('button');
+            button.disabled = true;
+            button.innerHTML = `<img src="${check}" alt="icon check" width="18" height="18">`;
+            button.classList.add('disabled');
+            //=========
+         }
+         localStorage.setItem(KEY, JSON.stringify(products));
+         addCounter();
+      } catch (error) {
+         console.error();
+      }
+   }
+   return;
+}
+
+
+containerPopular.addEventListener('click', addBtnClickPopularCard);
+
+async function addBtnClickPopularCard(event) {
+   if (
+      event.target.nodeName === 'BUTTON' ||
+      event.target.className === 'popular-basket-img'
+   ) {
+      const selectedItem = event.target.closest('.product-popular-card');
+      const selectedItemId = selectedItem.id;
+      const button = selectedItem.querySelector('button');
+      button.disabled = true;
+
+      try {
+         const currentProduct = await fetchProducts(selectedItemId);
+         const products = JSON.parse(localStorage.getItem(KEY)) ?? [];
+
+         const index = products.findIndex(item => item._id === selectedItemId);
+
+         if (index !== -1) {
+            products[index].quantity += 1;
+         } else {
+            currentProduct.quantity = 0;
+            products.push(currentProduct);
+            button.innerHTML = `<img class="popular-disadbled-img" src="${check}" alt="icon bascket" width="20" height="20">`;
+            button.classList.add('popular-disadbled-btn');
+         }
+         localStorage.setItem(KEY, JSON.stringify(products));
+         addCounter();
+      } catch (error) {
+         console.log(error.message);
+         button.disabled = false;
+      }
+   }
+   return;
+}
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
-   return arr.map(obj => {
-      let category = obj.category;
-      if (typeof category === 'string') {
-         category = category.split('_').join(' ');
-      }
-      return { ...obj, category };
-   });
+  return arr.map(obj => {
+    let category = obj.category;
+    if (typeof category === 'string') {
+      category = category.split('_').join(' ');
+    }
+    return { ...obj, category };
+  });
 }

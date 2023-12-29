@@ -15,7 +15,9 @@
    "author": "Alexander Repeta <alexander.repeta@gmail.com>",
    "license": "ISC",
    "dependencies": {
+      "@slim-select/vue": "^1.6.0",
       "axios": "^1.6.2",
+      "basiclightbox": "^5.0.4",
       "slim-select": "^2.8.0",
       "tui-pagination": "^3.4.1",
       "vite-plugin-full-reload": "^1.0.5",
