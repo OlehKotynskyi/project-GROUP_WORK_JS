@@ -5,7 +5,7 @@ const totalPrice = document.querySelector('.products-total-price');
 const containerCart = document.querySelector('.cart-container');
 const cartWrapper = document.querySelector('.cart-desktop-wrapper');
 const emptyCart = document.querySelector('.cart-empty');
-const deleteAllBtn = document.querySelector('.del-all-btn');
+const deleteAllBtn = document.querySelector('.del-all-wrapper');
 const KEY = 'products in cart';
 
 const formEmailRet = document.querySelector('.form-checkout');
@@ -50,18 +50,13 @@ export function renderCart() {
   }
 }
 
-// додавання, віднімання продуктів
-// const moreBtn = document.querySelectorAll('.more-btn')
-// const lessBtn = document.querySelectorAll('.less-btn')
-// const numberValue = document.querySelector('.products-quantity')
- 
-
-
 // видалення конкретного продукту
-// можна оптимізувати
+// можна оптимізувати ??
 containerCart.addEventListener('click', removeProduct);
 function removeProduct(event) {
-  if (event.target.className !== 'remove-btn') {
+  if (
+    event.target.className !== 'remove-btn'
+    && event.target.className !== 'remove-btn-img') {
     return;
   }
 
@@ -80,6 +75,68 @@ function removeProduct(event) {
   if (products === null || products === undefined || products.length === 0) {
     renderCart();
     return;
+  }
+}
+
+// віднімання і додавання кількості продукту
+// логіка в тому, щоб дозволити юзеру мати 0 продуктів не видаляючи його
+// з першого разу, але на другий клік по мінусу він видаляється
+// (на випадок того, коли випадково проклікав, щоб мати змогу доддати кількість знову).
+// !!!
+// на майбутнє - треба прописати логіку, щоб при кліку на checkout
+// юзеру вилітало повідомлення, щоб або видалив, або додав кількість більше за 0.
+// Тобто, при кліку на кнопку Checkout, треба пройтись по localStorage(KEY), і якщо є хоч один обєкт з quantity: 0, вивести повідомлення
+containerCart.addEventListener('click', changeQuantity);
+function changeQuantity(event) {
+  if (
+    event.target.className !== 'more-btn-img'
+    && event.target.className !== 'less-btn'
+    && event.target.className !== 'more-btn-card'
+    && event.target.className !== 'less-btn-img'
+  ) {
+    return;
+  }
+  
+  const selectedItem = event.target.closest('.cart-list-item');
+  const selectedItemId = selectedItem.id;
+  const products = JSON.parse(localStorage.getItem(KEY));
+  const index = products.findIndex(item => item._id === selectedItemId);
+  const productQuantity = selectedItem.querySelector('.products-quantity');
+
+  // тут обробляємо додавання
+  if (
+    event.target.className === 'more-btn-card'
+    || event.target.className === 'more-btn-img'
+  ) {
+    products[index].quantity++;
+    productQuantity.innerHTML = products[index].quantity;
+    localStorage.setItem(KEY, JSON.stringify(products));
+    countTotal(products)
+  }
+
+  // тут обробляємо віднімання
+  if (
+    event.target.className === 'less-btn'
+    || event.target.className === 'less-btn-img'
+  ) {
+    // тут видаляємо при повторному кліку на мінус, коли кількість товару нуль
+    if (products[index].quantity === 0) {
+      products.splice(index, 1);
+      selectedItem.remove();
+      localStorage.setItem(KEY, JSON.stringify(products));
+      addCounter();
+      countTotal(products);
+      // тут показуємо пусту корзину, коли товарів не залишилось взагалі
+      if (products === null || products === undefined || products.length === 0) {
+        renderCart();
+      }
+      return;
+    }
+    // тут обробляємо звичайне віднімання
+    products[index].quantity--;
+    productQuantity.innerHTML = products[index].quantity;
+    localStorage.setItem(KEY, JSON.stringify(products));
+    countTotal(products)
   }
 }
 
@@ -139,3 +196,32 @@ formEmailRet.addEventListener('sumbit', function (evt) {
 //   var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 //   return emailRegex.test(email);
 // }
+
+
+
+//modal window
+
+//const closeBtn = document.querySelector(".btn-close")
+const btnCheckout = document.querySelector('.btnCheckout')
+const modalCheckout = document.querySelector('.modal')
+
+console.log(btnCheckout)
+var span = document.getElementsByClassName("close")[0];
+
+
+btnCheckout.addEventListener("click", function (evt) {
+  evt.preventDefault()
+  modalCheckout.style.display = "block";
+})
+
+
+span.onclick = function() {
+  modalCheckout.style.display = "block";
+}
+
+
+window.onclick = function(event) {
+  if (event.target == modalCheckout) {
+    modalCheckout.style.display = "block";
+  }
+}
