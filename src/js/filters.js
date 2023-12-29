@@ -1,6 +1,6 @@
 // filters.js
 import SlimSelect from 'slim-select';
-//import 'slim-select/dist/slimselect.min.css';
+//import '../../node_modules/slim-select/dist/slimselect.css';
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 import { getProductsLimit } from './products.js';
@@ -80,6 +80,32 @@ function populateCategorySelect(categories) {
           }))
       )
     });
+}
+
+fetchCategories();
+
+// async function fetchCategories() {
+//     try {
+//         const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+//         const categories = await response.json();
+//         populateCategorySelect(categories);
+//     } catch (error) {
+//         console.error('Error fetching categories:', error);
+//     }
+// }
+
+// function populateCategorySelect(categories) {
+//     new SlimSelect({
+//         select: '#categories',
+//         placeholder: 'Categories',
+//         showSearch: false, // Вимкнути пошук, якщо не потрібно
+//         data: [{ text: 'Categories', value: '' }, ...categories.map(category => ({
+//             text: category.replace(/_/g, ' '),
+//             value: category
+//         }))]
+//     });
+// }
+//fetchCategories();
 
    
     // Ініціалізація Slim Select з плейсхолдером "Categories"
@@ -98,12 +124,6 @@ function populateCategorySelect(categories) {
     //const slimSelect = new SlimSelect({
     //    select: '#categories'
     //});
-
-    // Додавання класів для стилізації
-    slimSelect.slim.container.classList.add('category-dropdown');
-    slimSelect.slim.container.querySelector('.ss-content').classList.add('selected-category');
-}
-
 
 function setupEventListeners() {
   const searchForm = document.querySelector('.search-form');
