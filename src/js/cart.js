@@ -211,12 +211,13 @@ var span = document.getElementsByClassName("close")[0];
 
 btnCheckout.addEventListener("click", function (evt) {
   evt.preventDefault()
+  clearCart()
   modalCheckout.style.display = "block";
 })
 
 
 span.onclick = function() {
-  modalCheckout.style.display = "block";
+  modalCheckout.style.display = "none";
 }
 
 
