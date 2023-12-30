@@ -11,7 +11,7 @@ export function createMarkupProductsAll(arr) {
    return arr
       .map(
          ({ price, name, img, _id, category, size, popularity, is10PercentOff }) =>
-            `<li class="list-item" id="${_id}">
+            `<li class="list-item animation-style" id="${_id}">
             <div class="list-item-img">
                ${is10PercentOff ? `<img class="products-discount-icon" src="${discount}" alt="icon discount" width="100" height="100">` : ''} 
                <img class="product-img" width=100 src="${img}">
@@ -38,7 +38,7 @@ export function createMarkupPopularProducts(arr) {
    return arr
       .map(({ price, name, img, _id, category, size, popularity }) => {
          return `
-           <div class="product-popular-card" id="${_id}">
+           <div class="product-popular-card animation-style" id="${_id}">
            <div class="popular-image-item">
                <img src="${img}" alt="${name}" class="product-popular-image">
            </div>
@@ -65,7 +65,7 @@ export function createMarkupProductsDiscount(arr) {
    return arr
       .map(({ price, name, img, _id }) => {
          return `
-         <li class="discount-list-item" id="${_id}" >
+         <li class="discount-list-item animation-style" id="${_id}" >
             <div class="discount-card" >
                <img class="discount-icon" src="${discount}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${img}"></div>

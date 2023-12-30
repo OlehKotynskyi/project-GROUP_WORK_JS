@@ -17,10 +17,10 @@ const KEY = 'products in cart';
 export function updateProductsList(products) {
    const container = document.querySelector('.products-container');
    if (!products || products.length === 0) {
-       // Якщо продуктів немає, показуємо повідомлення
-       container.innerHTML = `<div class="cart-empty empty-filter">
+      // Якщо продуктів немає, показуємо повідомлення
+      container.innerHTML = `<div class="cart-empty empty-filter">
            <h3 class="products-titel">Nothing was found for the selected <span>filters...</span></h3>
-           <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
+           <p class="filters-text-not-found">Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
        </div>`;
    } else {
       // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
@@ -239,11 +239,11 @@ async function addBtnClickPopularCard(event) {
 
 // Функція для видалення підкреслення між словами
 export function removeUnderscores(arr) {
-  return arr.map(obj => {
-    let category = obj.category;
-    if (typeof category === 'string') {
-      category = category.split('_').join(' ');
-    }
-    return { ...obj, category };
-  });
+   return arr.map(obj => {
+      let category = obj.category;
+      if (typeof category === 'string') {
+         category = category.split('_').join(' ');
+      }
+      return { ...obj, category };
+   });
 }
