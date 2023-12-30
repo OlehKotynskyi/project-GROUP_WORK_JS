@@ -119,20 +119,21 @@ function changeQuantity(event) {
     event.target.className === 'less-btn'
     || event.target.className === 'less-btn-img'
   ) {
-    // тут видаляємо при повторному кліку на мінус, коли кількість товару нуль
-    if (products[index].quantity === 0) {
-      products.splice(index, 1);
-      selectedItem.remove();
-      localStorage.setItem(KEY, JSON.stringify(products));
-      addCounter();
-      countTotal(products);
-      // тут показуємо пусту корзину, коли товарів не залишилось взагалі
-      if (products === null || products === undefined || products.length === 0) {
-        renderCart();
-      }
+    // тут не даємо обрати кількість менше 1
+    if (products[index].quantity === 1) {
+      // //тут видаляємо при повторному кліку на мінус, коли кількість товару нуль
+      // products.splice(index, 1);
+      // selectedItem.remove();
+      // localStorage.setItem(KEY, JSON.stringify(products));
+      // addCounter();
+      // countTotal(products);
+      // // тут показуємо пусту корзину, коли товарів не залишилось взагалі
+      // if (products === null || products === undefined || products.length === 0) {
+      //   renderCart();
+      // }
       return;
     }
-    // тут обробляємо звичайне віднімання
+    // віднімання
     products[index].quantity--;
     productQuantity.innerHTML = products[index].quantity;
     localStorage.setItem(KEY, JSON.stringify(products));
