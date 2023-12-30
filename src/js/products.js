@@ -73,7 +73,7 @@ async function renderAll() {
          createMarkupProductsAll(removeUnderscores(data))
       );
       addCounter();
-      console.log(data)
+      // console.log(data)
 
    } catch (error) {
       console.log(error.message);
@@ -135,9 +135,9 @@ export async function addBtnClickDiscount(event) {
          const index = products.findIndex(item => item._id === selectedItemId);
 
          if (index !== -1) {
-            products[index].quantity += 1;
+            products[index].quantity += 0;
          } else {
-            currentProduct.quantity = 0;
+            currentProduct.quantity = 1;
             products.push(currentProduct);
             const button = selectedItem.querySelector('button');
             button.disabled = true;
@@ -180,9 +180,9 @@ export async function addBtnClick(event) {
          const index = products.findIndex(item => item._id === selectedItemId);
 
          if (index !== -1) {
-            products[index].quantity += 1;
+            products[index].quantity += 0;
          } else {
-            currentProduct.quantity = 0;
+            currentProduct.quantity = 1;
             products.push(currentProduct);
             //==========
             const button = selectedItem.querySelector('button');
@@ -220,9 +220,9 @@ async function addBtnClickPopularCard(event) {
          const index = products.findIndex(item => item._id === selectedItemId);
 
          if (index !== -1) {
-            products[index].quantity += 1;
+            products[index].quantity += 0;
          } else {
-            currentProduct.quantity = 0;
+            currentProduct.quantity = 1;
             products.push(currentProduct);
             button.innerHTML = `<img class="popular-disadbled-img" src="${check}" alt="icon bascket" width="20" height="20">`;
             button.classList.add('popular-disadbled-btn');
