@@ -268,7 +268,8 @@
   border: 1px solid #fafafa;
   width: 335px;
   height: 428px;
-}
+  margin: (0, 20px)}
+
 
 .imgModal {
   width: 140px;
@@ -314,39 +315,8 @@
   cursor: pointer;
 }
 
-@media only screen and (min-width: 768px) {
-  .inputEmail {
-    font-size: 18px;
-    line-height: 1.33;
-  }
-
-  .inputEmail::placeholder {
-    font-size: 18px;
-  }
-}
-
-.btnCheckout {
-  height: 42px;
-  border-radius: 30px;
-  border: 1px;
-  background-color: rgba(109, 132, 52, 1);
-  color: #e8e8e2;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.3;
-  transition: background-color var(--animation);
-}
-
-@media (hover: hover) {
-  .btnCheckout:focus,
-  .btnCheckout:hover {
-    background-color: #586f1f;
-  }
-}
-
-.btnCheckout:active {
-  background-color: #586f1f;
-}
+/* @media only screen and (min-width: 768px) {
+   */
 
 /* //////////////// */
 /* TABLET STYLES */
@@ -358,6 +328,7 @@
 
   .cart-container {
     max-height: 600px;
+    margin-bottom: 100px;
   }
 
   .cart-container::-webkit-scrollbar {
@@ -463,8 +434,39 @@
     margin-right: 15px;
     margin-bottom: 0;
     padding: 15px 20px;
+    font-size: 18px;
+      line-height: 1.33;
   }
 
+
+.inputEmail::placeholder {
+  font-size: 18px;
+}
+
+
+.btnCheckout {
+  height: 42px;
+  border-radius: 30px;
+  border: 1px;
+  background-color: rgba(109, 132, 52, 1);
+  color: #e8e8e2;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: background-color var(--animation);
+}
+
+@media (hover: hover) {
+
+  .btnCheckout:focus,
+  .btnCheckout:hover {
+    background-color: #586f1f;
+  }
+
+}
+  .btnCheckout:active {
+    background-color: #586f1f;
+  }
   .btnCheckout {
     height: 54px;
     width: 215px;
@@ -483,6 +485,7 @@
 
   .modalMessage {
     font-size: 24px;
+    
   }
 }
 
@@ -509,7 +512,7 @@
     flex-shrink: 0;
 
     margin-top: 49px;
-    margin-left: 101px;
+    /* margin-left: 101px; */
   }
 
   .del-all-wrapper {
