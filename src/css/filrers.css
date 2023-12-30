@@ -8,6 +8,21 @@
   font-size: 14px;
 }
 
+.filters-text-not-found {
+margin-left: auto;
+margin-right: auto;
+width: 279px;
+height: 54px;
+   
+font-size: 14px;
+font-weight: 400;
+line-height: 18px;
+letter-spacing: 0em;
+text-align: center;
+
+color: rgba(1, 1, 1, 0.7);
+}
+
 .filters-section:not(:last-child) {
    margin-bottom: 100px;
 }
@@ -103,6 +118,18 @@
     margin: auto 0px auto var(--ss-spacing-s);
     font-size: 18px;
  }
+
+ .filters-text-not-found {
+   width: 371px;
+   height: 72px;
+   
+   font-size: 18px;
+   font-weight: 400;
+   line-height: 24px;
+   letter-spacing: 0em;
+   text-align: center;
+   
+   }
 }
 
 .search-button {
