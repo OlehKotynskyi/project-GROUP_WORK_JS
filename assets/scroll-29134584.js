@@ -113,4 +113,4 @@ import{b as $}from"./vendor-4b9aba64.js";(function(){const s=document.createElem
       />
    </div>
    `,{onClose:o=>s.removeEventListener("click",i)});t.show();const s=document.querySelector(".sub-modal");s.addEventListener("click",i);function i(o){(o.target.className==="remove-btn"||o.target.className==="remove-btn-img")&&t.close()}}let p=0;const b=60,u=document.querySelector(".header"),h=document.querySelector(".header-section"),r=()=>window.pageYOffset||document.documentElement.scrollTop,f=()=>u.classList.contains("hide");function J(){window.addEventListener("scroll",()=>{r()>p&&!f()&&r()>b?u.classList.add("hide"):r()<p&&f()&&u.classList.remove("hide"),r()>b?h.classList.add("scrolled"):h.classList.remove("scrolled"),p=r()})}export{M as a,j as b,q as c,z as d,C as e,K as f,J as h};
-//# sourceMappingURL=scroll-e9b93235.js.map
+//# sourceMappingURL=scroll-29134584.js.map
