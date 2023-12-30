@@ -20,7 +20,7 @@ export function updateProductsList(products) {
       // Якщо продуктів немає, показуємо повідомлення
       container.innerHTML = `<div class="cart-empty empty-filter">
            <h3 class="products-titel">Nothing was found for the selected <span>filters...</span></h3>
-           <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
+           <p class="filters-text-not-found">Try adjusting your search parameters or browse our range by other criteria to find the perfect product for you.</p>
        </div>`;
    } else {
       // Якщо продукти є, заповнюємо контейнер продуктами і приховуємо повідомлення, якщо воно було показано
