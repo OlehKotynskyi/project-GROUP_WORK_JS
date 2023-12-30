@@ -1,4 +1,4 @@
-import{b as y}from"./vendor-4b9aba64.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const a of e)if(a.type==="childList")for(const c of a.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&o(c)}).observe(document,{childList:!0,subtree:!0});function i(e){const a={};return e.integrity&&(a.integrity=e.integrity),e.referrerpolicy&&(a.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?a.credentials="include":e.crossorigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function o(e){if(e.ep)return;e.ep=!0;const a=i(e);fetch(e.href,a)}})();const k="/project-GROUP_WORK_JS/assets/minus-7f58cb69.svg",w="/project-GROUP_WORK_JS/assets/plus-8292619f.svg",m="/project-GROUP_WORK_JS/assets/basket-a161fb4d.svg",v="/project-GROUP_WORK_JS/assets/discount-8db0687b.svg",S="/project-GROUP_WORK_JS/assets/popular-baskett-cb043ad6.svg",g="/project-GROUP_WORK_JS/assets/closed-bf66d401.svg";function j(t){return t.map(({price:s,name:i,img:o,_id:e,category:a,size:c,popularity:n,is10PercentOff:l})=>`<li class="list-item" id="${e}">
+import{b as $}from"./vendor-4b9aba64.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const a of e)if(a.type==="childList")for(const c of a.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&o(c)}).observe(document,{childList:!0,subtree:!0});function i(e){const a={};return e.integrity&&(a.integrity=e.integrity),e.referrerpolicy&&(a.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?a.credentials="include":e.crossorigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function o(e){if(e.ep)return;e.ep=!0;const a=i(e);fetch(e.href,a)}})();const k="/project-GROUP_WORK_JS/assets/minus-7f58cb69.svg",w="/project-GROUP_WORK_JS/assets/plus-8292619f.svg",m="/project-GROUP_WORK_JS/assets/basket-a161fb4d.svg",v="/project-GROUP_WORK_JS/assets/discount-8db0687b.svg",S="/project-GROUP_WORK_JS/assets/popular-baskett-cb043ad6.svg",g="/project-GROUP_WORK_JS/assets/closed-bf66d401.svg";function j(t){return t.map(({price:s,name:i,img:o,_id:e,category:a,size:c,popularity:n,is10PercentOff:l})=>`<li class="list-item animation-style" id="${e}">
             <div class="list-item-img">
                ${l?`<img class="products-discount-icon" src="${v}" alt="icon discount" width="100" height="100">`:""} 
                <img class="product-img" width=100 src="${o}">
@@ -17,7 +17,7 @@ import{b as y}from"./vendor-4b9aba64.js";(function(){const s=document.createElem
             </div>
          </li>
          `).join("")}function z(t){return t.map(({price:s,name:i,img:o,_id:e,category:a,size:c,popularity:n})=>`
-           <div class="product-popular-card" id="${e}">
+           <div class="product-popular-card animation-style" id="${e}">
            <div class="popular-image-item">
                <img src="${o}" alt="${i}" class="product-popular-image">
            </div>
@@ -35,7 +35,7 @@ import{b as y}from"./vendor-4b9aba64.js";(function(){const s=document.createElem
                </button>
            </div>
        </div>`).join("")}function C(t){return t.splice(2),t.map(({price:s,name:i,img:o,_id:e})=>`
-         <li class="discount-list-item" id="${e}" >
+         <li class="discount-list-item animation-style" id="${e}" >
             <div class="discount-card" >
                <img class="discount-icon" src="${v}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${o}"></div>
@@ -96,7 +96,7 @@ import{b as y}from"./vendor-4b9aba64.js";(function(){const s=document.createElem
                </button>
             </div>
          </li>
-         `).join("")}const P="products in cart";function M(){const t=document.querySelector(".header-basket-counter"),s=JSON.parse(localStorage.getItem(P));s===null||s.length===0?t.textContent="0":t.textContent=`${s.length}`}const O=document.querySelector("#formEmail"),d=document.querySelector("#formInput");O.addEventListener("submit",$);d.addEventListener("keyup",x);function $(t){t.preventDefault();const s=d.value.trim();if(!R(s)){alert("Please enter a valid email address");return}if(s===""){alert("Please enter an email address");return}L({email:s}).then(()=>{console.log("Data sent successfully"),d.value="",_()}).catch(i=>{console.error("There was a problem with the fetch operation:",i)})}function x(t){t.key==="Enter"&&$(t)}function L(t){return new Promise((s,i)=>{setTimeout(()=>{console.log("Imitating sending data to server:",t),s()},2e3)})}function R(t){return/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(t)}function _(){const t=y.create(`
+         `).join("")}const P="products in cart";function M(){const t=document.querySelector(".header-basket-counter"),s=JSON.parse(localStorage.getItem(P));s===null||s.length===0?t.textContent="0":t.textContent=`${s.length}`}const O=document.querySelector("#formEmail"),d=document.querySelector("#formInput");O.addEventListener("submit",y);d.addEventListener("keyup",x);function y(t){t.preventDefault();const s=d.value.trim();if(!R(s)){alert("Please enter a valid email address");return}if(s===""){alert("Please enter an email address");return}L({email:s}).then(()=>{console.log("Data sent successfully"),d.value="",_()}).catch(i=>{console.error("There was a problem with the fetch operation:",i)})}function x(t){t.key==="Enter"&&y(t)}function L(t){return new Promise((s,i)=>{setTimeout(()=>{console.log("Imitating sending data to server:",t),s()},2e3)})}function R(t){return/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(t)}function _(){const t=$.create(`
    <div class="sub-modal">
       <button class="remove-btn">
          <img class="remove-btn-img" src="${g}" alt="icon bascket" width="18" height="18">
@@ -113,4 +113,4 @@ import{b as y}from"./vendor-4b9aba64.js";(function(){const s=document.createElem
       />
    </div>
    `,{onClose:o=>s.removeEventListener("click",i)});t.show();const s=document.querySelector(".sub-modal");s.addEventListener("click",i);function i(o){(o.target.className==="remove-btn"||o.target.className==="remove-btn-img")&&t.close()}}let p=0;const b=60,u=document.querySelector(".header"),h=document.querySelector(".header-section"),r=()=>window.pageYOffset||document.documentElement.scrollTop,f=()=>u.classList.contains("hide");function J(){window.addEventListener("scroll",()=>{r()>p&&!f()&&r()>b?u.classList.add("hide"):r()<p&&f()&&u.classList.remove("hide"),r()>b?h.classList.add("scrolled"):h.classList.remove("scrolled"),p=r()})}export{M as a,j as b,q as c,z as d,C as e,K as f,J as h};
-//# sourceMappingURL=scroll-0b06c7e6.js.map
+//# sourceMappingURL=scroll-e9b93235.js.map
