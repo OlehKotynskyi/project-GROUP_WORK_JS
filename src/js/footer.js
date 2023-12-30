@@ -4,7 +4,7 @@ const form = document.querySelector('#formEmail');
 const emailInput = document.querySelector('#formInput');
 
 form.addEventListener('submit', handleFormSubmit);
-emailInput.addEventListener('keyup', handleKeyPress);
+// emailInput.addEventListener('keyup', handleKeyPress);
 
 function handleFormSubmit(event) {
    event.preventDefault();
@@ -31,11 +31,11 @@ function handleFormSubmit(event) {
       });
 }
 
-function handleKeyPress(event) {
-   if (event.key === 'Enter') {
-      handleFormSubmit(event);
-   }
-}
+// function handleKeyPress(event) {
+//    if (event.key === 'Enter') {
+//       handleFormSubmit(event);
+//    }
+// }
 
 function sendDataToServer(data) {
    return new Promise((resolve, reject) => {
