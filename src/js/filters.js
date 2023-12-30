@@ -102,14 +102,34 @@ async function fetchCategories() {
    }
 }
 
+// function populateCategorySelect(categories) {
+//    const selectElement = document.getElementById('categories');
+//    selectElement.innerHTML = '';
+
+//    const modifiedCategories = categories.map(category => ({
+//       text: category.replace(/_/g, ' '),
+//       value: category
+//    })).concat({ text: 'Show all', value: '' });
+
+//    new SlimSelect({
+//       select: '#categories',
+//       placeholder: 'Categories',
+//       showSearch: false,
+//       data: modifiedCategories
+//    });
+// }
+
 function populateCategorySelect(categories) {
    const selectElement = document.getElementById('categories');
    selectElement.innerHTML = '';
 
-   const modifiedCategories = categories.map(category => ({
-      text: category.replace(/_/g, ' '),
-      value: category
-   })).concat({ text: 'Show all', value: '' });
+   const modifiedCategories = [
+      { text: 'Show all', value: '' },
+      ...categories.map(category => ({
+         text: category.replace(/_/g, ' '),
+         value: category
+      }))
+   ];
 
    new SlimSelect({
       select: '#categories',
@@ -118,6 +138,7 @@ function populateCategorySelect(categories) {
       data: modifiedCategories
    });
 }
+
 
 fetchCategories();
 
