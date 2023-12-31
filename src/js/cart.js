@@ -205,8 +205,8 @@ formEmailRet.addEventListener('sumbit', function (evt) {
 //const closeBtn = document.querySelector(".btn-close")
 const btnCheckout = document.querySelector('.btnCheckout')
 const modalCheckout = document.querySelector('.modal')
-const formOrder = document.querySelector('.form-checkout')
-const inputOrder = document.querySelector('.inputEmail')
+const formOrder = document.querySelector('#formCheckoutEmail')
+const inputOrder = document.querySelector('#formCheckoutInput')
 
 formOrder.addEventListener('submit', handleOrder);
 //inputOrder.addEventListener('keyup', handleKeyPress);
