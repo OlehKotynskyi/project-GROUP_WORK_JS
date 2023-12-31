@@ -47,7 +47,7 @@ searchForm.addEventListener('submit', function (e) {
       updateFilters('keyword', keyword);
       fetchFilteredProducts();
       resetPage();
-      searchBox.value = ''; // Очистка поля ввода после выполнения поиска
+      //searchBox.value = ''; // Очистка поля ввода после выполнения поиска
    }
 });
 
@@ -63,7 +63,7 @@ searchBox.addEventListener('keypress', function (e) {
          updateFilters('keyword', keyword);
          fetchFilteredProducts();
          resetPage();
-         searchBox.value = ''; // Очистка поля ввода после выполнения поиска
+         //searchBox.value = ''; // Очистка поля ввода после выполнения поиска
       }
    }
 });

@@ -1,5 +1,7 @@
 import * as basicLightBox from 'basiclightbox';
 import closed from '../img/svg/closed.svg'
+import frutX1 from "../img/basket-s-popap/frut-popap-x1.png";
+import frutX2 from "../img/basket-s-popap/frut-popap-x2.png";
 const form = document.querySelector('#formEmail');
 const emailInput = document.querySelector('#formInput');
 
@@ -63,9 +65,9 @@ function subModal() {
       </div>
       <img
       class="sub-modal-pic"
-         src="./img/basket-s-popap/frut-popap-x1.png"
+         src="${frutX1}"
          alt="Empty basket"
-         srcset="./img/basket-s-popap/frut-popap-x2.png 2x"
+         srcset="${frutX2}"
       />
    </div>
    `, {
