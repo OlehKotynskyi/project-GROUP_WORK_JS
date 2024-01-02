@@ -36,13 +36,13 @@ export function getProductsLimit() {
    } else if (screenWidth >= 768 && screenWidth < 1440) {
       // Таблет
       return 8;
-   } else {
-      // Десктоп і вище
-      return 9;
+   } else if (screenWidth > 1440) {
+     // Десктоп і вище
+     return 9;
    }
 
 }
-renderAll();
+// renderAll();
 
 // перемішування масиву та вибору випадкових продуктів
 function shuffleArray(array) {
@@ -80,7 +80,7 @@ async function renderAll() {
    }
 }
 
-renderAll();
+// renderAll();
 
 // async function renderAll() {
 //   try {

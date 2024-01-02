@@ -457,14 +457,14 @@ searchForm.addEventListener('submit', function (e) {
 
 function handleResize() {
    const width = window.innerWidth;
-   const isMobile = width <= 375;
-   const isTablet = width > 375 && width <= 768;
+   const isMobile = width < 768;
+   const isTablet = width >= 768 && width < 1440;
 
    let limit = 6; // По умолчанию 6 карточек
 
    if (isTablet) {
       limit = 8; // Для планшета 8 карточек
-   } else if (width > 768 && width <= 1440) {
+   } else if (width >= 1440) {
       limit = 9; // Для 1440 шириной 9 карточек
    }
 
@@ -521,6 +521,7 @@ function setupEventListeners() {
       const selectedCategory = this.value;
       updateFilters('category', selectedCategory);
       fetchFilteredProducts();
+      resetPage();
    });
 }
 
