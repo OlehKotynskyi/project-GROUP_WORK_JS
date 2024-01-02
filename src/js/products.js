@@ -30,10 +30,10 @@ export function updateProductsList(products) {
 
 export function getProductsLimit() {
    const screenWidth = window.innerWidth;
-   if (screenWidth < 375) {
+   if (screenWidth < 768) {
       // Мобільні пристрої
       return 6;
-   } else if (screenWidth >= 375 && screenWidth < 768) {
+   } else if (screenWidth >= 768 && screenWidth < 1440) {
       // Таблет
       return 8;
    } else {
