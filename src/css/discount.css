@@ -2,6 +2,15 @@
    margin-bottom: 80px;
 }
 
+@media only screen and (max-width: 350px) {
+   .discount-container {
+      width: 300px;
+   }
+   .discount-list-item.discount-list-item {
+      min-width: 300px;
+   }
+   }
+
 @media only screen and (min-width: 768px) {
    .discount-section:not(:last-child) {
       margin-bottom: 100px;
@@ -32,6 +41,13 @@
       column-gap: 32px;
       justify-content: center;
    }
+}
+
+@media only screen and (min-width: 1050px) {
+   .discount-container {
+      justify-content: flex-start;
+   }
+
 }
 
 @media only screen and (min-width: 1440px) {

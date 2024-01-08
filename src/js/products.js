@@ -37,8 +37,8 @@ export function getProductsLimit() {
       // Таблет
       return 8;
    } else if (screenWidth > 1440) {
-     // Десктоп і вище
-     return 9;
+      // Десктоп і вище
+      return 9;
    }
 
 }
