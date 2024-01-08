@@ -2,6 +2,12 @@
    padding-bottom: 40px;
 }
 
+@media only screen and (max-width: 349px) {   
+   .filters-container {
+      width: 300px;
+   }
+}
+
 .ss-main .ss-values .ss-single {
   display: flex;
   margin: auto 0px auto var(--ss-spacing-s);
