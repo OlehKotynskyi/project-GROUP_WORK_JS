@@ -3,7 +3,6 @@ import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
 import { getProductsLimit } from './products.js';
 
-// Флаг для отслеживания состояния выполнения запроса
 let isFetching = false;
 
 function debounce(func, wait, immediate) {
@@ -24,63 +23,46 @@ function debounce(func, wait, immediate) {
 document.addEventListener('DOMContentLoaded', function () {
    initializeFilters();
    fetchCategories();
+   initializeSortSelect();
    setupEventListeners();
    fetchInitialProducts();
 
    const searchBox = document.getElementById('search-box');
    const categoriesSelect = document.getElementById('categories');
-   searchBox.value = ''; // Очистка поля ввода поиска
-   categoriesSelect.value = ''; // Сброс выбранной категории
+   const savedFilters = getSavedFilters();
+   searchBox.value = savedFilters.keyword || '';
+   categoriesSelect.value = savedFilters.category || '';
+   fetchFilteredProducts();
 });
 
-const searchBox = document.getElementById('search-box');
 const searchForm = document.querySelector('.search-form');
 
 searchForm.addEventListener('submit', function (e) {
    e.preventDefault();
-   const keyword = searchBox.value.trim();
-   if (keyword === '') {
-      updateFilters('keyword', null);
-      fetchFilteredProducts();
-      resetPage();
-   } else {
-      updateFilters('keyword', keyword);
-      fetchFilteredProducts();
-      resetPage();
-      //searchBox.value = ''; // Очистка поля ввода после выполнения поиска
-   }
+   const keyword = document.getElementById('search-box').value.trim();
+   updateFilters('keyword', keyword);
+   fetchFilteredProducts();
+   resetPage();
 });
-
-searchBox.addEventListener('keypress', function (e) {
-   if (e.key === 'Enter') {
-      e.preventDefault();
-      const keyword = searchBox.value.trim();
-      if (keyword === '') {
-         updateFilters('keyword', null);
-         fetchFilteredProducts();
-         resetPage();
-      } else {
-         updateFilters('keyword', keyword);
-         fetchFilteredProducts();
-         resetPage();
-         //searchBox.value = ''; // Очистка поля ввода после выполнения поиска
-      }
-   }
-});
-
-let wasMobile = window.innerWidth <= 375;
-let wasTablet = window.innerWidth > 375 && window.innerWidth <= 768;
 
 function handleResize() {
    const width = window.innerWidth;
-   const isMobile = width <= 375;
-   const isTablet = width > 375 && width <= 768;
+   const isMobile = width < 768;
+   const isTablet = width >= 768 && width < 1440;
 
-   if (isMobile !== wasMobile || isTablet !== wasTablet) {
-      fetchFilteredProducts();
-      wasMobile = isMobile;
-      wasTablet = isTablet;
+   let limit = 6; // По умолчанию 6 карточек
+
+   if (isTablet) {
+      limit = 8; // Для планшета 8 карточек
+   } else if (width >= 1440) {
+      limit = 9; // Для 1440 шириной 9 карточек
    }
+
+   const filters = getSavedFilters();
+   filters.limit = limit;
+   localStorage.setItem('filters', JSON.stringify(filters));
+
+   fetchFilteredProducts();
 }
 
 window.addEventListener('resize', debounce(handleResize, 300));
@@ -102,23 +84,6 @@ async function fetchCategories() {
    }
 }
 
-// function populateCategorySelect(categories) {
-//    const selectElement = document.getElementById('categories');
-//    selectElement.innerHTML = '';
-
-//    const modifiedCategories = categories.map(category => ({
-//       text: category.replace(/_/g, ' '),
-//       value: category
-//    })).concat({ text: 'Show all', value: '' });
-
-//    new SlimSelect({
-//       select: '#categories',
-//       placeholder: 'Categories',
-//       showSearch: false,
-//       data: modifiedCategories
-//    });
-// }
-
 function populateCategorySelect(categories) {
    const selectElement = document.getElementById('categories');
    selectElement.innerHTML = '';
@@ -139,37 +104,35 @@ function populateCategorySelect(categories) {
    });
 }
 
-
-fetchCategories();
-
-function setupEventListeners() {
-   const searchForm = document.querySelector('.search-form');
-   const categoriesSelect = document.getElementById('categories');
-
-   searchForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const keyword = document.getElementById('search-box').value;
-      if (keyword == '') {
-         updateFilters('keyword', null);
+function initializeSortSelect() {
+   new SlimSelect({
+      select: '#sort-options',
+      data: [
+         { text: 'A to Z', value: 'byABC_Asc' },
+         { text: 'Z to A', value: 'byABC_Desc' },
+         { text: 'Cheap', value: 'byPrice_Asc' },
+         { text: 'Expensive', value: 'byPrice_Desc' },
+         { text: 'Popular', value: 'byPopularity_Asc' },
+         { text: 'Not popular', value: 'byPopularity_Desc' },
+         { text: 'Show all', value: 'showAll' }
+      ],
+      onChange: (option) => {
+         updateFilters('sort', option.value);
          fetchFilteredProducts();
-         updateFilters('page', 1);
-      } else {
-         updateFilters('keyword', keyword);
-         fetchFilteredProducts();
-         updateFilters('page', 1);
+         resetPage();
       }
    });
+}
+
+
+function setupEventListeners() {
+   const categoriesSelect = document.getElementById('categories');
 
    categoriesSelect.addEventListener('change', function () {
-      if (this.value == 'Show all') {
-         updateFilters('category', null);
-         updateFilters('page', 1);
-         fetchFilteredProducts();
-      } else {
-         updateFilters('category', this.value);
-         updateFilters('page', 1);
-         fetchFilteredProducts();
-      }
+      const selectedCategory = this.value;
+      updateFilters('category', selectedCategory);
+      fetchFilteredProducts();
+      resetPage();
    });
 }
 
@@ -182,23 +145,48 @@ async function fetchFilteredProducts() {
    isFetching = true;
 
    const filters = getSavedFilters();
-   const limit = getProductsLimit();
+   const { category, keyword, page, limit, sort } = filters;
 
    try {
-      const products = await fetchProductsAll(
-         filters.category,
-         filters.keyword,
-         filters.page,
-         limit
-      );
-      updateProductsList(products);
+       const products = await fetchProductsAll(category, keyword, page, limit, sort);
+       
+       if (!Array.isArray(products)) {
+           throw new Error("Response is not an array of products");
+       }
+
+       // Сортування продуктів відповідно до обраного критерію
+      switch (sort) {
+         case 'byABC_Asc':
+            products.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+         case 'byABC_Desc':
+            products.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+         case 'byPrice_Asc':
+            products.sort((a, b) => a.price - b.price);
+            break;
+         case 'byPrice_Desc':
+            products.sort((a, b) => b.price - a.price);
+            break;
+         case 'byPopularity_Asc':
+            products.sort((a, b) => a.popularity - b.popularity);
+            break;
+         case 'byPopularity_Desc':
+            products.sort((a, b) => b.popularity - a.popularity);
+            break;
+      }
+
+       updateProductsList(products);
    } catch (error) {
-      console.error('Error fetching products:', error);
-      updateProductsList([]);
+       console.error('Error fetching products:', error);
+       updateProductsList([]);
    } finally {
-      isFetching = false;
+       isFetching = false;
    }
 }
+
+
+
 
 function initializeFilters() {
    if (!localStorage.getItem('filters')) {
@@ -210,17 +198,6 @@ function updateFilters(key, value) {
    const filters = getSavedFilters();
    filters[key] = value;
    localStorage.setItem('filters', JSON.stringify(filters));
-
-   const searchBox = document.getElementById('search-box');
-   const categoriesSelect = document.getElementById('categories');
-
-   if (key === 'keyword') {
-      searchBox.value = value || '';
-   }
-
-   if (key === 'category') {
-      categoriesSelect.value = value || '';
-   }
 }
 
 function resetFilters() {
