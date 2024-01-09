@@ -11,8 +11,8 @@
    
   <script type="module" crossorigin src="/project-GROUP_WORK_JS/commonHelpers2.js"></script>
   <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/vendor-4b9aba64.js">
-  <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/scroll-db31f0cc.js">
-  <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/scroll-7c2e77a1.css">
+  <link rel="modulepreload" crossorigin href="/project-GROUP_WORK_JS/assets/scroll-0c1f053f.js">
+  <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/scroll-b0432122.css">
   <link rel="stylesheet" href="/project-GROUP_WORK_JS/assets/vendor-b3ce9496.css">
 </head>
 
@@ -54,34 +54,51 @@
 
       <main>
          <section class="hero-section">
-   <div class="hero-container container">
-      <h1 class="hero-titel">
-         Welcome to the <span>Food</span> Boutique!
-      </h1>
-      <div class="hero-text">
-         <p>
-            With Food Boutique, you're not just subscribing to food, you're signing up for a fresher, fitter, and happier you.
-         </p>
+  <div class="hero-container container">
+    <h1 class="hero-titel">Welcome to the <span>Food</span> Boutique!</h1>
+    <div class="hero-text">
+      <p>
+        With Food Boutique, you're not just subscribing to food, you're signing
+        up for a fresher, fitter, and happier you.
+      </p>
+    </div>
+    <div class="hero-body-img">
+      <div class="hero-img">
+        <picture>
+          <source
+            media="(min-width: 1150px)"
+            srcset="/project-GROUP_WORK_JS/assets/hero-x1-b24ae14c.jpg 1x, /project-GROUP_WORK_JS/assets/hero-x2-27b878d5.jpg 2x"
+            type="image/jpg"
+          />
+          <source
+            media="(min-width: 768px)"
+            srcset="/project-GROUP_WORK_JS/assets/tablet-hero-x1-d8a3f733.jpg 1x, /project-GROUP_WORK_JS/assets/tablet-hero-x2-bb407030.jpg 2x"
+            type="image/jpg"
+          />
+          <source
+            media="(max-width: 767px)"
+            srcset="/project-GROUP_WORK_JS/assets/mobile-hero-x1-1eef9ade.jpg 1x, /project-GROUP_WORK_JS/assets/mobile-hero-x2-b26b3767.jpg 2x"
+            type="image/jpg"
+          />
+          <img
+            class="hero-image"
+            src="/project-GROUP_WORK_JS/assets/mobile-hero-x1-1eef9ade.jpg"
+            alt="grocery basket"
+            width="335"
+            loading="lazy"
+          />
+        </picture>
       </div>
-      <div class="hero-body-img">
-         <div class="hero-img">
-            <picture>
-               <source media="(min-width: 1440px)" srcset="/project-GROUP_WORK_JS/assets/hero-x1-b24ae14c.jpg 1x, /project-GROUP_WORK_JS/assets/hero-x2-27b878d5.jpg 2x" type="image/jpg" />
-               <source media="(min-width: 768px)" srcset="/project-GROUP_WORK_JS/assets/tablet-hero-x1-d8a3f733.jpg 1x, /project-GROUP_WORK_JS/assets/tablet-hero-x2-bb407030.jpg 2x" type="image/jpg" />
-               <source media="(max-width: 767px)" srcset="/project-GROUP_WORK_JS/assets/mobile-hero-x1-1eef9ade.jpg 1x, /project-GROUP_WORK_JS/assets/mobile-hero-x2-b26b3767.jpg 2x" type="image/jpg" />
-               <img class="hero-image" src="/project-GROUP_WORK_JS/assets/mobile-hero-x1-1eef9ade.jpg" alt="grocery basket" width="335" loading="lazy" />
-            </picture>
-         </div>
-         <svg class="hero-icon" width="100" height="100">
-            <use href="/project-GROUP_WORK_JS/assets/sprite-a8de2b94.svg#icon-organic-food"></use>
-         </svg>
-
-      </div>
-   </div>
+      <svg class="hero-icon animations-rotate" width="100" height="100">
+        <use href="/project-GROUP_WORK_JS/assets/sprite-a8de2b94.svg#icon-organic-food"></use>
+      </svg>
+    </div>
+  </div>
 </section>
+
          <section class="filters-section-container">
    <div class="filters-container container">
-      <h2 class="filters">Filters:</h2>
+      <h2 class="filters-titel">Filters:</h2>
       <div class="search-select">
          <form class="search-form">
             <div class="search-section">

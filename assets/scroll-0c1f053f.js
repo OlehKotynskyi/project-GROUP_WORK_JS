@@ -1,6 +1,6 @@
 import{b as $}from"./vendor-4b9aba64.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))o(s);new MutationObserver(s=>{for(const i of s)if(i.type==="childList")for(const c of i.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&o(c)}).observe(document,{childList:!0,subtree:!0});function a(s){const i={};return s.integrity&&(i.integrity=s.integrity),s.referrerpolicy&&(i.referrerPolicy=s.referrerpolicy),s.crossorigin==="use-credentials"?i.credentials="include":s.crossorigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function o(s){if(s.ep)return;s.ep=!0;const i=a(s);fetch(s.href,i)}})();const y="/project-GROUP_WORK_JS/assets/minus-7f58cb69.svg",w="/project-GROUP_WORK_JS/assets/plus-8292619f.svg",u="/project-GROUP_WORK_JS/assets/basket-a161fb4d.svg",v="/project-GROUP_WORK_JS/assets/discount-8db0687b.svg",k="/project-GROUP_WORK_JS/assets/popular-baskett-cb043ad6.svg",m="/project-GROUP_WORK_JS/assets/closed-bf66d401.svg";function C(e){return e.map(({price:t,name:a,img:o,_id:s,category:i,size:c,popularity:n,is10PercentOff:l})=>`<li class="list-item animation-style" id="${s}">
             <div class="list-item-img">
-               ${l?`<img class="products-discount-icon" src="${v}" alt="icon discount" width="100" height="100">`:""} 
+               ${l?`<img class="products-discount-icon animations-rotate" src="${v}" alt="icon discount" width="100" height="100">`:""} 
                <img class="product-img" width=100 src="${o}">
             </div>
             <p class="products-titel">${a}</p>
@@ -37,7 +37,7 @@ import{b as $}from"./vendor-4b9aba64.js";(function(){const t=document.createElem
        </div>`).join("")}function K(e){return e.splice(2),e.map(({price:t,name:a,img:o,_id:s})=>`
          <li class="discount-list-item animation-style" id="${s}" >
             <div class="discount-card" >
-               <img class="discount-icon" src="${v}" alt="icon discount" width="100" height="100">
+               <img class="discount-icon animations-rotate" src="${v}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${o}"></div>
             <div class="discount-info">
                <p>${a}</p>
@@ -113,4 +113,4 @@ import{b as $}from"./vendor-4b9aba64.js";(function(){const t=document.createElem
       />
    </div>
    `,{onClose:o=>t.removeEventListener("click",a)});e.show();const t=document.querySelector(".sub-modal");t.addEventListener("click",a);function a(o){(o.target.className==="remove-btn"||o.target.className==="remove-btn-img")&&e.close()}}let p=0;const b=60,d=document.querySelector(".header"),h=document.querySelector(".header-section"),r=()=>window.pageYOffset||document.documentElement.scrollTop,f=()=>d.classList.contains("hide");function W(){window.addEventListener("scroll",()=>{r()>p&&!f()&&r()>b?d.classList.add("hide"):r()<p&&f()&&d.classList.remove("hide"),r()>b?h.classList.add("scrolled"):h.classList.remove("scrolled"),p=r()})}export{M as a,C as b,q as c,E as d,K as e,J as f,W as h};
-//# sourceMappingURL=scroll-db31f0cc.js.map
+//# sourceMappingURL=scroll-0c1f053f.js.map
