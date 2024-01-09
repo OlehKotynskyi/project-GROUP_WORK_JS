@@ -123,19 +123,19 @@ body {
    align-items: center;
 }
 
-.wrapper > main {
+.wrapper>main {
    flex-grow: 1;
    padding-top: 128px;
 }
 
 @media only screen and (min-width: 768px) {
-   .wrapper > main {
+   .wrapper>main {
       padding-top: 188px;
    }
 }
 
 @media only screen and (min-width: 1440px) {
-   .wrapper > main {
+   .wrapper>main {
       padding-top: 149px;
    }
 }
@@ -282,5 +282,18 @@ body {
       box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.62);
       -webkit-box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.62);
       -moz-box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.62);
+   }
+}
+
+.animations-rotate {
+   transition: all 1s ease;
+   animation: rotate 40s linear infinite;
+}
+
+
+
+@keyframes rotate {
+   from {
+      transform: rotate(360deg);
    }
 }

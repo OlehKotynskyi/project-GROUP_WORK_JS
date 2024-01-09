@@ -9,11 +9,24 @@ import closed from '../img/svg/closed.svg'
 
 export function createMarkupProductsAll(arr) {
    return arr
-      .map(
-         ({ price, name, img, _id, category, size, popularity, is10PercentOff }) =>
-            `<li class="list-item animation-style" id="${_id}">
+     .map(
+       ({
+         price,
+         name,
+         img,
+         _id,
+         category,
+         size,
+         popularity,
+         is10PercentOff,
+       }) =>
+         `<li class="list-item animation-style" id="${_id}">
             <div class="list-item-img">
-               ${is10PercentOff ? `<img class="products-discount-icon" src="${discount}" alt="icon discount" width="100" height="100">` : ''} 
+               ${
+                 is10PercentOff
+                   ? `<img class="products-discount-icon animations-rotate" src="${discount}" alt="icon discount" width="100" height="100">`
+                   : ''
+               } 
                <img class="product-img" width=100 src="${img}">
             </div>
             <p class="products-titel">${name}</p>
@@ -30,8 +43,8 @@ export function createMarkupProductsAll(arr) {
             </div>
          </li>
          `
-      )
-      .join('');
+     )
+     .join('');
 }
 
 export function createMarkupPopularProducts(arr) {
@@ -67,7 +80,7 @@ export function createMarkupProductsDiscount(arr) {
          return `
          <li class="discount-list-item animation-style" id="${_id}" >
             <div class="discount-card" >
-               <img class="discount-icon" src="${discount}" alt="icon discount" width="100" height="100">
+               <img class="discount-icon animations-rotate" src="${discount}" alt="icon discount" width="100" height="100">
                <img class="discount-img" src="${img}"></div>
             <div class="discount-info">
                <p>${name}</p>
