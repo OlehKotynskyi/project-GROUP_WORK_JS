@@ -16,7 +16,7 @@
 
 /* ---------------------- MOBILE ------------------------- */
 
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 280px) {
 
    .product-popular-card {
       display: flex;
