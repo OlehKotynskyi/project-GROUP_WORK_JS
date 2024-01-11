@@ -1,13 +1,15 @@
 import SlimSelect from 'slim-select';
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
+import { getProductsLimit } from './products.js';
 
 let isFetching = false;
 
 function debounce(func, wait, immediate) {
   let timeout;
   return function () {
-    const context = this, args = arguments;
+    const context = this,
+      args = arguments;
     const later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
@@ -35,10 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
   categoriesSelect.value = savedFilters.category || '';
   sortOptionsSelect.value = savedFilters.sort || '';
 
-  sortAndDisplayProducts();
+  fetchFilteredProducts();
 });
 
 const searchForm = document.querySelector('.search-form');
+
 searchForm.addEventListener('submit', function (e) {
   e.preventDefault();
   const keyword = document.getElementById('search-box').value.trim();
@@ -52,11 +55,12 @@ function handleResize() {
   const isMobile = width < 768;
   const isTablet = width >= 768 && width < 1440;
 
-  let limit = 6; // Default 6 cards
+  let limit = 6; // По умолчанию 6 карточек
+
   if (isTablet) {
-    limit = 8; // For tablets 8 cards
+    limit = 8; // Для планшета 8 карточек
   } else if (width >= 1440) {
-    limit = 9; // For 1440 width 9 cards
+    limit = 9; // Для 1440 шириной 9 карточек
   }
 
   const filters = getSavedFilters();
@@ -70,7 +74,9 @@ window.addEventListener('resize', debounce(handleResize, 300));
 
 async function fetchCategories() {
   try {
-    const response = await fetch('https://food-boutique.b.goit.study/api/products/categories');
+    const response = await fetch(
+      'https://food-boutique.b.goit.study/api/products/categories'
+    );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -143,66 +149,56 @@ function resetPage() {
   updateFilters('page', 1);
 }
 
-function saveProductsToLocalStorage(products) {
-  localStorage.setItem('products', JSON.stringify(products));
-}
-
-function getProductsFromLocalStorage() {
-  const products = localStorage.getItem('products');
-  return products ? JSON.parse(products) : [];
-}
 async function fetchFilteredProducts() {
-   if (isFetching) return;
-   isFetching = true;
- 
-   const filters = getSavedFilters();
-   const { category, keyword, page, limit, sort } = filters;
- 
-   try {
-     const products = await fetchProductsAll(category, keyword, page, limit, sort);
-     if (!Array.isArray(products)) {
-       throw new Error('Response is not an array of products');
-     }
- 
-     saveProductsToLocalStorage(products);
-     sortAndDisplayProducts();
-   } catch (error) {
-     console.error('Error fetching products:', error);
-     updateProductsList([]);
-   } finally {
-     isFetching = false;
-   }
- }
- 
- function sortAndDisplayProducts() {
-   let products = getProductsFromLocalStorage();
-   const sort = getSavedFilters().sort;
- 
-   switch (sort) {
-     case 'byABC_Asc':
-       products.sort((a, b) => a.name.localeCompare(b.name));
-       break;
-     case 'byABC_Desc':
-       products.sort((a, b) => b.name.localeCompare(a.name));
-       break;
-     case 'byPrice_Asc':
-       products.sort((a, b) => a.price - b.price);
-       break;
-     case 'byPrice_Desc':
-       products.sort((a, b) => b.price - a.price);
-       break;
-     case 'byPopularity_Asc':
-       products.sort((a, b) => a.popularity - b.popularity);
-       break;
-     case 'byPopularity_Desc':
-       products.sort((a, b) => b.popularity - a.popularity);
-       break;
-   }
- 
-   updateProductsList(products);
- }
- 
- 
+  if (isFetching) return;
+  isFetching = true;
+
+  const filters = getSavedFilters();
+  const { category, keyword, page, limit, sort } = filters;
+
+  try {
+    const products = await fetchProductsAll(
+      category,
+      keyword,
+      page,
+      limit,
+      sort
+    );
+
+    if (!Array.isArray(products)) {
+      throw new Error('Response is not an array of products');
+    }
+
+    // Сортування продуктів відповідно до обраного критерію
+    switch (sort) {
+      case 'byABC_Asc':
+        products.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'byABC_Desc':
+        products.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'byPrice_Asc':
+        products.sort((a, b) => a.price - b.price);
+        break;
+      case 'byPrice_Desc':
+        products.sort((a, b) => b.price - a.price);
+        break;
+      case 'byPopularity_Asc':
+        products.sort((a, b) => a.popularity - b.popularity);
+        break;
+      case 'byPopularity_Desc':
+        products.sort((a, b) => b.popularity - a.popularity);
+        break;
+    }
+
+    updateProductsList(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    updateProductsList([]);
+  } finally {
+    isFetching = false;
+  }
+}
 
 function initializeFilters() {
   if (!localStorage.getItem('filters')) {
@@ -217,15 +213,17 @@ function updateFilters(key, value) {
 }
 
 function resetFilters() {
-  localStorage.setItem('filters', JSON.stringify({ keyword: null, category: null, page: 1, limit: 6, sort: 'byABC_Asc' }));
+  localStorage.setItem(
+    'filters',
+    JSON.stringify({ keyword: null, category: null, page: 1, limit: 6 })
+  );
 }
 
 function getSavedFilters() {
-  return JSON.parse(localStorage.getItem('filters')) || {};
+  return JSON.parse(localStorage.getItem('filters')) || resetFilters();
 }
 
 function fetchInitialProducts() {
   fetchFilteredProducts();
 }
-
 export default fetchFilteredProducts;
