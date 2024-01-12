@@ -1,7 +1,6 @@
 import SlimSelect from 'slim-select';
 import { fetchProductsAll } from './fetch.js';
 import { updateProductsList } from './products.js';
-import { getProductsLimit } from './products.js';
 
 let isFetching = false;
 
@@ -55,12 +54,12 @@ function handleResize() {
   const isMobile = width < 768;
   const isTablet = width >= 768 && width < 1440;
 
-  let limit = 6; // По умолчанию 6 карточек
+  let limit = 6; 
 
   if (isTablet) {
-    limit = 8; // Для планшета 8 карточек
+    limit = 8; 
   } else if (width >= 1440) {
-    limit = 9; // Для 1440 шириной 9 карточек
+    limit = 9; 
   }
 
   const filters = getSavedFilters();
@@ -169,7 +168,6 @@ async function fetchFilteredProducts() {
       throw new Error('Response is not an array of products');
     }
 
-    // Сортування продуктів відповідно до обраного критерію
     switch (sort) {
       case 'byABC_Asc':
         products.sort((a, b) => a.name.localeCompare(b.name));
