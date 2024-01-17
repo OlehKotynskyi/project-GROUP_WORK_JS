@@ -2,31 +2,31 @@
    padding-bottom: 40px;
 }
 
-@media only screen and (max-width: 349px) {   
+@media only screen and (max-width: 349px) {
    .filters-container {
-      width: 300px;
+      max-width: 300px;
    }
 }
 
 .ss-main .ss-values .ss-single {
-  display: flex;
-  margin: auto 0px auto var(--ss-spacing-s);
-  font-size: 14px;
+   display: flex;
+   margin: auto 0px auto var(--ss-spacing-s);
+   font-size: 14px;
 }
 
 .filters-text-not-found {
-margin-left: auto;
-margin-right: auto;
-width: 279px;
-height: 54px;
-   
-font-size: 14px;
-font-weight: 400;
-line-height: 18px;
-letter-spacing: 0em;
-text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+   width: 279px;
+   height: 54px;
 
-color: rgba(1, 1, 1, 0.7);
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 18px;
+   letter-spacing: 0em;
+   text-align: center;
+
+   color: rgba(1, 1, 1, 0.7);
 }
 
 .filters-section:not(:last-child) {
@@ -39,7 +39,7 @@ color: rgba(1, 1, 1, 0.7);
    }
 }
 
-.filters-container {}
+
 
 .filters-titel {
    color: rgba(1, 1, 1, 0.30);
@@ -117,21 +117,21 @@ color: rgba(1, 1, 1, 0.7);
    }
 
    .ss-main .ss-values .ss-single {
-    display: flex;
-    margin: auto 0px auto var(--ss-spacing-s);
-    font-size: 18px;
- }
+      display: flex;
+      margin: auto 0px auto var(--ss-spacing-s);
+      font-size: 18px;
+   }
 
- .filters-text-not-found {
-   width: 371px;
-   height: 72px;
-   
-   font-size: 18px;
-   font-weight: 400;
-   line-height: 24px;
-   letter-spacing: 0em;
-   text-align: center;
-   
+   .filters-text-not-found {
+      width: 371px;
+      height: 72px;
+
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0em;
+      text-align: center;
+
    }
 }
 
@@ -144,9 +144,7 @@ color: rgba(1, 1, 1, 0.7);
 }
 
 
-.search-icon {}
 
-.filter-section {}
 
 @media only screen and (min-width: 768px) {
    .filter-section {
@@ -204,16 +202,15 @@ color: rgba(1, 1, 1, 0.7);
 
 
 
-@media only screen and (max-width: 768px) {
-   .sort-section{
+@media only screen and (max-width: 767px) {
+   .sort-section {
       padding-left: 0;
       padding-top: 12px;
-      width: 335px;
    }
 }
 
-.sort-options{
-   background-color:  var(--color-white);
+.sort-options {
+   background-color: var(--color-white);
 }
 
 
