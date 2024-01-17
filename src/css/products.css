@@ -30,9 +30,16 @@
    }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1050px) {
    .products-container {
       gap: 20px;
+   }
+}
+
+@media only screen and (min-width: 1440px) {
+   .products-container {
+      row-gap: 35px;
+      column-gap: 20px;
    }
 }
 
@@ -166,6 +173,20 @@
    line-height: 1.42;
    text-align: center;
    font-size: 14px;
+}
+
+@media only screen and (max-width: 375px) {
+   .tui-pagination {
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+   }
+
+   .tui-page-btn {
+      width: 28px !important;
+      height: 28px !important;
+      padding: 4px 0px !important;
+   }
 }
 
 @media only screen and (min-width: 768px) {
