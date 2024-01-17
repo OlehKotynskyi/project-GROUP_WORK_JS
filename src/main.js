@@ -1,9 +1,8 @@
-// Експорт функції шапки сайту ховати при прокрутці та показувати 
+// Експорт функції шапки сайту ховати при прокрутці та показувати
 import { handleHeaderScroll } from './js/base-js/scroll';
 // Експорт функції попапу
-import * as yourModule from './js/base-js/popup';
 // Імпорт стилів модалки
-import 'basiclightbox/dist/basicLightbox.min.css'
+import 'basiclightbox/dist/basicLightbox.min.css';
 
 // визов функції ховати та показувати шапку сайту
 handleHeaderScroll();
@@ -19,5 +18,3 @@ handleHeaderScroll();
 // yourModule.bodyLock();
 // // визов функції розблокування скролу боді
 // yourModule.bodyUnLock();
-
-
