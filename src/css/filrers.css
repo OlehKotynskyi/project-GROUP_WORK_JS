@@ -51,9 +51,6 @@ color: rgba(1, 1, 1, 0.7);
    margin-bottom: 8px;
 }
 
-
-
-
 @media only screen and (min-width: 768px) {
    .search-form {
       width: 269px;
@@ -146,6 +143,7 @@ color: rgba(1, 1, 1, 0.7);
    height: 20px;
 }
 
+
 .search-icon {}
 
 .filter-section {}
@@ -199,6 +197,25 @@ color: rgba(1, 1, 1, 0.7);
       padding-bottom: 40px;
    }
 }
+
+.sort-section {
+   padding-left: 8px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+   .sort-section{
+      padding-left: 0;
+      padding-top: 12px;
+      width: 335px;
+   }
+}
+
+.sort-options{
+   background-color:  var(--color-white);
+}
+
 
 
 /* Стилі для основного контейнера Slim Select */
